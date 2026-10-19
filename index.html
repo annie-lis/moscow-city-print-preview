@@ -719,8 +719,16 @@ a{color:inherit;text-decoration:none}
 :root {
   --section-marker-num-width:18px;
   --section-marker-gap:16px;
-  --section-heading-x:calc(var(--rail-x) + var(--section-marker-num-width) + var(--section-marker-gap));
+  /* A follows the visible logo ink; B follows the start of a marker rule. */
+  --axis-a:calc(var(--header-left) + var(--header-logo-ink-inset));
+  --axis-b:calc(var(--axis-a) + var(--section-marker-num-width) + var(--section-marker-gap));
+  --section-heading-x:var(--axis-b);
+  --hero-image-top:36px;
 }
+.hero-marker, .section-marker { left:var(--axis-a); }
+.hero-inner { padding-left:var(--axis-b); }
+/* Top anchoring keeps the visible top sheet independent of image width/height. */
+.hero-media img { top:var(--hero-image-top); bottom:auto; }
 .section-marker .num { flex:0 0 var(--section-marker-num-width); }
 .section-marker .rule { margin-inline:var(--section-marker-gap); }
 .band-2 .section02-title,
