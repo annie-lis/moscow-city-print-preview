@@ -19,7 +19,8 @@
   --header-right:calc(var(--header-left) + var(--header-logo-ink-inset));
   --content-x:160px;
   --right:58px;
-  --section-divider-inset:38px;
+  --section-divider-inset:54px;
+  --section-content-inset:38px;
   --section-height:288px;
   --client-nav-inset:24px;
   --column-padding:calc(var(--section-marker-num-width) + var(--section-marker-gap));
@@ -46,7 +47,7 @@ body{
 a{color:inherit;text-decoration:none}
 .canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);}
 .band{width:100%;}
-.band-1{height:424px;background:var(--paper);}
+.band-1{min-height:424px;background:var(--paper);}
 .band-5{height:23vh;min-height:260px;background:var(--paper);}
 .header{height:106px;padding:22px var(--header-right) 18px var(--header-left);display:grid;grid-template-columns:auto 1fr;align-items:center;}
 .brand{width:265px;line-height:0;justify-self:start;}
@@ -54,56 +55,24 @@ a{color:inherit;text-decoration:none}
 .header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
 .status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
 .nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
-.hero{position:relative;z-index:2;height:318px;overflow:visible;background:var(--paper);}
+.hero{position:relative;z-index:2;min-height:318px;overflow:visible;background:var(--paper);}
 .rail{position:absolute;left:var(--rail-x);top:44px;width:34px;font-size:13px;line-height:1;text-align:center;font-weight:400;}
 .rail::after{content:"";display:block;width:21px;height:1.5px;background:rgba(21,21,21,.72);margin:14px auto 0;}
 
 
 .hero-inner{
-  --hero-copy-bottom:var(--section-divider-inset);
-  --hero-image-top:36px;
-  --hero-stack-width:clamp(1056px,62vw,1200px);
-  --hero-stack-height:236px;
-  --hero-stack-right:clamp(-136px,calc(-7vw - 16px),-102px);
-  position:relative;
-  height:100%;
-  padding-left:var(--axis-b);
-  display:grid;
-  grid-template-columns:47% 53%;
-  align-items:stretch;
+  min-height:inherit;
+  padding:24px var(--right) 24px var(--axis-b);
+  display:flex;
+  align-items:center;
 }
 .hero-copy{
-  position:relative;
-  z-index:2;
-  align-self:end;
-  width:min(560px,calc(100vw - var(--axis-b) - var(--right)));
-  padding:0 0 var(--hero-copy-bottom);
+  width:min(560px,100%);
 }
 .hero-title{margin:0;max-width:590px;font-size:36px;line-height:1.08;letter-spacing:-.035em;font-weight:300;}
 .hero-copy p{margin:20px 0 0;max-width:540px;font-size:15.5px;line-height:1.45;color:#333330;font-weight:300;}
-.hero-media{position:absolute;inset:0;z-index:1;overflow:visible;background:transparent;pointer-events:none;}
-.hero-media img{
-  position:absolute;
-  display:block;
-  top:var(--hero-image-top);
-  right:var(--hero-stack-right);
-  width:var(--hero-stack-width);
-  height:var(--hero-stack-height);
-  max-width:none;
-  object-fit:fill;
-  /* Follow the material silhouette to exclude the source's exterior gray halo.
-     Paper texture and the shadows between layers remain untouched. */
-  clip-path:polygon(35.25% 16%,46% 0,100% 0,100% 100%,52.5% 100%,35.25% 61%);
-  --hero-edge-mask:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.55) 4px,#000 10px,#000 calc(100% - 20px),rgba(0,0,0,.65) calc(100% - 8px),transparent 100%);
-  -webkit-mask-image:var(--hero-edge-mask);
-  mask-image:var(--hero-edge-mask);
-}
 
 
-/* Narrow desktop retains a broad stack while moving its paper edge away from copy. */
-@media (max-width:1180px){
-  .hero-inner{--hero-stack-right:calc(122.86vw - 1552px);}
-}
 
 /* 01 — ПРОДУКЦИЯ: первый контентный блок */
 .band-2{
@@ -159,7 +128,7 @@ a{color:inherit;text-decoration:none}
 
 .section02-inner{
   min-height:var(--section-height);
-  padding:var(--section-divider-inset) var(--right) var(--section-divider-inset) var(--content-x);
+  padding:var(--section-content-inset) var(--right) var(--section-content-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -250,7 +219,7 @@ a{color:inherit;text-decoration:none}
 }
 .section03-inner{
   min-height:var(--section-height);
-  padding:var(--section-divider-inset) var(--right) var(--section-divider-inset) var(--content-x);
+  padding:var(--section-content-inset) var(--right) var(--section-content-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -320,7 +289,7 @@ a{color:inherit;text-decoration:none}
 }
 .section04-inner{
   min-height:var(--section-height);
-  padding:var(--section-divider-inset) var(--right) var(--section-divider-inset) var(--content-x);
+  padding:var(--section-content-inset) var(--right) var(--section-content-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -402,7 +371,7 @@ a{color:inherit;text-decoration:none}
 .footer-inner{
   position:relative;
   min-height:248px;
-  padding:var(--section-divider-inset) 0;
+  padding:var(--section-content-inset) 0;
   display:grid;
   grid-template-columns:var(--axis-b)
     calc(var(--footer-split-1) - var(--axis-b))
@@ -746,9 +715,6 @@ a{color:inherit;text-decoration:none}
         <div class="hero-copy">
           <h1 class="hero-title">Печатаем то,<br>что представляет ваш бизнес.</h1>
           <p>Современная типография в&nbsp;Москва-Сити.<br>Полный цикл печати и&nbsp;постпечатной обработки для&nbsp;компаний и&nbsp;агентств.</p>
-        </div>
-        <div class="hero-media">
-          <img src="assets/hero/hero_stack_candidate_transparent.png" alt="Стопка бумаги с ярким красным акцентом без фона">
         </div>
       </div>
     </section>
