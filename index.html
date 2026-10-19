@@ -22,7 +22,6 @@
   --section-divider-inset:38px;
   --section-height:315px;
   --client-nav-inset:24px;
-  --hero-composition-lift:16px;
   --column-padding:calc(var(--section-marker-num-width) + var(--section-marker-gap));
   --section-intro-width:210px;
   --section-column-gap:48px;
@@ -56,49 +55,51 @@ a{color:inherit;text-decoration:none}
 .hero{position:relative;z-index:2;height:318px;overflow:visible;background:var(--paper);}
 .rail{position:absolute;left:var(--rail-x);top:44px;width:34px;font-size:13px;line-height:1;text-align:center;font-weight:400;}
 .rail::after{content:"";display:block;width:21px;height:1.5px;background:rgba(21,21,21,.72);margin:14px auto 0;}
-.hero-inner{position:relative;height:100%;padding-left:var(--content-x);display:grid;grid-template-columns:47% 53%;align-items:stretch;}
-.hero-copy{position:relative;z-index:2;align-self:start;padding-top:68px;padding-right:52px;}
-.hero-title{margin:0;max-width:590px;font-size:38px;line-height:1.07;letter-spacing:-.042em;font-weight:300;}
-.hero-copy p{margin:24px 0 0;max-width:560px;font-size:15.5px;line-height:1.5;color:#333330;font-weight:300;}
+
+
+.hero-inner{
+  --hero-level:12px;
+  --hero-stack-width:clamp(1120px,66vw,1280px);
+  --hero-stack-height:280px;
+  --hero-stack-right:clamp(-120px,-7vw,-86px);
+  position:relative;
+  height:100%;
+  padding-left:var(--axis-b);
+  display:grid;
+  grid-template-columns:47% 53%;
+  align-items:stretch;
+}
+.hero-copy{
+  position:relative;
+  z-index:2;
+  align-self:start;
+  padding-top:var(--hero-level);
+  padding-right:52px;
+}
+.hero-title{margin:0;max-width:590px;font-size:36px;line-height:1.08;letter-spacing:-.035em;font-weight:300;}
+.hero-copy p{margin:20px 0 0;max-width:540px;font-size:15.5px;line-height:1.45;color:#333330;font-weight:300;}
 .hero-media{position:absolute;inset:0;z-index:1;overflow:visible;background:transparent;pointer-events:none;}
 .hero-media img{
   position:absolute;
   display:block;
-  width:clamp(1040px,58vw,1080px);
+  top:var(--hero-level);
+  right:var(--hero-stack-right);
+  width:var(--hero-stack-width);
+  height:var(--hero-stack-height);
   max-width:none;
-  height:auto;
-  right:clamp(-120px,-7vw,-86px);
-  bottom:-36px;
-  object-fit:initial;
-  object-position:initial;
-  /* Нижний fade сдвинут выше: сама посадка и responsive-механика v4
-     сохранены, но визуал растворяется до контента следующего блока. */
-  -webkit-mask-image:linear-gradient(to bottom,
-    #000 0%,
-    #000 84%,
-    rgba(0,0,0,.94) 87%,
-    rgba(0,0,0,.68) 90%,
-    rgba(0,0,0,.24) 92%,
-    transparent 94%,
-    transparent 100%);
-  mask-image:linear-gradient(to bottom,
-    #000 0%,
-    #000 84%,
-    rgba(0,0,0,.94) 87%,
-    rgba(0,0,0,.68) 90%,
-    rgba(0,0,0,.24) 92%,
-    transparent 94%,
-    transparent 100%);
+  object-fit:fill;
+  /* Follow the material silhouette to exclude the source's exterior gray halo.
+     Paper texture and the shadows between layers remain untouched. */
+  clip-path:polygon(35.25% 16%,46% 0,100% 0,100% 100%,52.5% 100%,35.25% 61%);
+  --hero-edge-mask:linear-gradient(to bottom,transparent 0,#000 8px,#000 calc(100% - 16px),transparent 100%);
+  -webkit-mask-image:var(--hero-edge-mask);
+  mask-image:var(--hero-edge-mask);
 }
 
-/* На сужении desktop не уменьшаем и не тянем стопку: она постепенно
-   уходит вправо, сохраняя крупный desktop-масштаб и освобождая текст. */
+
+/* Narrow desktop retains a broad stack while moving its paper edge away from copy. */
 @media (max-width:1180px){
-  .hero-media img{
-    width:1040px;
-    right:calc(122.86vw - 1536px);
-    bottom:-36px;
-  }
+  .hero-inner{--hero-stack-right:calc(122.86vw - 1536px);}
 }
 
 /* 01 — ПРОДУКЦИЯ: первый контентный блок */
@@ -533,13 +534,6 @@ a{color:inherit;text-decoration:none}
   .brand{width:220px}
   .nav{gap:20px;font-size:14px}
   .hero-title{font-size:34px}
-  /* Не схлопываем hero в одну колонку: сохраняем desktop-пропорцию 47/53. */
-  .hero-inner{grid-template-columns:47% 53%;}
-  .hero-media img{
-    width:1040px;
-    right:calc(122.86vw - 1536px);
-    bottom:-32px;
-  }
 }
 
 @media(max-width:900px){
@@ -586,10 +580,6 @@ a{color:inherit;text-decoration:none}
 }
 .section-marker .label{font-weight:500;}
 
-/* 01 — the first hero line now starts on the same row as the rule. */
-.hero-copy{
-  padding-top:44px;
-}
 
 /* 02 keeps the accepted test geometry. */
 .section02-inner{
@@ -604,13 +594,11 @@ a{color:inherit;text-decoration:none}
 }
 
 
-
 @media(max-width:900px){
   .hero-marker,
   .section-marker{left:var(--rail-x);font-size:13px;}
   .hero-marker .rule,
   .section-marker .rule{width:38px;margin-inline:13px;}
-  .hero-copy{padding-top:44px;}
 }
 
 @media(max-width:650px){
@@ -618,7 +606,7 @@ a{color:inherit;text-decoration:none}
   .section-marker{top:34px;font-size:11px;}
   .hero-marker .rule,
   .section-marker .rule{width:20px;height:2px;margin-inline:10px;}
-  .hero-copy{padding-top:34px;}
+
   .section02-inner,
   .section03-inner,
   .section04-inner{padding-top:72px;}
@@ -673,10 +661,6 @@ a{color:inherit;text-decoration:none}
 <style id="main-marker-alignment-v3">
 /* Fine optical correction after visual review. */
 
-/* Move the hero copy and image upward through one shared composition offset. */
-.hero-copy{
-  padding-top:calc(39px - var(--hero-composition-lift)) !important;
-}
 
 /* 02–04: the large left headings are centered against the FULL section
    height, not merely the padded content row below the marker. */
@@ -699,13 +683,7 @@ a{color:inherit;text-decoration:none}
   align-self:auto !important;
 }
 
-@media(max-width:900px){
-  .hero-copy{padding-top:calc(39px - var(--hero-composition-lift)) !important;}
-}
 
-@media(max-width:650px){
-  .hero-copy{padding-top:calc(30px - var(--hero-composition-lift)) !important;}
-}
 </style>
 <style id="geometry-revision">
 /* Restore the reference hero geometry; retain Geologica and its original metrics. */
@@ -725,12 +703,10 @@ a{color:inherit;text-decoration:none}
   --axis-a:calc(var(--header-left) + var(--header-logo-ink-inset));
   --axis-b:calc(var(--axis-a) + var(--section-marker-num-width) + var(--section-marker-gap));
   --section-heading-x:var(--axis-b);
-  --hero-image-top:calc(36px - var(--hero-composition-lift));
 }
 .hero-marker, .section-marker { left:var(--axis-a); }
-.hero-inner { padding-left:var(--axis-b); }
-/* Top anchoring keeps the visible top sheet independent of image width/height. */
-.hero-media img { top:var(--hero-image-top); bottom:auto; }
+
+
 .section-marker .num { flex:0 0 var(--section-marker-num-width); }
 .section-marker .rule { margin-inline:var(--section-marker-gap); }
 @media(max-width:900px) {
