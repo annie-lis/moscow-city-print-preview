@@ -420,6 +420,19 @@ a{color:inherit;text-decoration:none}
   max-width:34vw;
   padding:0;
 }
+/* Same 1px / 14% ink separators as the service and process columns. */
+.footer-contact::before,
+.footer-contact::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(21,21,21,.14);
+  pointer-events:none;
+}
+.footer-contact::before{left:-24px;}
+.footer-contact::after{right:-24px;}
 .footer-contact-row{
   display:grid;
   grid-template-columns:92px 1fr;
@@ -444,7 +457,6 @@ a{color:inherit;text-decoration:none}
   max-width:calc(100% - 28px);
   margin-left:28px;
   justify-self:start;
-  border-top:1px solid rgba(21,21,21,.14);
 }
 .footer-action{
   min-height:49px;
@@ -452,11 +464,11 @@ a{color:inherit;text-decoration:none}
   grid-template-columns:1fr 20px;
   align-items:center;
   column-gap:56px;
-  border-bottom:1px solid rgba(21,21,21,.14);
   font-size:14px;
   line-height:1.2;
   font-weight:300;
 }
+.footer-action + .footer-action{border-top:1px solid rgba(21,21,21,.14);}
 .footer-action-arrow{
   justify-self:end;
   margin-right:0;
@@ -867,10 +879,10 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
   <footer class="band band-5" id="contacts">
-    <div class="section-marker"><span class="num">05</span><span class="rule"></span><span class="label">Как связаться с нами</span></div>
+    <div class="section-marker"><span class="num">05</span><span class="rule"></span><span class="label">КОНТАКТЫ</span></div>
     <div class="footer-inner">
       <div class="footer-intro">
-        <h2 class="footer-title">Обсудим<br>проект?</h2>
+        <h2 class="footer-title">Обсудить<br>проект</h2>
       </div>
 
       <div class="footer-main">
