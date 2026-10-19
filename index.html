@@ -20,7 +20,7 @@
   --content-x:160px;
   --right:58px;
   --section-divider-inset:38px;
-  --section-height:315px;
+  --section-height:288px;
   --client-nav-inset:24px;
   --column-padding:calc(var(--section-marker-num-width) + var(--section-marker-gap));
   --section-intro-width:210px;
@@ -58,9 +58,10 @@ a{color:inherit;text-decoration:none}
 
 
 .hero-inner{
-  --hero-level:12px;
-  --hero-stack-width:clamp(1120px,66vw,1280px);
-  --hero-stack-height:280px;
+  --hero-copy-top:18px;
+  --hero-image-top:10px;
+  --hero-stack-width:clamp(1088px,64vw,1240px);
+  --hero-stack-height:268px;
   --hero-stack-right:clamp(-120px,-7vw,-86px);
   position:relative;
   height:100%;
@@ -73,7 +74,7 @@ a{color:inherit;text-decoration:none}
   position:relative;
   z-index:2;
   align-self:start;
-  padding-top:var(--hero-level);
+  padding-top:var(--hero-copy-top);
   padding-right:52px;
 }
 .hero-title{margin:0;max-width:590px;font-size:36px;line-height:1.08;letter-spacing:-.035em;font-weight:300;}
@@ -82,7 +83,7 @@ a{color:inherit;text-decoration:none}
 .hero-media img{
   position:absolute;
   display:block;
-  top:var(--hero-level);
+  top:var(--hero-image-top);
   right:var(--hero-stack-right);
   width:var(--hero-stack-width);
   height:var(--hero-stack-height);
@@ -91,7 +92,7 @@ a{color:inherit;text-decoration:none}
   /* Follow the material silhouette to exclude the source's exterior gray halo.
      Paper texture and the shadows between layers remain untouched. */
   clip-path:polygon(35.25% 16%,46% 0,100% 0,100% 100%,52.5% 100%,35.25% 61%);
-  --hero-edge-mask:linear-gradient(to bottom,transparent 0,#000 8px,#000 calc(100% - 16px),transparent 100%);
+  --hero-edge-mask:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.55) 5px,#000 12px,#000 calc(100% - 22px),rgba(0,0,0,.65) calc(100% - 9px),transparent 100%);
   -webkit-mask-image:var(--hero-edge-mask);
   mask-image:var(--hero-edge-mask);
 }
@@ -156,7 +157,7 @@ a{color:inherit;text-decoration:none}
 
 .section02-inner{
   min-height:var(--section-height);
-  padding:78px var(--right) var(--section-divider-inset) var(--content-x);
+  padding:var(--section-divider-inset) var(--right) var(--section-divider-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -196,7 +197,7 @@ a{color:inherit;text-decoration:none}
   min-width:0;
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  align-items:stretch;
+  align-items:center;
 }
 .service{
   min-width:0;
@@ -230,13 +231,13 @@ a{color:inherit;text-decoration:none}
   overflow-wrap:normal;
 }
 .service-arrow{
-  margin-top:auto;
+  margin-top:16px;
   font-size:20px;
   line-height:1;
   font-weight:300;
 }
 
-/* 02 — ЭТАПЫ РАБОТЫ */
+/* 02 — ПРОЦЕСС */
 .band-3{
   position:relative;
   height:auto;
@@ -245,7 +246,7 @@ a{color:inherit;text-decoration:none}
 }
 .section03-inner{
   min-height:var(--section-height);
-  padding:78px var(--right) var(--section-divider-inset) var(--content-x);
+  padding:var(--section-divider-inset) var(--right) var(--section-divider-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -271,11 +272,13 @@ a{color:inherit;text-decoration:none}
   min-width:0;
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  align-items:stretch;
+  align-items:center;
 }
 .step{
   min-width:0;
   padding:0 var(--column-padding);
+  display:flex;
+  flex-direction:column;
 }
 .step-num{
   margin:0;
@@ -312,7 +315,7 @@ a{color:inherit;text-decoration:none}
 }
 .section04-inner{
   min-height:var(--section-height);
-  padding:78px var(--right) var(--section-divider-inset) var(--content-x);
+  padding:var(--section-divider-inset) var(--right) var(--section-divider-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -350,12 +353,12 @@ a{color:inherit;text-decoration:none}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:0 24px;
+  padding:0 calc(var(--client-nav-inset) / 2);
 }
 .client-logo{
   display:block;
-  width:190px;
-  height:112px;
+  width:237.5px;
+  height:140px;
   max-width:100%;
   object-fit:contain;
 }
@@ -461,6 +464,8 @@ a{color:inherit;text-decoration:none}
   font-weight:300;
 }
 .footer-value{
+  min-width:0;
+  overflow-wrap:anywhere;
   font-size:14px;
   line-height:1.45;
   font-weight:300;
@@ -582,9 +587,6 @@ a{color:inherit;text-decoration:none}
 
 
 /* 02 keeps the accepted test geometry. */
-.section02-inner{
-  padding-top:78px;
-}
 .section02-title{margin-top:0;}
 
 /* 03 / 04 — create the same marker row, then start content below it. */
@@ -617,7 +619,6 @@ a{color:inherit;text-decoration:none}
     row-gap:24px;
   }
   .footer-intro, .footer-contact, .footer-actions{grid-column:2;}
-  .footer-value{overflow-wrap:anywhere;}
   .footer-inner::before{left:var(--axis-a);}
   .footer-inner::after{left:auto;right:var(--header-right);}
 }
@@ -687,7 +688,7 @@ a{color:inherit;text-decoration:none}
 </style>
 <style id="geometry-revision">
 /* Restore the reference hero geometry; retain Geologica and its original metrics. */
-.header .brand, .header .header-right { transform:translateY(8px); }
+.header .brand, .header .header-right { transform:translateY(20px); }
 /* 40px is the lower crop-mark horizontal guide measured from the canvas bottom.
    A one-line legal row fits this depth; wrapped rows retain natural height. */
 .footer-legal { min-height:40px; padding-top:11px; padding-bottom:12px; }
@@ -779,7 +780,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
   <section class="band band-3">
-    <div class="section-marker"><span class="num">02</span><span class="rule"></span><span class="label">ЭТАПЫ РАБОТЫ</span></div>
+    <div class="section-marker"><span class="num">02</span><span class="rule"></span><span class="label">ПРОЦЕСС</span></div>
     <div class="section03-inner">
       <div class="section03-intro">
         <h2 class="section03-title">От задачи<br>до тиража</h2>
