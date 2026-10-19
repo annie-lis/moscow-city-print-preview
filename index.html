@@ -19,7 +19,7 @@
   --header-right:calc(var(--header-left) + var(--header-logo-ink-inset));
   --content-x:160px;
   --right:58px;
-  --section-divider-inset:54px;
+  --section-divider-inset:64px;
   --section-content-inset:38px;
   --section-height:288px;
   --client-nav-inset:24px;
@@ -47,7 +47,7 @@ body{
 a{color:inherit;text-decoration:none}
 .canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);}
 .band{width:100%;}
-.band-1{min-height:424px;background:var(--paper);}
+.band-1{background:var(--paper);}
 .band-5{height:23vh;min-height:260px;background:var(--paper);}
 .header{height:106px;padding:22px var(--header-right) 18px var(--header-left);display:grid;grid-template-columns:auto 1fr;align-items:center;}
 .brand{width:265px;line-height:0;justify-self:start;}
@@ -55,7 +55,7 @@ a{color:inherit;text-decoration:none}
 .header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
 .status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
 .nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
-.hero{position:relative;z-index:2;min-height:318px;overflow:visible;background:var(--paper);}
+.hero{position:relative;z-index:2;min-height:250px;overflow:visible;background:var(--paper);}
 .rail{position:absolute;left:var(--rail-x);top:44px;width:34px;font-size:13px;line-height:1;text-align:center;font-weight:400;}
 .rail::after{content:"";display:block;width:21px;height:1.5px;background:rgba(21,21,21,.72);margin:14px auto 0;}
 
@@ -158,6 +158,8 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   top:var(--section-divider-inset);
   bottom:var(--section-divider-inset);
+  max-height:calc(var(--section-height) - 2 * var(--section-divider-inset));
+  margin-block:auto;
   left:var(--section-grid-start);
   right:var(--right);
   background:linear-gradient(to right,rgba(21,21,21,.14) 1px,transparent 1px);
@@ -415,20 +417,6 @@ a{color:inherit;text-decoration:none}
   display:grid;
   row-gap:15px;
 }
-/* Footer cuts follow the centers of client columns 1 and 3. */
-.footer-inner::before,
-.footer-inner::after{
-  content:"";
-  position:absolute;
-  /* Equal insets in the content area, excluding the legal row. */
-  top:var(--section-divider-inset);
-  bottom:var(--section-divider-inset);
-  width:1px;
-  background:rgba(21,21,21,.14);
-  pointer-events:none;
-}
-.footer-inner::before{left:var(--footer-split-1);}
-.footer-inner::after{left:var(--footer-split-2);}
 .footer-contact-row{
   display:grid;
   grid-template-columns:64px 1fr;
@@ -596,8 +584,6 @@ a{color:inherit;text-decoration:none}
     row-gap:24px;
   }
   .footer-intro, .footer-contact, .footer-actions{grid-column:2;}
-  .footer-inner::before{left:var(--axis-a);}
-  .footer-inner::after{left:auto;right:var(--header-right);}
 }
 </style>
 
@@ -870,7 +856,8 @@ a{color:inherit;text-decoration:none}
         <span>Все права защищены</span><span>·</span>
         <a href="/sitemap/">Карта сайта</a><span>·</span>
         <a href="/privacy-policy/">Политика конфиденциальности</a><span>·</span>
-        <a href="/requisites/">Реквизиты</a>
+        <a href="/requisites/">Реквизиты</a><span>·</span>
+        <a href="vacancies.html">Вакансии</a>
       </div>
       <div>Разработка сайта — <a href="https://madfox.agency/" target="_blank" rel="noopener">Madfox</a></div>
     </div>
