@@ -395,7 +395,6 @@ a{color:inherit;text-decoration:none}
 
 /* 04 — КОНТАКТЫ / footer */
 .band-5{
-  --footer-divider-inset:max(var(--section-divider-inset),var(--footer-legal-height,40px));
   position:relative;
   height:auto;
   min-height:0;
@@ -408,6 +407,11 @@ a{color:inherit;text-decoration:none}
   display:grid;
   grid-template-columns:var(--axis-b) repeat(3,minmax(0,1fr)) var(--header-right);
   align-items:center;
+}
+.footer-intro,
+.footer-contact,
+.footer-actions{
+  align-self:center;
 }
 .footer-intro{
   min-width:0;
@@ -434,26 +438,27 @@ a{color:inherit;text-decoration:none}
   min-width:0;
   grid-column:3;
   padding:0 var(--column-padding);
+  display:grid;
+  row-gap:15px;
 }
 /* Footer rules divide its content area into three equal columns. */
-.band-5::before,
-.band-5::after{
+.footer-inner::before,
+.footer-inner::after{
   content:"";
   position:absolute;
-  /* Center in the full footer; stop before the legal area. */
-  top:var(--footer-divider-inset);
-  bottom:var(--footer-divider-inset);
+  /* Equal insets in the content area, excluding the legal row. */
+  top:var(--section-divider-inset);
+  bottom:var(--section-divider-inset);
   width:1px;
   background:rgba(21,21,21,.14);
   pointer-events:none;
 }
-.band-5::before{left:var(--footer-split-1);}
-.band-5::after{left:var(--footer-split-2);}
+.footer-inner::before{left:var(--footer-split-1);}
+.footer-inner::after{left:var(--footer-split-2);}
 .footer-contact-row{
   display:grid;
   grid-template-columns:64px 1fr;
   column-gap:16px;
-  padding:0 0 15px;
 }
 .footer-label{
   font-size:12px;
@@ -643,8 +648,8 @@ a{color:inherit;text-decoration:none}
   }
   .footer-intro, .footer-contact, .footer-actions{grid-column:2;}
   .footer-value{overflow-wrap:anywhere;}
-  .band-5::before{left:var(--axis-a);}
-  .band-5::after{left:auto;right:var(--header-right);}
+  .footer-inner::before{left:var(--axis-a);}
+  .footer-inner::after{left:auto;right:var(--header-right);}
 }
 </style>
 
@@ -665,8 +670,7 @@ a{color:inherit;text-decoration:none}
    section headings vertically inside the content area below the marker row. */
 .section02-intro,
 .section03-intro,
-.section04-intro,
-.footer-intro{
+.section04-intro{
   align-self:stretch !important;
   display:flex !important;
   flex-direction:column;
@@ -962,10 +966,19 @@ a{color:inherit;text-decoration:none}
 (() => {
   const canvas = document.querySelector('.canvas');
   const legal = document.querySelector('.footer-legal');
+  const mark = document.querySelector('.mark.bl');
+  const stroke = [...mark.querySelectorAll('line')].find(line =>
+    line.x1.baseVal.value === line.x2.baseVal.value);
   const align = () => {
-    const top = legal.getBoundingClientRect().top - canvas.getBoundingClientRect().top - 6;
+    const midpoint = mark.querySelector('svg').createSVGPoint();
+    midpoint.x = stroke.x1.baseVal.value;
+    midpoint.y = (stroke.y1.baseVal.value + stroke.y2.baseVal.value) / 2;
+    // getScreenCTM includes the lower mark's scaleY(-1):
+    // for the 46px SVG, the transformed midpoint is 46 - (6 + 32) / 2 = 27px.
+    const strokeOffset = midpoint.matrixTransform(stroke.getScreenCTM()).y - mark.getBoundingClientRect().top;
+    const legalCenter = legal.getBoundingClientRect().top + parseFloat(getComputedStyle(legal).borderTopWidth) / 2;
+    const top = legalCenter - canvas.getBoundingClientRect().top - strokeOffset;
     canvas.style.setProperty('--legal-crop-top', `${top}px`);
-    canvas.style.setProperty('--footer-legal-height', `${legal.getBoundingClientRect().height}px`);
   };
   new ResizeObserver(align).observe(legal);
   window.addEventListener('load', align);
