@@ -20,14 +20,17 @@
   --content-x:160px;
   --right:58px;
   --section-divider-inset:38px;
+  --section-height:315px;
+  --client-nav-inset:24px;
+  --hero-composition-lift:16px;
   --column-padding:calc(var(--section-marker-num-width) + var(--section-marker-gap));
   --section-intro-width:210px;
   --section-column-gap:48px;
   --section-grid-start:calc(var(--content-x) + var(--section-intro-width) + var(--section-column-gap));
   --section-data-width:calc(100% - var(--section-grid-start) - var(--right));
-  --footer-content-width:calc(100% - var(--axis-b) - var(--header-right));
-  --footer-split-1:calc(var(--axis-b) + var(--footer-content-width) / 3);
-  --footer-split-2:calc(var(--axis-b) + var(--footer-content-width) * 2 / 3);
+  --footer-split-1:calc(var(--section-grid-start) + var(--section-data-width) / 8);
+  --footer-split-2:calc(var(--section-grid-start) + var(--section-data-width) * 5 / 8);
+  --footer-actions-gutter:calc(var(--right) + var(--client-nav-inset) - var(--column-padding));
 }
 *{box-sizing:border-box;font-family:"Geologica",Arial,sans-serif;}
 html,body{margin:0;width:100%;min-height:100%;}
@@ -43,9 +46,6 @@ a{color:inherit;text-decoration:none}
 .canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);}
 .band{width:100%;}
 .band-1{height:424px;background:var(--paper);}
-.band-2{height:19vh;min-height:220px;background:var(--paper-alt);}
-.band-3{height:19vh;min-height:220px;background:var(--paper);}
-.band-4{height:19vh;min-height:220px;background:var(--paper-alt);}
 .band-5{height:23vh;min-height:260px;background:var(--paper);}
 .header{height:106px;padding:22px var(--header-right) 18px var(--header-left);display:grid;grid-template-columns:auto 1fr;align-items:center;}
 .brand{width:265px;line-height:0;justify-self:start;}
@@ -105,8 +105,8 @@ a{color:inherit;text-decoration:none}
 .band-2{
   position:relative;
   z-index:1;
-  height:315px;
-  min-height:315px;
+  height:auto;
+  min-height:var(--section-height);
   background:var(--paper-alt);
 }
 .section-rail{
@@ -154,8 +154,8 @@ a{color:inherit;text-decoration:none}
 .section02-marker .label{font-weight:500;}
 
 .section02-inner{
-  height:290px;
-  padding:78px var(--right) 38px var(--content-x);
+  min-height:var(--section-height);
+  padding:78px var(--right) var(--section-divider-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -238,13 +238,13 @@ a{color:inherit;text-decoration:none}
 /* 02 — ЭТАПЫ РАБОТЫ */
 .band-3{
   position:relative;
-  height:250px;
-  min-height:250px;
+  height:auto;
+  min-height:var(--section-height);
   background:var(--paper);
 }
 .section03-inner{
-  height:250px;
-  padding:38px var(--right) 38px var(--content-x);
+  min-height:var(--section-height);
+  padding:78px var(--right) var(--section-divider-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -305,13 +305,13 @@ a{color:inherit;text-decoration:none}
 /* 03 — КЛИЕНТЫ */
 .band-4{
   position:relative;
-  height:250px;
-  min-height:250px;
+  height:auto;
+  min-height:var(--section-height);
   background:var(--paper-alt);
 }
 .section04-inner{
-  height:250px;
-  padding:38px var(--right) 38px var(--content-x);
+  min-height:var(--section-height);
+  padding:78px var(--right) var(--section-divider-inset) var(--content-x);
   display:grid;
   grid-template-columns:var(--section-intro-width) minmax(0,1fr);
   column-gap:var(--section-column-gap);
@@ -379,19 +379,9 @@ a{color:inherit;text-decoration:none}
   line-height:1;
   cursor:pointer;
 }
-.client-nav.prev{left:24px;}
-.client-nav.next{right:24px;}
+.client-nav.prev{left:var(--client-nav-inset);}
+.client-nav.next{right:var(--client-nav-inset);}
 
-@media (max-width:1100px){
-  .band-3{
-    height:auto;
-    min-height:290px;
-  }
-  .section03-inner{
-    height:auto;
-    min-height:290px;
-  }
-}
 
 /* 04 — КОНТАКТЫ / footer */
 .band-5{
@@ -405,7 +395,10 @@ a{color:inherit;text-decoration:none}
   min-height:248px;
   padding:var(--section-divider-inset) 0;
   display:grid;
-  grid-template-columns:var(--axis-b) repeat(3,minmax(0,1fr)) var(--header-right);
+  grid-template-columns:var(--axis-b)
+    calc(var(--footer-split-1) - var(--axis-b))
+    calc(var(--section-data-width) / 2)
+    minmax(0,1fr) var(--footer-actions-gutter);
   align-items:center;
 }
 .footer-intro,
@@ -441,7 +434,7 @@ a{color:inherit;text-decoration:none}
   display:grid;
   row-gap:15px;
 }
-/* Footer rules divide its content area into three equal columns. */
+/* Footer cuts follow the centers of client columns 1 and 3. */
 .footer-inner::before,
 .footer-inner::after{
   content:"";
@@ -475,12 +468,14 @@ a{color:inherit;text-decoration:none}
   min-width:0;
   grid-column:4;
   padding:0 var(--column-padding);
-  justify-self:stretch;
+  width:max-content;
+  max-width:100%;
+  justify-self:end;
 }
 .footer-action{
   min-height:49px;
   display:grid;
-  grid-template-columns:1fr 20px;
+  grid-template-columns:minmax(0,1fr) 20px;
   align-items:center;
   column-gap:16px;
   font-size:14px;
@@ -522,6 +517,7 @@ a{color:inherit;text-decoration:none}
     font-size:13px;
     column-gap:0;
   }
+  .footer-action{overflow-wrap:anywhere;}
 }
 
 .mark{position:absolute;width:46px;height:46px;pointer-events:none;z-index:20}
@@ -602,26 +598,12 @@ a{color:inherit;text-decoration:none}
 .section02-title{margin-top:0;}
 
 /* 03 / 04 — create the same marker row, then start content below it. */
-.band-3,
-.band-4{
-  height:290px;
-  min-height:290px;
-}
-.section03-inner,
-.section04-inner{
-  height:290px;
-  padding-top:78px;
-}
 .section03-title,
 .section04-title{
   margin-top:0;
 }
 
 
-@media(max-width:1100px){
-  .band-3{min-height:310px;}
-  .section03-inner{min-height:310px;}
-}
 
 @media(max-width:900px){
   .hero-marker,
@@ -691,10 +673,9 @@ a{color:inherit;text-decoration:none}
 <style id="main-marker-alignment-v3">
 /* Fine optical correction after visual review. */
 
-/* 01: keep the number fixed; lift the entire hero copy a few pixels so
-   the top of “Печатаем…” sits optically on the same horizontal as 01. */
+/* Move the hero copy and image upward through one shared composition offset. */
 .hero-copy{
-  padding-top:39px !important;
+  padding-top:calc(39px - var(--hero-composition-lift)) !important;
 }
 
 /* 02–04: the large left headings are centered against the FULL section
@@ -719,11 +700,11 @@ a{color:inherit;text-decoration:none}
 }
 
 @media(max-width:900px){
-  .hero-copy{padding-top:39px !important;}
+  .hero-copy{padding-top:calc(39px - var(--hero-composition-lift)) !important;}
 }
 
 @media(max-width:650px){
-  .hero-copy{padding-top:30px !important;}
+  .hero-copy{padding-top:calc(30px - var(--hero-composition-lift)) !important;}
 }
 </style>
 <style id="geometry-revision">
@@ -744,7 +725,7 @@ a{color:inherit;text-decoration:none}
   --axis-a:calc(var(--header-left) + var(--header-logo-ink-inset));
   --axis-b:calc(var(--axis-a) + var(--section-marker-num-width) + var(--section-marker-gap));
   --section-heading-x:var(--axis-b);
-  --hero-image-top:36px;
+  --hero-image-top:calc(36px - var(--hero-composition-lift));
 }
 .hero-marker, .section-marker { left:var(--axis-a); }
 .hero-inner { padding-left:var(--axis-b); }
