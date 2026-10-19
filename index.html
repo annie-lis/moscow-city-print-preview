@@ -28,7 +28,7 @@ body{
   text-rendering:optimizeLegibility;
 }
 a{color:inherit;text-decoration:none}
-.canvas{position:relative;width:100vw;min-height:100vh;background:var(--paper);}
+.canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);}
 .band{width:100%;}
 .band-1{height:424px;background:var(--paper);}
 .band-2{height:19vh;min-height:220px;background:var(--paper-alt);}
@@ -710,6 +710,34 @@ a{color:inherit;text-decoration:none}
 .footer-legal { min-height:40px; padding-top:11px; padding-bottom:12px; }
 /* Wrapped legal text extends below the shared rule; anchor marks to that rule. */
 .mark.bl, .mark.br { top:var(--legal-crop-top,auto); bottom:auto; }
+</style>
+
+<style id="canvas-and-section-axis">
+:root {
+  --section-marker-num-width:18px;
+  --section-marker-gap:16px;
+  --section-heading-x:calc(var(--rail-x) + var(--section-marker-num-width) + var(--section-marker-gap));
+}
+.section-marker .num { flex:0 0 var(--section-marker-num-width); }
+.section-marker .rule { margin-inline:var(--section-marker-gap); }
+.band-2 .section02-title,
+.band-3 .section03-title,
+.band-4 .section04-title { left:var(--section-heading-x) !important; }
+.footer-title { position:relative; left:calc(var(--section-heading-x) - var(--content-x)); }
+@media(max-width:900px) {
+  :root { --section-marker-gap:13px; }
+}
+@media(max-width:650px) {
+  :root { --section-marker-gap:10px; }
+  /* Keep the reference's normal-flow vertical layout on narrow screens. */
+  .band-2 .section02-title,
+  .band-3 .section03-title,
+  .band-4 .section04-title {
+    position:relative !important;
+    top:auto !important;
+    left:calc(var(--section-heading-x) - var(--content-x)) !important;
+  }
+}
 </style>
 </head>
 <body>
