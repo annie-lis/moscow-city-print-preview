@@ -74,3 +74,12 @@ Pending: final placement/replacement for «Помогаем дизайну вы�
 
 Preview: https://annie-lis.github.io/moscow-city-print-preview/about.html
 Documentation: https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/ABOUT.md
+
+## Pages publication verification and final About wording
+
+Final headline: «Помогаем дизайну выйти за пределы страниц брендбука.».
+Only this phrase changed in About; CSS and all other page contents are unchanged.
+Added `.github/workflows/verify-pages.yml` to read the Pages configuration and
+verify HTTP 200 plus byte-for-byte source match at the exact public `/about.html`.
+The previous dynamic Pages run built from main/root and included about.html in
+the archive, but its deployment had not completed when the missing page was reported.
