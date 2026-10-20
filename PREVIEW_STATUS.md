@@ -58,3 +58,19 @@ required shared foundation for About and Services. Internal footer remains
 unnumbered. No further visual/layout/type/header/footer changes without a
 separate task. Only acceptance documentation changed; all preview HTML and
 assets are preserved.
+
+## About technical migration
+
+Source work commit: `99d55c0`. New `about.html` delegates to the frozen universal
+internal template. Composition: 01/02 split (paper), five-stage wide 03
+(paper-alt), 04/05 split (paper). No images or CTA in About content.
+Only new About CSS is five-stage columns and hidden empty stage number slots.
+Home, generic internal demo, vacancies and all existing shared assets are
+unchanged. Static and real WordPress checked at 1920/1440/1280/1024/768/390/320.
+New About content has no overflow; inherited mobile header overflow remains.
+FAQ material links from the existing reference remain temporary `#` links.
+Pending: final placement/replacement for «Помогаем дизайну выйти за границы
+страниц брендбука». Current block 02 keeps the explicitly requested wording.
+
+Preview: https://annie-lis.github.io/moscow-city-print-preview/about.html
+Documentation: https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/ABOUT.md
