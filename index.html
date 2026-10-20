@@ -69,6 +69,38 @@ a{color:inherit;text-decoration:none}
 .hero-copy{
   width:min(560px,100%);
 }
+
+/* Illustration occupies only the space beyond the unchanged text column. */
+.hero-art{
+  position:absolute;
+  top:50%;
+  left:calc(var(--axis-b) + 560px + 32px);
+  right:var(--header-right);
+  height:202px;
+  transform:translateY(-50%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  pointer-events:none;
+}
+.hero-art img{
+  display:block;
+  width:100%;
+  max-width:420px;
+  height:100%;
+  object-fit:contain;
+}
+@media (max-width:900px){
+  .hero-art{
+    position:static;
+    transform:none;
+    width:min(360px,calc(100% - var(--axis-b) - var(--header-right)));
+    height:auto;
+    margin:0 var(--header-right) 24px auto;
+  }
+  .hero-art img{height:auto;}
+}
+
 .hero-title{margin:0;max-width:590px;font-size:36px;line-height:1.08;letter-spacing:-.035em;font-weight:300;}
 .hero-copy p{margin:20px 0 0;max-width:540px;font-size:15.5px;line-height:1.45;color:#333330;font-weight:300;}
 
@@ -702,6 +734,9 @@ a{color:inherit;text-decoration:none}
           <h1 class="hero-title">Печатаем то,<br>что представляет ваш бизнес.</h1>
           <p>Современная типография в&nbsp;Москва-Сити.<br>Полный цикл печати и&nbsp;постпечатной обработки для&nbsp;компаний и&nbsp;агентств.</p>
         </div>
+      </div>
+      <div class="hero-art">
+        <img src="assets/hero/hero_city_print_final.png" width="1672" height="941" alt="Бумажная архитектура Москва-Сити и печатная продукция" decoding="async">
       </div>
     </section>
   </section>
