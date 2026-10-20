@@ -49,3 +49,12 @@ Home explicitly passes `marker_number => 04`. Existing internal-template HTML
 contains an empty number span, followed by the unchanged rule and КОНТАКТЫ.
 All three preview HTML files remain byte-identical; no CSS or layout changes.
 WordPress/static checks and all 12 Home pixel comparisons passed.
+
+## Universal internal template accepted / frozen
+
+Approved by the user on 2026-10-20. Implementation baseline: source work
+commit `238d43a`; acceptance record: `602d13f`. This universal template is the
+required shared foundation for About and Services. Internal footer remains
+unnumbered. No further visual/layout/type/header/footer changes without a
+separate task. Only acceptance documentation changed; all preview HTML and
+assets are preserved.
