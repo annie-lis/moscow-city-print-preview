@@ -45,8 +45,8 @@ body{
   text-rendering:optimizeLegibility;
 }
 a{color:inherit;text-decoration:none}
-.canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);}
-.band{width:100%;}
+.canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);display:flex;flex-direction:column;}
+.band{width:100%;flex-shrink:0;}
 .band-1{background:var(--paper);}
 .band-5{height:23vh;min-height:260px;background:var(--paper);}
 .header{height:106px;padding:22px var(--header-right) 18px var(--header-left);display:grid;grid-template-columns:auto 1fr;align-items:center;}
@@ -55,7 +55,7 @@ a{color:inherit;text-decoration:none}
 .header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
 .status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
 .nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
-.hero{position:relative;z-index:2;min-height:250px;overflow:visible;background:var(--paper);}
+.hero{position:relative;z-index:2;min-height:300px;overflow:visible;background:var(--paper);}
 .rail{position:absolute;left:var(--rail-x);top:44px;width:34px;font-size:13px;line-height:1;text-align:center;font-weight:400;}
 .rail::after{content:"";display:block;width:21px;height:1.5px;background:rgba(21,21,21,.72);margin:14px auto 0;}
 
@@ -73,10 +73,10 @@ a{color:inherit;text-decoration:none}
 /* Illustration occupies only the space beyond the unchanged text column. */
 .hero-art{
   position:absolute;
-  top:50%;
+  top:calc(50% + 4px);
   left:calc(var(--axis-b) + 560px + 32px);
-  right:var(--header-right);
-  height:202px;
+  right:calc(var(--header-right) * .75);
+  height:272px;
   transform:translateY(-50%);
   display:flex;
   justify-content:center;
@@ -86,7 +86,7 @@ a{color:inherit;text-decoration:none}
 .hero-art img{
   display:block;
   width:100%;
-  max-width:420px;
+  max-width:567px;
   height:100%;
   object-fit:contain;
 }
@@ -94,7 +94,7 @@ a{color:inherit;text-decoration:none}
   .hero-art{
     position:static;
     transform:none;
-    width:min(360px,calc(100% - var(--axis-b) - var(--header-right)));
+    width:min(486px,calc(100% - var(--axis-b) - var(--header-right)));
     height:auto;
     margin:0 var(--header-right) 24px auto;
   }
@@ -401,10 +401,14 @@ a{color:inherit;text-decoration:none}
   height:auto;
   min-height:0;
   background:var(--paper);
+  flex:1;
+  display:flex;
+  flex-direction:column;
 }
 .footer-inner{
   position:relative;
   min-height:248px;
+  margin-bottom:32px;
   padding:var(--section-content-inset) 0;
   display:grid;
   grid-template-columns:var(--axis-b)
@@ -494,7 +498,7 @@ a{color:inherit;text-decoration:none}
 }
 .footer-legal{
   min-height:54px;
-  margin:0 var(--header-right) 0 var(--axis-a);
+  margin:auto var(--header-right) 0 var(--axis-a);
   padding:17px 0 16px;
   border-top:1px solid rgba(21,21,21,.14);
   display:flex;
@@ -938,13 +942,13 @@ a{color:inherit;text-decoration:none}
   const legal = document.querySelector('.footer-legal');
   const mark = document.querySelector('.mark.bl');
   const stroke = [...mark.querySelectorAll('line')].find(line =>
-    line.x1.baseVal.value === line.x2.baseVal.value);
+    line.y1.baseVal.value === line.y2.baseVal.value);
   const align = () => {
     const midpoint = mark.querySelector('svg').createSVGPoint();
-    midpoint.x = stroke.x1.baseVal.value;
+    midpoint.x = (stroke.x1.baseVal.value + stroke.x2.baseVal.value) / 2;
     midpoint.y = (stroke.y1.baseVal.value + stroke.y2.baseVal.value) / 2;
     // getScreenCTM includes the lower mark's scaleY(-1):
-    // for the 46px SVG, the transformed midpoint is 46 - (6 + 32) / 2 = 27px.
+    // the horizontal crop rule is at y=40, or 6px from the flipped mark top.
     const strokeOffset = midpoint.matrixTransform(stroke.getScreenCTM()).y - mark.getBoundingClientRect().top;
     const legalCenter = legal.getBoundingClientRect().top + parseFloat(getComputedStyle(legal).borderTopWidth) / 2;
     const top = legalCenter - canvas.getBoundingClientRect().top - strokeOffset;
