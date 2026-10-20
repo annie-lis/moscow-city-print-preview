@@ -15,7 +15,10 @@
     const top = legalCenter - canvas.getBoundingClientRect().top - strokeOffset;
     canvas.style.setProperty('--legal-crop-top', `${top}px`);
   };
-  new ResizeObserver(align).observe(legal);
+  const observer = new ResizeObserver(align);
+  observer.observe(legal);
+  // Expanding page content moves legal without changing legal's own dimensions.
+  observer.observe(canvas);
   window.addEventListener('load', align);
   window.addEventListener('resize', align);
   if (document.fonts) document.fonts.ready.then(align);

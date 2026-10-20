@@ -1,9 +1,0 @@
-/* About only: five unnumbered stages using the accepted internal step component. */
-.mcp-about .mcp-inner-sequence{grid-template-columns:repeat(5,minmax(0,1fr));}
-.mcp-about .mcp-inner-sequence .step-num:empty{display:none;}
-@media(max-width:900px){
-  .mcp-about .mcp-inner-sequence{grid-template-columns:repeat(2,minmax(0,1fr));}
-}
-@media(max-width:650px){
-  .mcp-about .mcp-inner-sequence{grid-template-columns:minmax(0,1fr);}
-}

@@ -83,3 +83,26 @@ Added `.github/workflows/verify-pages.yml` to read the Pages configuration and
 verify HTTP 200 plus byte-for-byte source match at the exact public `/about.html`.
 The previous dynamic Pages run built from main/root and included about.html in
 the archive, but its deployment had not completed when the missing page was reported.
+
+
+## First-deployment foundation 0.4.0
+
+Source work commit: `986e1dd`.
+
+About is now a minimal neutral scaffold; earlier dense About entries above are
+historical experiments and are not the current release composition.
+
+Published routes: index, about, services, blog, contacts, privacy-policy,
+requisites, sitemap, vacancies and 404, all `.html`.
+Services uses established 01–05 text through the common universal components;
+it is a foundation, not a final visual migration or real-works carousel.
+Blog/legal/requisites are scaffolds. Contacts/sitemap/vacancies/404 are functional.
+All pages share the existing Home-based CSS; no new page-specific CSS.
+Home screenshot parity is unchanged at all 6 baseline widths. New navigation
+links point to real static pages. Lower crop alignment now also reacts to
+content expansion; WP additionally provides real post pagination and HTTP404.
+
+Installable child theme: `downloads/moscow-city-print-child-0.4.0.zip` (SHA256
+sidecar alongside it). Parent Twenty Twenty-One required.
+Deployment instructions, without production changes:
+https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/DEPLOYMENT.md
