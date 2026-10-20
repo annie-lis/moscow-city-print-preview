@@ -32,3 +32,11 @@ Current generated Home SHA-256: `1d0f641940541807c102ac5cbebbf13e737497d6a1a4c20
   1920/1440/1280/1024/768/390/320 in static and actual WordPress rendering.
 - Existing mobile header overflow remains; new sections do not add overflow.
 - Documentation: https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/INTERNAL_TEMPLATE.md
+
+## Final internal footer marker
+
+Source work commit: `b3e3ed7`. Internal pages now use an unnumbered contacts
+marker, preserving the existing number-slot width. Home keeps 04 and its HTML
+is unchanged. No CSS, section, header, footer content or geometry changes.
+Desktop/tablet/mobile and Home pixel parity checks passed; original mobile
+header overflow remains unchanged.
