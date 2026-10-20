@@ -56,56 +56,29 @@ a{color:inherit;text-decoration:none}
 .header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
 .status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
 .nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
-.hero{position:relative;z-index:2;min-height:360px;overflow:visible;background:var(--paper);}
-.rail{position:absolute;left:var(--rail-x);top:44px;width:34px;font-size:13px;line-height:1;text-align:center;font-weight:400;}
-.rail::after{content:"";display:block;width:21px;height:1.5px;background:rgba(21,21,21,.72);margin:14px auto 0;}
-
-
-.hero-inner{
-  min-height:inherit;
-  padding:var(--vertical-inset) var(--right) var(--vertical-inset) var(--axis-b);
-  display:flex;
-  align-items:flex-end;
+/* PNG includes generous transparent margins; the section height is independent
+   of its intrinsic ratio. Scale its 4526px visible band within the page guides. */
+.hero{
+  position:relative;
+  z-index:2;
+  height:360px;
+  overflow:hidden;
+  background:var(--paper);
 }
-.hero-copy{
-  width:min(560px,100%);
-}
-
-/* Illustration occupies only the space beyond the unchanged text column. */
-.hero-art{
+.hero-slogan{
   position:absolute;
-  top:calc(50% + 4px);
-  left:calc(var(--axis-b) + 560px + 32px);
-  right:calc(var(--header-right) * .5);
-  height:340px;
-  transform:translateY(-50%);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  pointer-events:none;
-}
-.hero-art img{
+  left:calc((var(--axis-b) + 100% - var(--header-right)) / 2);
+  top:50%;
+  transform:translate(-50%,-50%);
   display:block;
-  width:100%;
-  max-width:737px;
-  height:100%;
+  width:calc((100% - var(--axis-b) - var(--header-right)) * 6668 / 4526);
+  max-width:none;
+  height:auto;
   object-fit:contain;
 }
-@media (max-width:900px){
-  .hero-art{
-    position:static;
-    transform:none;
-    width:min(632px,calc(100% - var(--axis-b) - var(--header-right)));
-    height:auto;
-    margin:0 var(--header-right) var(--vertical-inset) auto;
-  }
-  .hero-art img{height:auto;}
+@media(max-width:900px){
+  .hero{height:clamp(160px,32vw,300px);}
 }
-
-.hero-title{margin:0;max-width:590px;font-size:36px;line-height:1.08;letter-spacing:-.035em;font-weight:300;}
-.hero-copy p{margin:20px 0 0;max-width:540px;font-size:15.5px;line-height:1.45;color:#333330;font-weight:300;}
-
-
 
 /* 01 — ПРОДУКЦИЯ: первый контентный блок */
 .band-2{
@@ -539,7 +512,6 @@ a{color:inherit;text-decoration:none}
   :root{--header-left:52px;--header-logo-ink-inset:9.7642px;--content-x:98px;--right:34px;--rail-x:28px}
   .brand{width:220px}
   .nav{gap:20px;font-size:14px}
-  .hero-title{font-size:34px}
 }
 
 @media(max-width:900px){
@@ -732,16 +704,8 @@ a{color:inherit;text-decoration:none}
       </div>
     </header>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <h1 class="hero-title">Печатаем то,<br>что представляет ваш бизнес.</h1>
-          <p>Современная типография в&nbsp;Москва-Сити.<br>Полный цикл печати и&nbsp;постпечатной обработки для&nbsp;компаний и&nbsp;агентств.</p>
-        </div>
-      </div>
-      <div class="hero-art">
-        <img src="assets/hero/hero_city_print_final.png" width="1672" height="941" alt="Бумажная архитектура Москва-Сити и печатная продукция" decoding="async">
-      </div>
+    <section class="hero" aria-label="Печатаем то, что представляет ваш бизнес">
+      <img class="hero-slogan" src="assets/hero/hero-slogan.png" width="6668" height="2500" alt="Печатаем то, что представляет ваш бизнес. Современная типография в Москва-Сити. Полный цикл печати и постпечатной обработки для компаний и агентств." decoding="async">
     </section>
   </section>
   <section class="band band-2">
