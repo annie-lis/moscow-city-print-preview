@@ -1,19 +1,22 @@
-# Approved Home preview
+# Approved Home preview — shared site foundation
 
-Approved by the user on 2026-10-20. Hero is frozen; further hero changes require
-an explicit new user request.
+Updated: 2026-10-20.
 
-- Source baseline: `annie-lis/moscow-city-print`, branch `work`, commit `54c52f4`.
-- Published layout baseline: commit `6c5cd72` in this repository.
-- Hero uses only the unchanged `assets/hero/banner_hero.png`.
-- Desktop: 400px hero height; centered banner, width 100%, max-width 1600px,
-  existing symmetric Axis B padding; relative vertical offset `top:-19px`.
-- Up to 900px: hero height `clamp(160px,32vw,300px)`; banner `top:0`.
-- This acceptance changes no HTML, CSS, images or other page elements.
+- Source: `annie-lis/moscow-city-print`, branch `work`, commit `929c950`.
+- Accepted visual baseline: `54c52f4:work/main_hero_preview.html`.
+- Hero remains approved/frozen; banner bytes and geometry are unchanged.
+- Pages are generated from the shared child-theme PHP templates by
+  `tools/render-static.php`. Do not independently edit generated HTML/assets.
+- Published files: `index.html`, `vacancies.html`, `site-assets/assets/`.
+- Shared header/footer, markers, grid, Geologica and scripts now come from one
+  theme source. The same templates are tested in real local WordPress.
+- Pixel comparison with the accepted Home passed at 1920/1440/1280/1024/768/390
+  with Geologica loaded. Existing tablet/mobile overflow and collapsed mobile
+  client slots are documented in source `tests/FOUNDATION_REPORT.md`.
+
+Theme structure and next page integration:
+https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/README.md
 
 Preview: https://annie-lis.github.io/moscow-city-print-preview/
 
-Approved file SHA-256 checksums:
-
-- `index.html`: `690afb427e5d3fbf18840343123c60ac0709ec8157355092985ccb0ee56473b8`
-- `assets/hero/banner_hero.png`: `ae457e1675c3d0c8af05257c65951ff45918c23673af2243bae80bb73c693dbe`
+Current generated Home SHA-256: `1d0f641940541807c102ac5cbebbf13e737497d6a1a4c209de187333afd3688d`.

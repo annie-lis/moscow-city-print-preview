@@ -1,0 +1,18 @@
+/* Internal workspace only. No selectors modify the accepted Home. */
+.mcp-page-main{
+  flex:1;
+  min-height:250px;
+  padding:var(--vertical-inset) var(--header-right) var(--vertical-inset) var(--axis-b);
+}
+.mcp-page-content{min-width:0;}
+.mcp-page-title{
+  margin:0 0 20px;
+  font-size:31px;
+  line-height:1.04;
+  letter-spacing:-.04em;
+  font-weight:300;
+}
+.mcp-page-copy{font-size:15.5px;line-height:1.45;font-weight:300;}
+.mcp-page-copy p{margin:0 0 20px;}
+.mcp-page-copy p:last-child{margin-bottom:0;}
+.mcp-page-copy img{max-width:100%;height:auto;}

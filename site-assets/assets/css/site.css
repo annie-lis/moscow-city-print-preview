@@ -1,0 +1,655 @@
+/* Accepted Home rules in their original cascade order. */
+
+
+*{box-sizing:border-box;font-family:"Geologica",Arial,sans-serif;}
+html,body{margin:0;width:100%;min-height:100%;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+.canvas{position:relative;width:100%;min-height:100vh;background:var(--paper);display:flex;flex-direction:column;}
+.band{width:100%;flex-shrink:0;}
+.band-1{background:var(--paper);}
+.band-5{height:23vh;min-height:260px;background:var(--paper);}
+.header{height:106px;padding:22px var(--header-right) 18px var(--header-left);display:grid;grid-template-columns:auto 1fr;align-items:center;}
+.brand{width:265px;line-height:0;justify-self:start;}
+.brand img{display:block;width:100%;height:auto}
+.header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
+.status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
+.nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
+/* Complete 4:1 banner: preserve its ratio within a fixed desktop hero. */
+.hero{
+  position:relative;
+  z-index:2;
+  height:400px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 var(--axis-b);
+  overflow:hidden;
+  background:var(--paper);
+}
+.hero-banner{
+  position:relative;
+  top:-19px;
+  display:block;
+  width:100%;
+  max-width:1600px;
+  max-height:100%;
+  height:auto;
+  object-fit:contain;
+}
+@media(max-width:900px){
+  .hero{height:clamp(160px,32vw,300px);}
+  .hero-banner{top:0;}
+}
+
+/* 01 — ПРОДУКЦИЯ: первый контентный блок */
+.band-2{
+  position:relative;
+  z-index:1;
+  height:auto;
+  min-height:var(--section-height);
+  background:var(--paper-alt);
+}
+.section-rail{
+  position:absolute;
+  left:var(--rail-x);
+  top:38px;
+  width:34px;
+  font-size:13px;
+  line-height:13px;
+  text-align:center;
+  font-weight:400;
+}
+.section-rail::after{
+  content:"";
+  display:block;
+  width:21px;
+  height:1.5px;
+  background:rgba(21,21,21,.72);
+  margin:14px auto 0;
+}
+
+/* TEST — section 02 uses the horizontal Services-page marker */
+.section02-marker{
+  position:absolute;
+  left:var(--rail-x);
+  top:38px;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  height:15px;
+  white-space:nowrap;
+  font-size:14px;
+  line-height:1;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+}
+.section02-marker .num{min-width:18px;}
+.section02-marker .rule{
+  width:46px;
+  height:2px;
+  margin:0 16px;
+  background:rgba(21,21,21,.72);
+}
+.section02-marker .label{font-weight:500;}
+
+.section02-inner{
+  min-height:var(--section-height);
+  padding:var(--section-content-inset) var(--right) var(--section-content-inset) var(--content-x);
+  display:grid;
+  grid-template-columns:var(--section-intro-width) minmax(0,1fr);
+  column-gap:var(--section-column-gap);
+}
+.section02-intro{
+  min-width:0;
+}
+.section02-kicker{
+  margin:0;
+  font-size:13px;
+  line-height:13px;
+  color:var(--muted);
+  font-weight:300;
+}
+.section02-title{
+  margin:0;
+  font-size:31px;
+  line-height:1.04;
+  letter-spacing:-.04em;
+  font-weight:300;
+}
+/* Four client/service/process columns share full-section vertical guides. */
+.band-2::before,
+.band-3::before,
+.band-4::before{
+  content:"";
+  position:absolute;
+  top:var(--section-divider-inset);
+  bottom:var(--section-divider-inset);
+  max-height:calc(var(--section-height) - 2 * var(--section-divider-inset));
+  margin-block:auto;
+  left:var(--section-grid-start);
+  right:var(--right);
+  background:linear-gradient(to right,rgba(21,21,21,.14) 1px,transparent 1px);
+  background-size:25% 100%;
+  pointer-events:none;
+}
+.services{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:center;
+}
+.service{
+  min-width:0;
+  padding:0 var(--column-padding);
+  display:grid;
+  grid-template-rows:var(--card-cap-space) auto var(--card-cap-space);
+}
+.card-content{min-width:0;}
+.service-num{
+  margin:0;
+  font-size:13px;
+  line-height:1;
+  font-weight:400;
+}
+.service h3{
+  margin:0 0 10px;
+  font-size:16px;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  font-weight:400;
+}
+.service p{
+  margin:0;
+  max-width:220px;
+  font-size:13px;
+  line-height:1.48;
+  color:#555550;
+  font-weight:300;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+  word-break:normal;
+  overflow-wrap:normal;
+}
+.service-arrow{
+  margin-top:0;
+  align-self:end;
+  font-size:20px;
+  line-height:1;
+  font-weight:300;
+}
+
+/* 02 — ПРОЦЕСС */
+.band-3{
+  position:relative;
+  height:auto;
+  min-height:var(--section-height);
+  background:var(--paper);
+}
+.section03-inner{
+  min-height:var(--section-height);
+  padding:var(--section-content-inset) var(--right) var(--section-content-inset) var(--content-x);
+  display:grid;
+  grid-template-columns:var(--section-intro-width) minmax(0,1fr);
+  column-gap:var(--section-column-gap);
+}
+.section03-intro{
+  min-width:0;
+}
+.section03-kicker{
+  margin:0;
+  font-size:13px;
+  line-height:13px;
+  color:var(--muted);
+  font-weight:300;
+}
+.section03-title{
+  margin:28px 0 0;
+  font-size:31px;
+  line-height:1.04;
+  letter-spacing:-.04em;
+  font-weight:300;
+}
+.steps{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:center;
+}
+.step{
+  min-width:0;
+  padding:0 var(--column-padding);
+  display:flex;
+  flex-direction:column;
+  row-gap:var(--card-number-gap);
+}
+.step-num{
+  margin:0;
+  font-size:13px;
+  line-height:1;
+  font-weight:400;
+}
+.step h3{
+  margin:0 0 10px;
+  font-size:16px;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  font-weight:400;
+}
+.step p{
+  margin:0;
+  max-width:270px;
+  font-size:13px;
+  line-height:1.48;
+  color:#555550;
+  font-weight:300;
+}
+
+@media (max-width:1100px){
+  .service p{font-size:12.25px;}
+}
+
+/* 03 — КЛИЕНТЫ */
+.band-4{
+  position:relative;
+  height:auto;
+  min-height:var(--section-height);
+  background:var(--paper-alt);
+}
+.section04-inner{
+  min-height:var(--section-height);
+  padding:var(--section-content-inset) var(--right) var(--section-content-inset) var(--content-x);
+  display:grid;
+  grid-template-columns:var(--section-intro-width) minmax(0,1fr);
+  column-gap:var(--section-column-gap);
+}
+.section04-intro{
+  min-width:0;
+}
+.section04-kicker{
+  margin:0;
+  font-size:13px;
+  line-height:13px;
+  color:var(--muted);
+  font-weight:300;
+}
+.section04-title{
+  margin:28px 0 0;
+  font-size:31px;
+  line-height:1.04;
+  letter-spacing:-.04em;
+  font-weight:300;
+}
+.clients-wrap{
+  min-width:0;
+  position:relative;
+  overflow:hidden;
+}
+.clients-track{
+  height:100%;
+  display:flex;
+  transition:transform .35s ease;
+}
+.client{
+  flex:0 0 25%;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 calc(var(--client-nav-inset) / 2);
+}
+.client-logo{
+  display:block;
+  width:237.5px;
+  height:140px;
+  max-width:100%;
+  object-fit:contain;
+}
+.client-logo.karavaevy{
+  mix-blend-mode:multiply;
+}
+.client{
+  position:relative;
+}
+.client-nav{
+  position:absolute;
+  bottom:0;
+  z-index:5;
+  appearance:none;
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  color:var(--ink);
+  font:inherit;
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+}
+.client-nav.prev{left:var(--client-nav-inset);}
+.client-nav.next{right:var(--client-nav-inset);}
+
+
+/* 04 — КОНТАКТЫ / footer */
+.band-5{
+  position:relative;
+  height:auto;
+  min-height:0;
+  background:var(--paper);
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.footer-inner{
+  position:relative;
+  min-height:calc(248px - var(--vertical-inset) / 3);
+  padding:var(--section-content-inset) 0 calc(var(--section-content-inset) * 2 / 3);
+  display:grid;
+  grid-template-columns:var(--axis-b)
+    calc(var(--footer-split-1) - var(--axis-b))
+    calc(var(--section-data-width) / 2)
+    minmax(0,1fr) var(--footer-actions-gutter);
+  align-items:center;
+}
+.footer-intro,
+.footer-contact,
+.footer-actions{
+  align-self:center;
+}
+.footer-intro{
+  min-width:0;
+  grid-column:2;
+}
+.footer-kicker{
+  margin:0;
+  font-size:13px;
+  line-height:13px;
+  color:var(--muted);
+  font-weight:300;
+}
+.footer-title{
+  margin:28px 0 0;
+  font-size:31px;
+  line-height:1.04;
+  letter-spacing:-.04em;
+  font-weight:300;
+}
+.footer-main{
+  display:contents;
+}
+.footer-contact{
+  min-width:0;
+  grid-column:3;
+  justify-self:center;
+  width:max-content;
+  max-width:100%;
+  padding:0 var(--column-padding);
+  display:grid;
+  row-gap:15px;
+}
+.footer-contact-row{
+  display:grid;
+  grid-template-columns:64px 1fr;
+  column-gap:16px;
+}
+.footer-label{
+  font-size:12px;
+  line-height:1.45;
+  color:var(--muted);
+  font-weight:300;
+}
+.footer-value{
+  min-width:0;
+  overflow-wrap:anywhere;
+  font-size:14px;
+  line-height:1.45;
+  font-weight:300;
+}
+.footer-actions{
+  min-width:0;
+  grid-column:4;
+  padding:0 var(--column-padding);
+  width:max-content;
+  max-width:100%;
+  justify-self:end;
+}
+.footer-action{
+  min-height:49px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 20px;
+  align-items:center;
+  column-gap:16px;
+  font-size:14px;
+  line-height:1.2;
+  font-weight:300;
+}
+.footer-action + .footer-action{border-top:1px solid rgba(21,21,21,.14);}
+.footer-action-arrow{
+  justify-self:end;
+  margin-right:0;
+  font-size:20px;
+  line-height:1;
+}
+.footer-legal{
+  min-height:54px;
+  margin:auto var(--header-right) 0 var(--axis-a);
+  padding:17px 0 16px;
+  border-top:1px solid rgba(21,21,21,.14);
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  font-size:11px;
+  line-height:1.45;
+  color:var(--muted);
+  font-weight:300;
+}
+.footer-legal-left{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0 8px;
+}
+
+@media (max-width:1100px){
+  .footer-contact-row{
+    grid-template-columns:minmax(0,1fr);
+    row-gap:4px;
+  }
+  .footer-actions{
+    font-size:13px;
+    column-gap:0;
+  }
+  .footer-action{overflow-wrap:anywhere;}
+}
+
+.mark{position:absolute;width:46px;height:46px;pointer-events:none;z-index:20}
+.mark.tl{top:0;left:0}
+.mark.tr{top:0;right:0;transform:scaleX(-1)}
+.mark.bl{bottom:0;left:0;transform:scaleY(-1)}
+.mark.br{bottom:0;right:0;transform:scale(-1)}
+.mark svg{display:block;width:46px;height:46px;overflow:visible}
+.mark line,.mark circle{stroke:var(--mark);stroke-width:1;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision;}
+.mark circle{fill:none}
+@media(max-width:900px){
+  :root{--header-left:52px;--header-logo-ink-inset:9.7642px;--content-x:98px;--right:34px;--rail-x:28px}
+  .brand{width:220px}
+  .nav{gap:20px;font-size:14px}
+}
+
+@media(max-width:900px){
+  .section02-marker{left:var(--rail-x);font-size:13px;}
+  .section02-marker .rule{width:38px;margin-inline:13px;}
+}
+@media(max-width:650px){
+  .section02-marker{top:34px;font-size:11px;}
+  .section02-marker .rule{width:20px;height:2px;margin-inline:10px;}
+}
+
+
+/* =========================================================
+   MAIN — unified horizontal section markers
+   01: number + rule, with hero title beginning on the content guide.
+   02–05: number + rule + section label, following the Services-page system.
+   The accepted v5-air hero image mechanics are intentionally untouched.
+   ========================================================= */
+.hero-marker,
+.section-marker{
+  position:absolute;
+  left:var(--rail-x);
+  z-index:4;
+  display:flex;
+  align-items:center;
+  height:15px;
+  white-space:nowrap;
+  font-size:14px;
+  line-height:1;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+}
+.hero-marker{top:44px;}
+.section-marker{top:38px;}
+.hero-marker .num,
+.section-marker .num{min-width:18px;}
+.hero-marker .rule,
+.section-marker .rule{
+  width:46px;
+  height:2px;
+  margin:0 16px;
+  background:rgba(21,21,21,.72);
+}
+.section-marker .label{font-weight:500;}
+
+
+/* 02 keeps the accepted test geometry. */
+.section02-title{margin-top:0;}
+
+/* 03 / 04 — create the same marker row, then start content below it. */
+.section03-title,
+.section04-title{
+  margin-top:0;
+}
+
+
+@media(max-width:900px){
+  .hero-marker,
+  .section-marker{left:var(--rail-x);font-size:13px;}
+  .hero-marker .rule,
+  .section-marker .rule{width:38px;margin-inline:13px;}
+}
+
+@media(max-width:650px){
+  .hero-marker{top:34px;font-size:11px;}
+  .section-marker{top:34px;font-size:11px;}
+  .hero-marker .rule,
+  .section-marker .rule{width:20px;height:2px;margin-inline:10px;}
+
+  .section02-inner,
+  .section03-inner,
+  .section04-inner{padding-top:72px;}
+  .footer-inner{
+    /* Reserve the existing narrow-screen marker row before stacked content. */
+    padding-top:72px;
+    grid-template-columns:var(--axis-b) minmax(0,1fr) var(--header-right);
+    row-gap:24px;
+  }
+  .footer-intro, .footer-contact, .footer-actions{grid-column:2;}
+}
+
+
+/* 01 — number only. Its top edge follows the first hero-title glyph. */
+.hero-marker{
+  top:44px !important;
+  height:auto !important;
+  align-items:flex-start !important;
+}
+.hero-marker .num{
+  display:block;
+  line-height:1 !important;
+}
+.hero-marker .rule{display:none !important;}
+
+/* 02–05 — keep their horizontal rules. Center the large left-hand
+   section headings vertically inside the content area below the marker row. */
+.section02-intro,
+.section03-intro,
+.section04-intro{
+  align-self:stretch !important;
+  display:flex !important;
+  flex-direction:column;
+  justify-content:center !important;
+}
+.section02-title,
+.section03-title,
+.section04-title,
+.footer-title{
+  margin-top:0 !important;
+}
+
+@media(max-width:650px){
+  .hero-marker{top:34px !important;}
+}
+
+
+/* Fine optical correction after visual review. */
+
+
+/* 02–04: the large left headings are centered against the FULL section
+   height, not merely the padded content row below the marker. */
+.band-2 .section02-title,
+.band-3 .section03-title,
+.band-4 .section04-title{
+  position:absolute !important;
+  left:var(--section-heading-x) !important;
+  top:50% !important;
+  width:210px !important;
+  margin:0 !important;
+  transform:translateY(-50%) !important;
+}
+
+/* Their intro wrappers no longer need to simulate vertical centering. */
+.section02-intro,
+.section03-intro,
+.section04-intro{
+  display:block !important;
+  align-self:auto !important;
+}
+
+
+
+
+/* Restore the reference hero geometry; retain Geologica and its original metrics. */
+.header .brand, .header .header-right { transform:translateY(20px); }
+/* 40px is the lower crop-mark horizontal guide measured from the canvas bottom.
+   A one-line legal row fits this depth; wrapped rows retain natural height. */
+.footer-legal { min-height:40px; padding-top:11px; padding-bottom:12px; }
+/* Wrapped legal text extends below the shared rule; anchor marks to that rule. */
+.mark.bl, .mark.br { top:var(--legal-crop-top,auto); bottom:auto; }
+
+
+:root {
+  --section-marker-num-width:18px;
+  --section-marker-gap:16px;
+  /* A follows the visible logo ink; B follows the start of a marker rule. */
+  --axis-a:calc(var(--header-left) + var(--header-logo-ink-inset));
+  --axis-b:calc(var(--axis-a) + var(--section-marker-num-width) + var(--section-marker-gap));
+  --section-heading-x:var(--axis-b);
+}
+.hero-marker, .section-marker { left:var(--axis-a); }
+
+
+.section-marker .num { flex:0 0 var(--section-marker-num-width); }
+.section-marker .rule { margin-inline:var(--section-marker-gap); }
+@media(max-width:900px) {
+  :root { --section-marker-gap:13px; }
+}
+@media(max-width:650px) {
+  :root { --section-marker-gap:10px; }
+}
