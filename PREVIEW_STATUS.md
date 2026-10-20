@@ -20,3 +20,15 @@ https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-p
 Preview: https://annie-lis.github.io/moscow-city-print-preview/
 
 Current generated Home SHA-256: `1d0f641940541807c102ac5cbebbf13e737497d6a1a4c209de187333afd3688d`.
+
+## Universal internal template
+
+- Source work commit: `6777057`.
+- Demo: `internal-template.html`, with noindex/nofollow, not linked from navigation.
+- Shared theme template: `templates/internal.php`; single, equal split and wide sections.
+- Internal-only CSS: `site-assets/assets/css/internal.css`.
+- Accepted Home, vacancies, header/footer and existing shared resources are unchanged.
+- Full-bleed backgrounds, content-anchored divider and responsive sections verified at
+  1920/1440/1280/1024/768/390/320 in static and actual WordPress rendering.
+- Existing mobile header overflow remains; new sections do not add overflow.
+- Documentation: https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/INTERNAL_TEMPLATE.md
