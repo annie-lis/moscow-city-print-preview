@@ -40,3 +40,12 @@ marker, preserving the existing number-slot width. Home keeps 04 and its HTML
 is unchanged. No CSS, section, header, footer content or geometry changes.
 Desktop/tablet/mobile and Home pixel parity checks passed; original mobile
 header overflow remains unchanged.
+
+## Explicit footer marker parameter
+
+Source work commit: `238d43a`. Footer numbering no longer depends on
+`is_front_page()` inside the shared footer. Default footer is unnumbered;
+Home explicitly passes `marker_number => 04`. Existing internal-template HTML
+contains an empty number span, followed by the unchanged rule and КОНТАКТЫ.
+All three preview HTML files remain byte-identical; no CSS or layout changes.
+WordPress/static checks and all 12 Home pixel comparisons passed.
