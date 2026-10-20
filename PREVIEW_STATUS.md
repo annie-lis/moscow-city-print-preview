@@ -106,3 +106,20 @@ Installable child theme: `downloads/moscow-city-print-child-0.4.0.zip` (SHA256
 sidecar alongside it). Parent Twenty Twenty-One required.
 Deployment instructions, without production changes:
 https://github.com/annie-lis/moscow-city-print/blob/work/wordpress/moscow-city-print-child/DEPLOYMENT.md
+
+
+## Navigation and empty routes 0.4.1
+
+Source work commit: `90d97a1`.
+
+Primary: About → Services → Products → Contacts; logo links to index.html.
+Utility footer: privacy policy → payment and delivery → requisites.
+Sitemap/vacancies links removed from utility row; legacy pages retained.
+New empty title-only routes: products.html, payment-delivery.html,
+artwork-requirements.html. No content or section structure added to them.
+Common CSS/JS/fonts/assets and Home sections unchanged. Existing About,
+Services and Contacts content preserved. Four-item menu expands the inherited
+mobile header overflow to 617px; responsive rules were deliberately not changed.
+168 route/viewport checks passed; 14 normalized static/WP Home screenshot
+comparisons show no changes beyond requested navigation.
+Installable updated theme: downloads/moscow-city-print-child-0.4.1.zip.

@@ -23,13 +23,13 @@ jobs:
         run: |
           test -f about.html
           test -f site-assets/assets/css/internal.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.0.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.1.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
           assert '<h1 class="mcp-page-title">О типографии</h1>' in text
           assert 'брендбука' not in text
-          for route in ('index','about','services','blog','contacts','privacy-policy','requisites','sitemap','vacancies','404'):
+          for route in ('index','about','services','products','blog','contacts','privacy-policy','payment-delivery','artwork-requirements','requisites','sitemap','vacancies','404'):
               assert Path(route + '.html').is_file(), route
           PY
       - name: Read GitHub Pages configuration
@@ -64,12 +64,18 @@ jobs:
           done
           echo 'Pages has not served this commit at the exact About URL within 10 minutes.' >&2
           exit 1
-      - name: Verify public theme download
+      - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.0.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.1.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.0.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.4.1.zip public-theme.zip
+          for route in products payment-delivery artwork-requirements; do
+            curl --fail --silent --show-error --location --max-time 30 \
+              "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
+              --output "public-$route.html"
+            cmp "$route.html" "public-$route.html"
+          done
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4
