@@ -20,7 +20,8 @@
   --content-x:160px;
   --right:58px;
   --section-divider-inset:64px;
-  --section-content-inset:38px;
+  --vertical-inset:38px;
+  --section-content-inset:var(--vertical-inset);
   --section-height:288px;
   --client-nav-inset:24px;
   --column-padding:calc(var(--section-marker-num-width) + var(--section-marker-gap));
@@ -55,16 +56,16 @@ a{color:inherit;text-decoration:none}
 .header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
 .status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
 .nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
-.hero{position:relative;z-index:2;min-height:300px;overflow:visible;background:var(--paper);}
+.hero{position:relative;z-index:2;min-height:360px;overflow:visible;background:var(--paper);}
 .rail{position:absolute;left:var(--rail-x);top:44px;width:34px;font-size:13px;line-height:1;text-align:center;font-weight:400;}
 .rail::after{content:"";display:block;width:21px;height:1.5px;background:rgba(21,21,21,.72);margin:14px auto 0;}
 
 
 .hero-inner{
   min-height:inherit;
-  padding:24px var(--right) 24px var(--axis-b);
+  padding:var(--vertical-inset) var(--right) var(--vertical-inset) var(--axis-b);
   display:flex;
-  align-items:center;
+  align-items:flex-end;
 }
 .hero-copy{
   width:min(560px,100%);
@@ -75,8 +76,8 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   top:calc(50% + 4px);
   left:calc(var(--axis-b) + 560px + 32px);
-  right:calc(var(--header-right) * .75);
-  height:272px;
+  right:calc(var(--header-right) * .5);
+  height:340px;
   transform:translateY(-50%);
   display:flex;
   justify-content:center;
@@ -86,7 +87,7 @@ a{color:inherit;text-decoration:none}
 .hero-art img{
   display:block;
   width:100%;
-  max-width:567px;
+  max-width:737px;
   height:100%;
   object-fit:contain;
 }
@@ -94,9 +95,9 @@ a{color:inherit;text-decoration:none}
   .hero-art{
     position:static;
     transform:none;
-    width:min(486px,calc(100% - var(--axis-b) - var(--header-right)));
+    width:min(632px,calc(100% - var(--axis-b) - var(--header-right)));
     height:auto;
-    margin:0 var(--header-right) 24px auto;
+    margin:0 var(--header-right) var(--vertical-inset) auto;
   }
   .hero-art img{height:auto;}
 }
@@ -408,7 +409,6 @@ a{color:inherit;text-decoration:none}
 .footer-inner{
   position:relative;
   min-height:248px;
-  margin-bottom:32px;
   padding:var(--section-content-inset) 0;
   display:grid;
   grid-template-columns:var(--axis-b)
