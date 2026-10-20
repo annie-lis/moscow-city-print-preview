@@ -56,23 +56,23 @@ a{color:inherit;text-decoration:none}
 .header-right{justify-self:end;text-align:right;display:grid;row-gap:13px;}
 .status{font-size:15px;line-height:1;color:#30302e;font-weight:300;letter-spacing:0;display:flex;justify-content:flex-end;align-items:center;gap:7px;}
 .nav{display:flex;justify-content:flex-end;gap:32px;font-size:16px;line-height:1;white-space:nowrap;font-weight:300;}
-/* PNG includes generous transparent margins; the section height is independent
-   of its intrinsic ratio. Scale its 4526px visible band within the page guides. */
+/* Complete 4:1 banner: preserve its ratio within a fixed desktop hero. */
 .hero{
   position:relative;
   z-index:2;
-  height:360px;
+  height:400px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 var(--axis-b);
   overflow:hidden;
   background:var(--paper);
 }
-.hero-slogan{
-  position:absolute;
-  left:calc((var(--axis-b) + 100% - var(--header-right)) / 2);
-  top:50%;
-  transform:translate(-50%,-50%);
+.hero-banner{
   display:block;
-  width:calc((100% - var(--axis-b) - var(--header-right)) * 6668 / 4526);
-  max-width:none;
+  width:100%;
+  max-width:1600px;
+  max-height:100%;
   height:auto;
   object-fit:contain;
 }
@@ -381,8 +381,8 @@ a{color:inherit;text-decoration:none}
 }
 .footer-inner{
   position:relative;
-  min-height:248px;
-  padding:var(--section-content-inset) 0;
+  min-height:calc(248px - var(--vertical-inset) / 3);
+  padding:var(--section-content-inset) 0 calc(var(--section-content-inset) * 2 / 3);
   display:grid;
   grid-template-columns:var(--axis-b)
     calc(var(--footer-split-1) - var(--axis-b))
@@ -705,7 +705,7 @@ a{color:inherit;text-decoration:none}
     </header>
 
     <section class="hero" aria-label="Печатаем то, что представляет ваш бизнес">
-      <img class="hero-slogan" src="assets/hero/hero-slogan.png" width="6668" height="2500" alt="Печатаем то, что представляет ваш бизнес. Современная типография в Москва-Сити. Полный цикл печати и постпечатной обработки для компаний и агентств." decoding="async">
+      <img class="hero-banner" src="assets/hero/banner_hero.png" width="6668" height="1668" alt="Печатаем то, что представляет ваш бизнес. Современная типография в Москва-Сити. Полный цикл печати и постпечатной обработки для компаний и агентств." decoding="async">
     </section>
   </section>
   <section class="band band-2">
