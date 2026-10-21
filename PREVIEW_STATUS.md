@@ -154,3 +154,19 @@ All other HTML pages and shared assets/components remain byte-identical.
 14 static/WordPress viewport checks passed (1920 through 320).
 Updated theme: downloads/moscow-city-print-child-0.4.3.zip.
 Public verification gates on exact payment-delivery.html content.
+
+
+## Shared footer numbering restored 0.4.4 (2026-10-21)
+
+Source work commit: `7ea3755`.
+
+Latest user instruction supersedes the earlier unnumbered internal footer.
+All internal footers now show number → rule → КОНТАКТЫ through shared logic.
+Default is next number after the last numbered content section, including split;
+without numbered sections it is 01. Missing/empty marker args use the same rule.
+Requisites 03, Payment/delivery 04, About 02, Services 06, internal demo 06.
+Home's computed 04 remains unchanged; its HTML is byte-identical.
+Only footer digits changed in generated internal pages; no CSS/JS/assets changed.
+168 route/viewport checks and 18 screenshot comparisons passed. All other pixels
+and footer/legal/crop coordinates remain unchanged.
+Theme: downloads/moscow-city-print-child-0.4.4.zip.

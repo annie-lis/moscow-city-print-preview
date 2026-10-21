@@ -23,7 +23,7 @@ jobs:
         run: |
           test -f about.html
           test -f site-assets/assets/css/internal.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.3.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.4.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
@@ -70,9 +70,9 @@ jobs:
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.3.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.4.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.3.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.4.4.zip public-theme.zip
           for route in products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
