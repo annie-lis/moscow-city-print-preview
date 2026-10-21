@@ -25,7 +25,7 @@ jobs:
           test -f site-assets/assets/css/internal.css
           test -f site-assets/assets/css/requisites.css
           test -f site-assets/assets/css/payment-delivery.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.8.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.9.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
@@ -40,8 +40,16 @@ jobs:
           payment = Path('payment-delivery.html').read_text()
           assert 'class="mcp-delivery-options"' in payment
           assert '100% предоплате' in payment
-          for route in ('index','about','services','products','blog','contacts','privacy-policy','payment-delivery','artwork-requirements','requisites','sitemap','vacancies','404'):
+          for route in ('index','about','services','products','blog','privacy-policy','payment-delivery','artwork-requirements','requisites','sitemap','vacancies','404'):
               assert Path(route + '.html').is_file(), route
+          assert not Path('contacts.html').exists()
+          sitemap = Path('sitemap.html').read_text()
+          assert sitemap.count('<li><a ') == 10
+          assert 'href="#contacts">Контакты</a>' in sitemap
+          for page in Path('.').glob('*.html'):
+              html = page.read_text()
+              assert 'href="contacts.html"' not in html and 'href="/contacts/"' not in html, page
+              assert 'id="contacts"' in html and 'href="#contacts"' in html, page
           PY
       - name: Read GitHub Pages configuration
         env:
@@ -83,15 +91,18 @@ jobs:
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.8.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.9.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.8.zip public-theme.zip
-          for route in products payment-delivery artwork-requirements; do
+          cmp downloads/moscow-city-print-child-0.4.9.zip public-theme.zip
+          for route in index sitemap products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
               --output "public-$route.html"
             cmp "$route.html" "public-$route.html"
           done
+          code=$(curl --silent --show-error --location --max-time 30 --output /dev/null \
+            --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/contacts.html)
+          test "$code" = 404
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4

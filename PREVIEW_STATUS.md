@@ -223,3 +223,17 @@ Existing delivery grid bottom margin is 30px instead of 20px before the shared
 free-delivery condition. Copy, grid, typography and shared shell unchanged.
 14 static/WordPress viewport checks passed; other HTML pages byte-identical.
 Theme package: downloads/moscow-city-print-child-0.4.8.zip.
+
+
+## Current-page contacts and public sitemap 0.4.9 (2026-10-21)
+
+Source work commit: `5497075`.
+
+All header Contacts links use #contacts, targeting the current page's shared
+footer. Removed contacts.html; no separate contact page in route/scaffold registry.
+Sitemap explicitly lists the ten approved pages/sections, contacts via #contacts.
+No CSS or footer markup changes; dynamic section numbers unchanged. All other
+HTML differs only in the contact href. 154 internal-route and 14 Home checks
+passed in static and real WordPress at seven widths; PHP lint passed.
+Theme: downloads/moscow-city-print-child-0.4.9.zip.
+Public workflow verifies exact sitemap/Home output and retired contacts.html 404.
