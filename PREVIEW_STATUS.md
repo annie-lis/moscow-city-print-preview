@@ -251,3 +251,19 @@ footer number follows the section as 02. All other HTML byte-identical.
 14 static/WordPress checks passed at seven widths; desktop/mobile inspected.
 Updated installable theme: downloads/moscow-city-print-child-0.4.10.zip.
 Public verification gates on exact sitemap HTML and its route-specific CSS.
+
+
+## Current published privacy policy 0.4.11 (2026-10-21)
+
+Source work commit: `6444b0d`.
+
+Full policy from https://moscowcityprint.ru/privacy-policy/; source publication
+date 22 September 2026. All 16 actual sections, lists, wording, operator details
+and document date preserved. Main repository records exact source transcription
+and browser tests comparing every paragraph, heading and list item.
+Shared internal section 01 ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ; automatic footer 02.
+Scoped privacy-policy.css: 76ch reading column, inherited Geologica type scale
+and spacing; no imagery/cards/icons/CTA. Shared shell/CSS and all other HTML
+unchanged. 14 static/WordPress checks passed at seven widths.
+Theme: downloads/moscow-city-print-child-0.4.11.zip.
+Public verification gates on exact policy HTML and route-specific CSS.

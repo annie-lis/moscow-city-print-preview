@@ -1,0 +1,11 @@
+/* Legal text only; the shared internal shell, type scale and axes are inherited. */
+.mcp-privacy-policy{max-width:76ch;}
+.mcp-privacy-policy .mcp-page-title{font:inherit;font-weight:500;letter-spacing:normal;}
+.mcp-privacy-policy h2{
+  margin:var(--vertical-inset) 0 20px;
+  font:inherit;
+  font-weight:500;
+}
+.mcp-privacy-policy ul,
+.mcp-privacy-policy ol{margin:0 0 20px;padding-left:1.4em;}
+.mcp-privacy-policy li + li{margin-top:8px;}
