@@ -195,3 +195,20 @@ Field groups use flex-start instead of distributing extra free space.
 Grid, x positions, typography and outer spacing unchanged; all HTML byte-identical.
 Public verification now gates on the exact stylesheet too, since HTML did not change.
 Theme package: downloads/moscow-city-print-child-0.4.6.zip.
+
+
+## Payment and delivery revised conditions 0.4.7 (2026-10-21)
+
+Source work commit: `b34243a`.
+
+Only 01 Оплата and 02 Доставка remain; old Важно removed. Payment copy is the
+five exact user-supplied conditions (invoice, contract, 100% advance payment,
+closing documents/EDI, shipment after signed documents).
+Delivery has three equal unframed columns: pickup free/by appointment, Moscow
+from 500 ₽, regions from 1,500 ₽. Below: free delivery from 100,000 ₽ and the
+individual cost/time note. Columns stack at <=650px. All copy/rates supplied
+by the user, no new imagery/icons/map/CTA. Shared footer now computes 03.
+Only new CSS is route-scoped payment-delivery.css, existing type/gutter/spacing.
+14 static/WordPress checks passed; other HTML pages remain byte-identical.
+Updated theme: downloads/moscow-city-print-child-0.4.7.zip.
+Public checks now gate on both payment-delivery HTML and stylesheet.

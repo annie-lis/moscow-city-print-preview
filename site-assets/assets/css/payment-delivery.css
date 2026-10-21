@@ -1,0 +1,23 @@
+/* Delivery options only. Shared shell, typography scale and section spacing stay intact. */
+.mcp-delivery-options{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--column-padding);
+  margin-bottom:20px;
+}
+.mcp-delivery-options > div{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+.mcp-delivery-options h3{
+  margin:0 0 20px;
+  font:inherit;
+  font-weight:500;
+}
+.mcp-delivery-options .mcp-delivery-price{margin-top:auto;}
+.mcp-delivery-options strong,
+.mcp-delivery-free strong{font-weight:500;}
+@media(max-width:650px){
+  .mcp-delivery-options{grid-template-columns:minmax(0,1fr);}
+}
