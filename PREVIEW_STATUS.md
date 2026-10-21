@@ -123,3 +123,18 @@ mobile header overflow to 617px; responsive rules were deliberately not changed.
 168 route/viewport checks passed; 14 normalized static/WP Home screenshot
 comparisons show no changes beyond requested navigation.
 Installable updated theme: downloads/moscow-city-print-child-0.4.1.zip.
+
+
+## Requisites 0.4.2 (2026-10-21)
+
+Source work commit: `6521b23`.
+
+requisites.html now uses two shared single sections: 01 Реквизиты (paper),
+02 Документы (paper-alt), then the unchanged shared footer.
+Approved legal data: ИП Лис Анна Владимировна, ИНН 772425521744,
+ОГРНИП 320774600200503. Documents email: mailto:office@moscowcityprint.ru.
+No additional contacts, imagery, CTA, styling or page-specific CSS.
+All other HTML pages, common assets/header/footer remain unchanged.
+Seven widths checked in static and actual WordPress (14 checks passed).
+Theme package: downloads/moscow-city-print-child-0.4.2.zip.
+Publication verification now gates on exact public requisites.html content.
