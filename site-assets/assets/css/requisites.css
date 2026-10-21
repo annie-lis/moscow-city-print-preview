@@ -9,7 +9,8 @@
   min-width:0;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:flex-start;
+  row-gap:20px;
 }
 .mcp-requisites-details dt{font-weight:500;}
 .mcp-requisites-details dd{margin:0;}

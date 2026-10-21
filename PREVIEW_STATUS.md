@@ -184,3 +184,14 @@ working day preparation time. Footer remains shared, number 03.
 Only new CSS is unique-class, requisites-only; no shared CSS/layout changes.
 All other HTML pages remain byte-identical. 14 static/WordPress checks passed.
 Theme: downloads/moscow-city-print-child-0.4.5.zip.
+
+
+## Requisites spacing 0.4.6 (2026-10-21)
+
+Source work commit: `dd4cef7`.
+
+Only field label/value gap changed: 20px, matching Documents paragraph spacing.
+Field groups use flex-start instead of distributing extra free space.
+Grid, x positions, typography and outer spacing unchanged; all HTML byte-identical.
+Public verification now gates on the exact stylesheet too, since HTML did not change.
+Theme package: downloads/moscow-city-print-child-0.4.6.zip.

@@ -24,7 +24,7 @@ jobs:
           test -f about.html
           test -f site-assets/assets/css/internal.css
           test -f site-assets/assets/css/requisites.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.5.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.6.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
@@ -48,15 +48,20 @@ jobs:
       - name: Verify the exact public Requisites URL after deployment
         env:
           PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/requisites.html
+          PUBLIC_CSS_URL: https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/requisites.css
         run: |
           for attempt in $(seq 1 60); do
             code=$(curl --silent --show-error --location --max-time 20 \
               --header 'Cache-Control: no-cache' --output live-requisites.html \
               --write-out '%{http_code}' "$PUBLIC_URL" || true)
             echo "Attempt $attempt: $PUBLIC_URL HTTP $code"
-            if [ "$code" = 200 ] && cmp --silent requisites.html live-requisites.html; then
+            curl --fail --silent --show-error --location --max-time 20 \
+              --header 'Cache-Control: no-cache' --output live-requisites.css "$PUBLIC_CSS_URL" || true
+            if [ "$code" = 200 ] && cmp --silent requisites.html live-requisites.html && \
+              cmp --silent site-assets/assets/css/requisites.css live-requisites.css; then
               echo "Verified HTTP 200 and exact content match for commit $GITHUB_SHA"
               sha256sum requisites.html live-requisites.html
+              echo "Verified public requisites stylesheet matches source"
               python3 - <<'PY'
           import json, os
           from pathlib import Path
@@ -74,9 +79,9 @@ jobs:
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.5.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.6.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.5.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.4.6.zip public-theme.zip
           for route in products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
