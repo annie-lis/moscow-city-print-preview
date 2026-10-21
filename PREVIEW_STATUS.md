@@ -138,3 +138,19 @@ All other HTML pages, common assets/header/footer remain unchanged.
 Seven widths checked in static and actual WordPress (14 checks passed).
 Theme package: downloads/moscow-city-print-child-0.4.2.zip.
 Publication verification now gates on exact public requisites.html content.
+
+
+## Payment and delivery 0.4.3 (2026-10-21)
+
+Source work commit: `fd90dbe`.
+
+payment-delivery.html uses three shared single sections: 01 Оплата / 02 Доставка /
+03 Важно, paper / paper-alt / paper, then the unchanged shared footer.
+Practical short copy: B2B/IP, bank transfer, invoice/contract, closing documents
+and EDI; pickup, Moscow courier, agreed transport-company shipment to regions;
+separate delivery cost/timing and readiness/deadline/heavy-run caveats.
+No new rates, deadline promises, imagery, map, icons, CTA or page-specific CSS.
+All other HTML pages and shared assets/components remain byte-identical.
+14 static/WordPress viewport checks passed (1920 through 320).
+Updated theme: downloads/moscow-city-print-child-0.4.3.zip.
+Public verification gates on exact payment-delivery.html content.

@@ -23,7 +23,7 @@ jobs:
         run: |
           test -f about.html
           test -f site-assets/assets/css/internal.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.2.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.3.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
@@ -41,18 +41,18 @@ jobs:
         run: |
           gh api "repos/$GITHUB_REPOSITORY/pages" \
             --jq '{html_url,build_type,status,source}' | tee pages-config.json
-      - name: Verify the exact public Requisites URL after deployment
+      - name: Verify the exact public Payment and Delivery URL after deployment
         env:
-          PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/requisites.html
+          PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/payment-delivery.html
         run: |
           for attempt in $(seq 1 60); do
             code=$(curl --silent --show-error --location --max-time 20 \
-              --header 'Cache-Control: no-cache' --output live-requisites.html \
+              --header 'Cache-Control: no-cache' --output live-payment-delivery.html \
               --write-out '%{http_code}' "$PUBLIC_URL" || true)
             echo "Attempt $attempt: $PUBLIC_URL HTTP $code"
-            if [ "$code" = 200 ] && cmp --silent requisites.html live-requisites.html; then
+            if [ "$code" = 200 ] && cmp --silent payment-delivery.html live-payment-delivery.html; then
               echo "Verified HTTP 200 and exact content match for commit $GITHUB_SHA"
-              sha256sum requisites.html live-requisites.html
+              sha256sum payment-delivery.html live-payment-delivery.html
               python3 - <<'PY'
           import json, os
           from pathlib import Path
@@ -65,14 +65,14 @@ jobs:
             fi
             sleep 10
           done
-          echo 'Pages has not served this commit at the exact Requisites URL within 10 minutes.' >&2
+          echo 'Pages has not served this commit at the exact Payment and Delivery URL within 10 minutes.' >&2
           exit 1
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.2.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.3.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.2.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.4.3.zip public-theme.zip
           for route in products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
