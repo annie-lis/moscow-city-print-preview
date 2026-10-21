@@ -1,0 +1,20 @@
+/* Sitemap only: shared internal spacing, axes and text scale are inherited. */
+.mcp-sitemap-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--vertical-inset) var(--column-padding);
+}
+.mcp-sitemap-group{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:20px;
+}
+.mcp-sitemap-group h2{margin:0;font:inherit;font-weight:500;}
+@media(max-width:900px){
+  .mcp-sitemap-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:650px){
+  .mcp-sitemap-grid{grid-template-columns:minmax(0,1fr);}
+}

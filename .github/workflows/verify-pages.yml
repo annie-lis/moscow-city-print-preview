@@ -25,7 +25,7 @@ jobs:
           test -f site-assets/assets/css/internal.css
           test -f site-assets/assets/css/requisites.css
           test -f site-assets/assets/css/payment-delivery.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.9.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.10.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
@@ -44,7 +44,12 @@ jobs:
               assert Path(route + '.html').is_file(), route
           assert not Path('contacts.html').exists()
           sitemap = Path('sitemap.html').read_text()
-          assert sitemap.count('<li><a ') == 10
+          assert '<ul>' not in sitemap and '<ol>' not in sitemap
+          assert 'КАРТА САЙТА' in sitemap
+          assert sitemap.count('class="mcp-sitemap-group"') == 3
+          for title in ('Основные', 'Информация', 'Служебные'):
+              assert '<h2>' + title + '</h2>' in sitemap
+          assert Path('site-assets/assets/css/sitemap.css').is_file()
           assert 'href="#contacts">Контакты</a>' in sitemap
           for page in Path('.').glob('*.html'):
               html = page.read_text()
@@ -57,23 +62,23 @@ jobs:
         run: |
           gh api "repos/$GITHUB_REPOSITORY/pages" \
             --jq '{html_url,build_type,status,source}' | tee pages-config.json
-      - name: Verify the exact public Payment and Delivery URL after deployment
+      - name: Verify the exact public Sitemap URL after deployment
         env:
-          PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/payment-delivery.html
-          PUBLIC_CSS_URL: https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/payment-delivery.css
+          PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/sitemap.html
+          PUBLIC_CSS_URL: https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/sitemap.css
         run: |
           for attempt in $(seq 1 60); do
             code=$(curl --silent --show-error --location --max-time 20 \
-              --header 'Cache-Control: no-cache' --output live-payment-delivery.html \
+              --header 'Cache-Control: no-cache' --output live-sitemap.html \
               --write-out '%{http_code}' "$PUBLIC_URL" || true)
             echo "Attempt $attempt: $PUBLIC_URL HTTP $code"
             curl --fail --silent --show-error --location --max-time 20 \
-              --header 'Cache-Control: no-cache' --output live-payment-delivery.css "$PUBLIC_CSS_URL" || true
-            if [ "$code" = 200 ] && cmp --silent payment-delivery.html live-payment-delivery.html && \
-              cmp --silent site-assets/assets/css/payment-delivery.css live-payment-delivery.css; then
+              --header 'Cache-Control: no-cache' --output live-sitemap.css "$PUBLIC_CSS_URL" || true
+            if [ "$code" = 200 ] && cmp --silent sitemap.html live-sitemap.html && \
+              cmp --silent site-assets/assets/css/sitemap.css live-sitemap.css; then
               echo "Verified HTTP 200 and exact content match for commit $GITHUB_SHA"
-              sha256sum payment-delivery.html live-payment-delivery.html
-              echo "Verified public payment/delivery stylesheet matches source"
+              sha256sum sitemap.html live-sitemap.html
+              echo "Verified public sitemap stylesheet matches source"
               python3 - <<'PY'
           import json, os
           from pathlib import Path
@@ -86,14 +91,14 @@ jobs:
             fi
             sleep 10
           done
-          echo 'Pages has not served this commit at the exact Payment and Delivery URL within 10 minutes.' >&2
+          echo 'Pages has not served this commit at the exact Sitemap URL within 10 minutes.' >&2
           exit 1
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.9.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.10.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.9.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.4.10.zip public-theme.zip
           for route in index sitemap products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \

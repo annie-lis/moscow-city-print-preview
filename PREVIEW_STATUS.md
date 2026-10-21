@@ -237,3 +237,17 @@ HTML differs only in the contact href. 154 internal-route and 14 Home checks
 passed in static and real WordPress at seven widths; PHP lint passed.
 Theme: downloads/moscow-city-print-child-0.4.9.zip.
 Public workflow verifies exact sitemap/Home output and retired contacts.html 404.
+
+
+## Grouped sitemap 0.4.10 (2026-10-21)
+
+Source work commit: `a93fc4b`.
+
+Sitemap uses the approved internal single-section template, marker 01 КАРТА САЙТА,
+three link groups (Основные / Информация / Служебные). No bullet lists, cards,
+frames or decoration. Scoped sitemap.css only, 3/2/1 columns at 900/650px.
+Contacts remains #contacts. Shared header/footer/templates/styles unchanged;
+footer number follows the section as 02. All other HTML byte-identical.
+14 static/WordPress checks passed at seven widths; desktop/mobile inspected.
+Updated installable theme: downloads/moscow-city-print-child-0.4.10.zip.
+Public verification gates on exact sitemap HTML and its route-specific CSS.
