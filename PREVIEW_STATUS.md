@@ -170,3 +170,17 @@ Only footer digits changed in generated internal pages; no CSS/JS/assets changed
 168 route/viewport checks and 18 screenshot comparisons passed. All other pixels
 and footer/legal/crop coordinates remain unchanged.
 Theme: downloads/moscow-city-print-child-0.4.4.zip.
+
+
+## Compact requisites 0.4.5 (2026-10-21)
+
+Source work commit: `439147d`.
+
+Requisites and Documents no longer repeat large headings beneath markers.
+Legal fields use 3 equal columns, labels Geologica 500 and ordinary 300 values;
+at <=650px fields stack. Existing gutter, no cards/frames/dividers.
+Documents has two short paragraphs, the office mailto and user-supplied 1–5
+working day preparation time. Footer remains shared, number 03.
+Only new CSS is unique-class, requisites-only; no shared CSS/layout changes.
+All other HTML pages remain byte-identical. 14 static/WordPress checks passed.
+Theme: downloads/moscow-city-print-child-0.4.5.zip.

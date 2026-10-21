@@ -1,0 +1,18 @@
+/* Requisites content only; shared shell and section spacing remain unchanged. */
+.mcp-requisites-details{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--column-padding);
+  margin:0;
+}
+.mcp-requisites-details > div{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.mcp-requisites-details dt{font-weight:500;}
+.mcp-requisites-details dd{margin:0;}
+@media(max-width:650px){
+  .mcp-requisites-details{grid-template-columns:minmax(0,1fr);}
+}
