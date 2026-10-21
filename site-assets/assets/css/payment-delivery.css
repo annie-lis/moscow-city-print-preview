@@ -3,7 +3,7 @@
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:var(--column-padding);
-  margin-bottom:20px;
+  margin-bottom:30px;
 }
 .mcp-delivery-options > div{
   min-width:0;

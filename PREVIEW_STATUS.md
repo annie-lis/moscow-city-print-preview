@@ -212,3 +212,14 @@ Only new CSS is route-scoped payment-delivery.css, existing type/gutter/spacing.
 14 static/WordPress checks passed; other HTML pages remain byte-identical.
 Updated theme: downloads/moscow-city-print-child-0.4.7.zip.
 Public checks now gate on both payment-delivery HTML and stylesheet.
+
+
+## Payment/delivery heading cleanup 0.4.8 (2026-10-21)
+
+Source work commit: `3a15799`.
+
+Removed only the duplicate large Оплата/Доставка headings; markers unchanged.
+Existing delivery grid bottom margin is 30px instead of 20px before the shared
+free-delivery condition. Copy, grid, typography and shared shell unchanged.
+14 static/WordPress viewport checks passed; other HTML pages byte-identical.
+Theme package: downloads/moscow-city-print-child-0.4.8.zip.
