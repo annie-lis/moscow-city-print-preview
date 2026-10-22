@@ -318,3 +318,20 @@ all 16 sections and markers 01/02. The public /privacy-policy/ URL was reachable
 by independent Google PageSpeed check. Active theme was NOT switched, so the
 structured new-theme output remains preview-only pending separate publication.
 No theme code, static HTML, assets or downloadable package changed in this step.
+
+## About rebuild — 22 October 2026
+
+Source work commit: `79914c4a5503c7a9ee2b08f30bd4f9a1f5e97af5`.
+About now has five approved sections and shared footer 06. Working copy follows
+the user brief. Three original WebP illustrations (production/team/Moscow City)
+are served from the shared theme asset directory; optional CMYK is not displayed.
+Existing eight client logos use a simple four/two-column grid.
+Page-specific CSS: `site-assets/assets/css/about.css`. No shared visual CSS or
+header/footer templates changed. Home and Services HTML remain byte-identical.
+Seven viewport checks passed with Geologica; inherited mobile header overflow
+remains. Local desktop/tablet/mobile captures and details are in source
+`tests/ABOUT_REBUILD_REPORT.md`.
+
+Preview: https://annie-lis.github.io/moscow-city-print-preview/about.html
+Theme ZIP 0.5.0 refreshed from the same source. No staging WordPress updates
+were attempted in this pass; WPVibe publication remains blocked by usage cap.

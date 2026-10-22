@@ -29,7 +29,13 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
-          assert '<h1 class="mcp-page-title">О типографии</h1>' in text
+          assert '<h1 class="mcp-page-title">Современная типография в сердце деловой Москвы</h1>' in text
+          assert 'mcp-about-panel--hero' in text and 'mcp-about-logos' in text
+          assert text.count('class="mcp-about-art"') == 3
+          assert '<span class="num">06</span>' in text
+          assert Path('site-assets/assets/css/about.css').is_file()
+          for name in ('print-production','team-production','moscow-city'):
+              assert Path('site-assets/assets/images/illustrations/mcp-illustration-' + name + '.webp').is_file()
           assert 'брендбука' not in text
           services = Path('services.html').read_text()
           assert '<h1 class="mcp-page-title">Услуги</h1>' in services
@@ -91,7 +97,16 @@ jobs:
             echo "Attempt $attempt: $PUBLIC_URL HTTP $code"
             curl --fail --silent --show-error --location --max-time 20 \
               --header 'Cache-Control: no-cache' --output live-404.css "$PUBLIC_CSS_URL" || true
+            for file in about.html site-assets/assets/css/about.css downloads/moscow-city-print-child-0.5.0.zip; do
+              mkdir -p "live/$(dirname "$file")"
+              curl --fail --silent --show-error --location --max-time 20 \
+                --header 'Cache-Control: no-cache' --output "live/$file" \
+                "https://annie-lis.github.io/moscow-city-print-preview/$file" || true
+            done
             if [ "$code" = 200 ] && cmp --silent 404.html live-404.html && \
+              cmp --silent about.html live/about.html && \
+              cmp --silent site-assets/assets/css/about.css live/site-assets/assets/css/about.css && \
+              cmp --silent downloads/moscow-city-print-child-0.5.0.zip live/downloads/moscow-city-print-child-0.5.0.zip && \
               cmp --silent site-assets/assets/css/internal.css live-404.css; then
               echo "Verified HTTP 200 and exact content match for commit $GITHUB_SHA"
               sha256sum 404.html live-404.html
@@ -116,7 +131,7 @@ jobs:
             https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.5.0.zip \
             --output public-theme.zip
           cmp downloads/moscow-city-print-child-0.5.0.zip public-theme.zip
-          for route in index sitemap privacy-policy products payment-delivery artwork-requirements; do
+          for route in index about sitemap privacy-policy products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
               --output "public-$route.html"
