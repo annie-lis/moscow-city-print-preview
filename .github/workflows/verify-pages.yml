@@ -25,12 +25,17 @@ jobs:
           test -f site-assets/assets/css/internal.css
           test -f site-assets/assets/css/requisites.css
           test -f site-assets/assets/css/payment-delivery.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.12.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.5.0.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
           assert '<h1 class="mcp-page-title">О типографии</h1>' in text
           assert 'брендбука' not in text
+          services = Path('services.html').read_text()
+          assert '<h1 class="mcp-page-title">Услуги</h1>' in services
+          assert 'service-card' not in services and '<details' not in services
+          for filename in ('index.html','requisites.html','payment-delivery.html'):
+              assert '>Карта сайта</a>' in Path(filename).read_text()
           requisites = Path('requisites.html').read_text()
           assert 'class="mcp-requisites-details"' in requisites
           assert 'class="mcp-page-title"' not in requisites
@@ -108,9 +113,9 @@ jobs:
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.12.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.5.0.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.12.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.5.0.zip public-theme.zip
           for route in index sitemap privacy-policy products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \

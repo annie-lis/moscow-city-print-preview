@@ -282,3 +282,25 @@ Pages custom 404 is exported with --pages-base=/moscow-city-print-preview/
 so its assets and navigation work at arbitrary nested missing URLs. #contacts
 stays local. Publication checks exact nested 404 body and HTTP 404 status.
 Theme package: downloads/moscow-city-print-child-0.4.12.zip.
+
+
+## Intermediate Martanda WordPress foundation 0.5.0 (2026-10-22)
+
+Source work commit: `3e76017`.
+
+Theme ZIP now targets installed Martanda and keeps the accepted modular MCP
+visual system. Native WP menu support (same flat anchor markup), local #contacts,
+legal sitemap link. About/Services/Products/Artwork/Blog are blank common-shell
+Page skeletons; approved Home/legal/sitemap/payment/requisites/404 retained.
+No shared visual CSS changes; Home geometry unchanged beyond requested links.
+70 static checks, 14 Home comparisons, 21 comparisons of actual madfox server HTML
+at seven widths passed. Real WordPress preview inspected for Home/Requisites/Services.
+
+Important: NOT an activated/live staging release. Files prepared in existing
+WPVibe draft on madfox.com.ru, active theme unchanged. Auto-review blocked privacy
+protected metadata import with --force; original content/status retained. Native
+menu is created but empty (fallback works). Publishing needs explicit post-preview
+confirmation and site-wide backup confirmation under WPVibe publish rules.
+Exact state, rollback and outstanding checks in source theme STAGING_STATUS.md
+and DEPLOYMENT.md; no private preview URL or backup snapshots published here.
+Installable review package: downloads/moscow-city-print-child-0.5.0.zip.
