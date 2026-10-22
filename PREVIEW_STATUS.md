@@ -335,3 +335,18 @@ remains. Local desktop/tablet/mobile captures and details are in source
 Preview: https://annie-lis.github.io/moscow-city-print-preview/about.html
 Theme ZIP 0.5.0 refreshed from the same source. No staging WordPress updates
 were attempted in this pass; WPVibe publication remains blocked by usage cap.
+
+## About editorial composition — latest brief, 22 October 2026
+
+Source work: `579b43b25575c4c80083f396cf86f83ea4aa59fc`.
+Supersedes previous About composition and working text. Text-only hero;
+02/03 use text / original transparent art / statistics or principles;
+04 text left / skyline right; 05 text left / shared Home client carousel right.
+Home carousel markup is reused byte-for-byte and home.js is unchanged.
+Mobile logos use a two-column grid. Shared footer 06, shell and visual tokens
+unchanged. No art backgrounds, frames, shadows, masks or cropping. CMYK omitted.
+Three original transparent illustrations replaced their old opaque publications.
+Seven viewport checks and Home pixel parity passed; Home/Services HTML unchanged.
+
+Preview: https://annie-lis.github.io/moscow-city-print-preview/about.html
+New About has not been deployed to WordPress; WPVibe staging limit remains.

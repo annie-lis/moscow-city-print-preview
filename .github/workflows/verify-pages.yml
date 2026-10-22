@@ -29,13 +29,15 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
-          assert '<h1 class="mcp-page-title">Современная типография в сердце деловой Москвы</h1>' in text
-          assert 'mcp-about-panel--hero' in text and 'mcp-about-logos' in text
+          assert '<h1 class="mcp-page-title">Печать, которая работает на ваш бренд</h1>' in text
+          assert 'mcp-about-panel--hero' in text and 'mcp-content-with-clients' in text
           assert text.count('class="mcp-about-art"') == 3
           assert '<span class="num">06</span>' in text
           assert Path('site-assets/assets/css/about.css').is_file()
           for name in ('print-production','team-production','moscow-city'):
               assert Path('site-assets/assets/images/illustrations/mcp-illustration-' + name + '.webp').is_file()
+          assert '10 000+' in text and 'mcp-about-principles' in text
+          assert 'clients-next' in text and 'assets/js/home.js' in text
           assert 'брендбука' not in text
           services = Path('services.html').read_text()
           assert '<h1 class="mcp-page-title">Услуги</h1>' in services
