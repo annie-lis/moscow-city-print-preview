@@ -304,3 +304,17 @@ confirmation and site-wide backup confirmation under WPVibe publish rules.
 Exact state, rollback and outstanding checks in source theme STAGING_STATUS.md
 and DEPLOYMENT.md; no private preview URL or backup snapshots published here.
 Installable review package: downloads/moscow-city-print-child-0.5.0.zip.
+
+
+## Authorized policy import completed (2026-10-22)
+
+Source work status commit: `3330ea9`.
+
+Following explicit user authorization, approved data/privacy-policy.php sections
+were imported into Page 3 _mcp_internal_sections using native WP-CLI, and that
+Page was published. Exact metadata readback matched source; original post_content
+was compared with its saved copy and remains unchanged. WP draft preview showed
+all 16 sections and markers 01/02. The public /privacy-policy/ URL was reachable
+by independent Google PageSpeed check. Active theme was NOT switched, so the
+structured new-theme output remains preview-only pending separate publication.
+No theme code, static HTML, assets or downloadable package changed in this step.
