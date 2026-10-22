@@ -25,7 +25,7 @@ jobs:
           test -f site-assets/assets/css/internal.css
           test -f site-assets/assets/css/requisites.css
           test -f site-assets/assets/css/payment-delivery.css
-          (cd downloads && sha256sum --check moscow-city-print-child-0.4.11.zip.sha256)
+          (cd downloads && sha256sum --check moscow-city-print-child-0.4.12.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
           text = Path('about.html').read_text().replace('\u00a0', ' ')
@@ -49,6 +49,11 @@ jobs:
           assert '14. Требования к обработке персональных данных' in policy
           assert '16. Контактная информация' in policy
           assert Path('site-assets/assets/css/privacy-policy.css').is_file()
+          not_found = Path('404.html').read_text()
+          assert 'Вернуться на главную →' in not_found
+          assert 'Возможно, ссылка устарела или страница была перемещена.' in not_found
+          assert 'href="/moscow-city-print-preview/index.html"' in not_found
+          assert 'href="/moscow-city-print-preview/site-assets/assets/css/internal.css"' in not_found
           assert not Path('contacts.html').exists()
           sitemap = Path('sitemap.html').read_text()
           assert '<ul>' not in sitemap and '<ol>' not in sitemap
@@ -69,23 +74,23 @@ jobs:
         run: |
           gh api "repos/$GITHUB_REPOSITORY/pages" \
             --jq '{html_url,build_type,status,source}' | tee pages-config.json
-      - name: Verify the exact public Privacy Policy URL after deployment
+      - name: Verify the exact public 404 preview URL after deployment
         env:
-          PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/privacy-policy.html
-          PUBLIC_CSS_URL: https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/privacy-policy.css
+          PUBLIC_URL: https://annie-lis.github.io/moscow-city-print-preview/404.html
+          PUBLIC_CSS_URL: https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/internal.css
         run: |
           for attempt in $(seq 1 60); do
             code=$(curl --silent --show-error --location --max-time 20 \
-              --header 'Cache-Control: no-cache' --output live-privacy-policy.html \
+              --header 'Cache-Control: no-cache' --output live-404.html \
               --write-out '%{http_code}' "$PUBLIC_URL" || true)
             echo "Attempt $attempt: $PUBLIC_URL HTTP $code"
             curl --fail --silent --show-error --location --max-time 20 \
-              --header 'Cache-Control: no-cache' --output live-privacy-policy.css "$PUBLIC_CSS_URL" || true
-            if [ "$code" = 200 ] && cmp --silent privacy-policy.html live-privacy-policy.html && \
-              cmp --silent site-assets/assets/css/privacy-policy.css live-privacy-policy.css; then
+              --header 'Cache-Control: no-cache' --output live-404.css "$PUBLIC_CSS_URL" || true
+            if [ "$code" = 200 ] && cmp --silent 404.html live-404.html && \
+              cmp --silent site-assets/assets/css/internal.css live-404.css; then
               echo "Verified HTTP 200 and exact content match for commit $GITHUB_SHA"
-              sha256sum privacy-policy.html live-privacy-policy.html
-              echo "Verified public privacy policy stylesheet matches source"
+              sha256sum 404.html live-404.html
+              echo "Verified public shared internal stylesheet matches source"
               python3 - <<'PY'
           import json, os
           from pathlib import Path
@@ -98,14 +103,14 @@ jobs:
             fi
             sleep 10
           done
-          echo 'Pages has not served this commit at the exact Privacy Policy URL within 10 minutes.' >&2
+          echo 'Pages has not served this commit at the exact 404 preview URL within 10 minutes.' >&2
           exit 1
       - name: Verify public pages and theme download
         run: |
           curl --fail --silent --show-error --location --max-time 30 \
-            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.11.zip \
+            https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.4.12.zip \
             --output public-theme.zip
-          cmp downloads/moscow-city-print-child-0.4.11.zip public-theme.zip
+          cmp downloads/moscow-city-print-child-0.4.12.zip public-theme.zip
           for route in index sitemap privacy-policy products payment-delivery artwork-requirements; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
@@ -115,6 +120,11 @@ jobs:
           code=$(curl --silent --show-error --location --max-time 30 --output /dev/null \
             --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/contacts.html)
           test "$code" = 404
+          code=$(curl --silent --show-error --location --max-time 30 --output public-nested-404.html \
+            --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/mcp-no-such-page/nested/)
+          test "$code" = 404
+          cmp 404.html public-nested-404.html
+          echo 'Verified custom 404 HTML and HTTP 404 at a nested missing URL'
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4

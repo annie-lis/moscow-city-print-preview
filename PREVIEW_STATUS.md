@@ -267,3 +267,18 @@ and spacing; no imagery/cards/icons/CTA. Shared shell/CSS and all other HTML
 unchanged. 14 static/WordPress checks passed at seven widths.
 Theme: downloads/moscow-city-print-child-0.4.11.zip.
 Public verification gates on exact policy HTML and route-specific CSS.
+
+
+## Shared 404 page 0.4.12 (2026-10-22)
+
+Source work commit: `b4f17e1`.
+
+01 — 404, Страница не найдена, exact supplied explanation, one main-content
+link Вернуться на главную →. Shared internal components/type/spacing only;
+no new CSS or graphic elements. Shared footer immediately follows, dynamic 02.
+Native WordPress HTTP 404 retained. 14 static/WP width checks plus 7 nested
+Pages-route browser checks passed. Other HTML pages byte-identical.
+Pages custom 404 is exported with --pages-base=/moscow-city-print-preview/
+so its assets and navigation work at arbitrary nested missing URLs. #contacts
+stays local. Publication checks exact nested 404 body and HTTP 404 status.
+Theme package: downloads/moscow-city-print-child-0.4.12.zip.
