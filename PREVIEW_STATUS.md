@@ -350,3 +350,13 @@ Seven viewport checks and Home pixel parity passed; Home/Services HTML unchanged
 
 Preview: https://annie-lis.github.io/moscow-city-print-preview/about.html
 New About has not been deployed to WordPress; WPVibe staging limit remains.
+
+## About second visual pass — desktop scale only
+
+Source work: `e7e41e8381223053932ec650f12e8ff59b0a18aa`.
+Only About CSS changes rendering: larger hero/headings, more vertical space,
+larger original illustrations and client logos. Grid proportions, HTML, copy,
+components and shared carousel mechanism are unchanged. Tablet/mobile sizes
+retained; seven viewport checks passed. Home/Services HTML unchanged.
+Local visual deliverable: before/after comparison at desktop 1440px only.
+Theme ZIP refreshed from the same source.
