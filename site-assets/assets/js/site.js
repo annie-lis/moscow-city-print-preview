@@ -2,8 +2,10 @@
   const canvas = document.querySelector('.canvas');
   const legal = document.querySelector('.footer-legal');
   const mark = document.querySelector('.mark.bl');
+  if (!canvas || !legal || !mark) return;
   const stroke = [...mark.querySelectorAll('line')].find(line =>
     line.y1.baseVal.value === line.y2.baseVal.value);
+  if (!stroke || !mark.querySelector('svg')) return;
   const align = () => {
     const midpoint = mark.querySelector('svg').createSVGPoint();
     midpoint.x = (stroke.x1.baseVal.value + stroke.x2.baseVal.value) / 2;
