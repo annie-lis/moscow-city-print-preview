@@ -408,3 +408,12 @@ grows with the hero row (~27%); text column gets half-inset vertical breathing
 room. Typography, two-column grid, marker, header/footer, HTML and image unchanged.
 Seven viewport and seven nested Pages checks passed.
 Screenshot: comparisons/404-left-1440.png.
+
+## 404 illustration 1.7× — 23 October 2026
+
+Source work: `710fc0b7d852fa18bb0e9fca84a34b9fb063d8b6`.
+Only desktop illustration positioning/sizing changed; image file and HTML
+unchanged. Absolute centered image uses 170% row height with contain and
+intrinsic width, bounded by its right column. Mobile sizing unchanged.
+Left copy, suggestions, marker, grid, header/footer coordinates verified
+identical before/after at seven widths. Capture: comparisons/404-art-170-1440.png.
