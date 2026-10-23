@@ -524,3 +524,14 @@ Main/Services and image files unchanged. Source report:tests/ABOUT_HOME_RHYTHM_R
 Full captures:comparisons/about-home-rhythm-{1440,768,390}.png.
 Close-ups:comparisons/about-home-rhythm-section-{01,02,03}-1440.png.
 Theme ZIP refreshed; no live WordPress or production changes.
+
+## 404 matches About illustration treatment — 23 October 2026
+
+Source work:`3ed5e2d7d2fce7c8446b7042fa6874d9fedb5bea`.
+Computed About team/skyline opacity.75, filter:none, blend:normal verified.
+404 now uses exactly opacity.75 with the same default filter/blend and transparent
+background. No image-file, scale, position, spacing or other page changes.
+Seven full before/after geometry audits and seven responsive + seven nested
+Pages404 checks pass. Theme ZIP refreshed. Side-by-side:
+comparisons/404-about-tone-comparison-1440.png. Full404:
+comparisons/404-about-tone-1440.png. No live WordPress or production changes.
