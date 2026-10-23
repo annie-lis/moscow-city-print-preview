@@ -497,3 +497,13 @@ geometry and left content unchanged. Seven before/after audits confirm the
 requested deltas; all mobile geometry identical. Seven responsive + seven nested
 Pages404 checks passed. Theme ZIP refreshed. Capture:comparisons/404-lift-compact-1440.png.
 No HTML, shared CSS, other page, source-image, live WordPress or production changes.
+
+## 404 exact positional follow-up — 23 October 2026
+
+Source work:`1a86f32fdd875b7d46422c29154c6fbe1d580671`.
+Desktop illustration moves exactly22px up and14px right from6118c68.
+No scale/contrast/opacity/spacing/flow changes. Left and footer positions intact.
+Seven before/after audits confirm exact deltas and otherwise unchanged geometry;
+all mobile geometry identical. Seven responsive + seven nested Pages404 checks pass.
+Capture:comparisons/404-exact-offset-1440.png. Theme ZIP refreshed.
+No live WordPress or production changes.
