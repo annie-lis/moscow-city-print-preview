@@ -417,3 +417,13 @@ unchanged. Absolute centered image uses 170% row height with contain and
 intrinsic width, bounded by its right column. Mobile sizing unchanged.
 Left copy, suggestions, marker, grid, header/footer coordinates verified
 identical before/after at seven widths. Capture: comparisons/404-art-170-1440.png.
+
+## 404 unified hero composition — 23 October 2026
+
+Source work: `58a0b464ccf3d71eaf47a6193a44ce1afa70bb2d`.
+Full right-column illustration with intrinsic ratio. Home link is centered
+vertically between description and suggestions heading; midpoint checked <1px.
+Existing grid, gaps, typography and 44ch left-aligned suggestions retained.
+Mobile breakpoint, dimensions and stack unchanged. Seven viewport + seven
+nested Pages checks passed. Only page-specific CSS changes rendering.
+Capture: comparisons/404-hero-composition-1440.png.
