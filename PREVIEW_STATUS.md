@@ -372,3 +372,16 @@ Seven viewport tests and 14 Home screenshot comparisons passed. Home and
 Services HTML unchanged. New screenshots are public in comparisons/:
 about-compact-1440.png, about-compact-768.png, about-compact-390.png.
 Existing mobile header overflow remains, screenshots use actual viewport width.
+
+## 404 body — 23 October 2026
+
+Source work: `48e834caa96ffa376aea78ec5b62b9b96a97e416`.
+01 — УПС, shared internal section and footer 02 unchanged. Existing 31px
+heading style, exact new explanation, plain Home link; original transparent
+mcp-404-illustration.webp constrained to text height. Five compact numbered
+navigation rows below; desktop group half content width, centered on canvas.
+Mobile stacks copy / link / illustration / suggestions. Only 404 loads
+not-found.css. Header/footer HTML, Home/About/Services remain unchanged.
+Seven viewport and seven nested static 404 checks passed with Geologica.
+Public captures: comparisons/404-editorial-1440.png and 404-editorial-390.png.
+WordPress/production not changed. Theme ZIP rebuilt from the same source.

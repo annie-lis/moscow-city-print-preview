@@ -63,8 +63,12 @@ jobs:
           assert '16. Контактная информация' in policy
           assert Path('site-assets/assets/css/privacy-policy.css').is_file()
           not_found = Path('404.html').read_text()
-          assert 'Вернуться на главную →' in not_found
-          assert 'Возможно, ссылка устарела или страница была перемещена.' in not_found
+          assert 'На главную →' in not_found
+          assert 'К сожалению, такой страницы не существует.' in not_found
+          assert 'Она могла быть удалена или её адрес изменился.' in not_found
+          assert '>УПС</span>' in not_found
+          assert 'mcp-404-illustration.webp' in not_found
+          assert Path('site-assets/assets/css/not-found.css').is_file()
           assert 'href="/moscow-city-print-preview/index.html"' in not_found
           assert 'href="/moscow-city-print-preview/site-assets/assets/css/internal.css"' in not_found
           assert not Path('contacts.html').exists()
@@ -146,6 +150,11 @@ jobs:
             --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/mcp-no-such-page/nested/)
           test "$code" = 404
           cmp 404.html public-nested-404.html
+          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration.webp; do
+            curl --fail --silent --show-error --location --max-time 30 \
+              "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-404-resource
+            cmp "$file" public-404-resource
+          done
           echo 'Verified custom 404 HTML and HTTP 404 at a nested missing URL'
       - name: Save publication verification
         if: always()
