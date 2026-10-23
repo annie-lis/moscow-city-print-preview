@@ -398,3 +398,13 @@ inset changed, footer untouched. No spacer or clients-wrap padding was present.
 At 1440 page height is 2901px (was 3053). Home/Services unchanged.
 Seven viewport checks and actual line-end checks at 1440/768/390 passed.
 Full capture: comparisons/about-rhythm-1440.png.
+
+## 404 suggestions aligned left — 23 October 2026
+
+Source work: `56ed871689a5e93883259bee5a8fe064a652096e`.
+CSS-only body adjustment: suggestions align to Axis B and match description
+width (44ch, bounded by the existing left column). The right contain illustration
+grows with the hero row (~27%); text column gets half-inset vertical breathing
+room. Typography, two-column grid, marker, header/footer, HTML and image unchanged.
+Seven viewport and seven nested Pages checks passed.
+Screenshot: comparisons/404-left-1440.png.
