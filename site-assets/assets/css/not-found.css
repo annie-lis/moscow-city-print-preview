@@ -1,5 +1,6 @@
 /* Error body only: existing typography, section spacing and neutral rules. */
-/* Keep the left group intrinsic; the illustration may fill the right column. */
+/* Keep the fixed header/footer geometry; move the section in its reserved space. */
+.mcp-inner-main > .mcp-inner-section{top:21px;z-index:1;}
 .mcp-inner-main .mcp-inner-section-content{padding-bottom:calc(var(--vertical-inset) / 2);}
 .mcp-not-found-intro{--not-found-art-lift:calc(var(--vertical-inset) * 1.5);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"left art";align-items:start;gap:calc(var(--vertical-inset) * 2);padding-top:calc(var(--vertical-inset) / 2);}
 .mcp-not-found-left{grid-area:left;display:grid;gap:var(--vertical-inset);min-width:0;}
@@ -7,7 +8,7 @@
 .mcp-not-found-copy p{max-width:44ch;margin-bottom:0;}
 .mcp-not-found-copy p+p{margin-top:var(--vertical-inset);}
 .mcp-not-found-art{grid-area:art;position:relative;min-width:0;display:flex;justify-content:flex-end;}
-.mcp-not-found-art img{flex-shrink:0;position:relative;top:calc(var(--not-found-art-lift) * -1 - 22px);left:calc(var(--vertical-inset) / 2 + 14px);margin-bottom:calc(var(--not-found-art-lift) * -1);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;transform-origin:100% 0;transform:translate(30px,-20px) scale(1.1);}
+.mcp-not-found-art img{flex-shrink:0;position:relative;top:calc(var(--not-found-art-lift) * -1 - 22px);left:calc(var(--vertical-inset) / 2 + 14px);margin-bottom:calc(var(--not-found-art-lift) * -1);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;transform-origin:100% 0;transform:translate(40px,-20px) scale(1.1);}
 /* Same left rail and reading measure as the description. */
 .mcp-not-found-links{width:min(44ch,100%);margin:0;}
 .mcp-not-found-links h2{font:inherit;font-weight:400;margin:0 0 12px;}
@@ -18,5 +19,5 @@
 @media(max-width:900px){
   .mcp-inner-main .mcp-inner-section-content{padding-bottom:var(--vertical-inset);}
   .mcp-not-found-intro{--not-found-art-lift:0px;grid-template-columns:minmax(0,1fr);grid-template-areas:"left" "art";gap:var(--vertical-inset);padding-block:0;}
-  .mcp-not-found-art img{transform:none;top:0;left:0;width:100%;max-width:100%;height:140px;}
+  .mcp-not-found-art img{transform:translateX(10px);top:0;left:0;width:100%;max-width:100%;height:140px;}
 }

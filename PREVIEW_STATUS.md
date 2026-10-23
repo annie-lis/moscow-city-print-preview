@@ -576,3 +576,14 @@ transform:none. Seven before/after audits + seven responsive and seven nested
 Pages404 checks pass. All HTML/other pages unchanged. Theme ZIP refreshed.
 Captures:comparisons/404-final-position-{1440,1920}.png.
 No live WordPress or production changes.
+
+## 404 body offset with fixed header/footer — 23 October 2026
+
+Source work:`c55b95fb3a508faaebf0c7e832dcaca24b089229`.
+Visible desktop logo-to-marker gap41.73px; section shifted21px down, unchanged
+flow height/internal spacing. Image additionally10px right; no scale/tone/y
+changes beyond common section movement. Header/footer/crop/legal geometry stays
+identical on seven before/after viewport audits. Seven responsive + seven nested
+Pages404 checks pass. All HTML and other pages unchanged. Captures:
+comparisons/404-content-offset-{1440,1920}.png. Current theme ZIP refreshed.
+No live WordPress or production changes.
