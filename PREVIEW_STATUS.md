@@ -385,3 +385,16 @@ not-found.css. Header/footer HTML, Home/About/Services remain unchanged.
 Seven viewport and seven nested static 404 checks passed with Geologica.
 Public captures: comparisons/404-editorial-1440.png and 404-editorial-390.png.
 WordPress/production not changed. Theme ZIP rebuilt from the same source.
+
+## About line breaks and outer spacing — 23 October 2026
+
+Source work: `e7ce793dd5b53b7c281c0cf0e3ec2ff375afa99c`.
+NBSP and balanced wrapping fix Russian hanging words; no wording, font sizes,
+images or grid changes. Moscow City name is kept intact across lines.
+Visible section insets are now 38px above the marker / below the content;
+content top also reserves the existing 38px marker row. No fixed heights.
+The old clients bottom 76px compounded with footer top 38px; only the About
+inset changed, footer untouched. No spacer or clients-wrap padding was present.
+At 1440 page height is 2901px (was 3053). Home/Services unchanged.
+Seven viewport checks and actual line-end checks at 1440/768/390 passed.
+Full capture: comparisons/about-rhythm-1440.png.

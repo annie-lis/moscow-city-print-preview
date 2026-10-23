@@ -1,6 +1,13 @@
 /* About presentation only: retain shared tokens, typography and client markup. */
-.mcp-inner-main{--about-section-space:calc(var(--vertical-inset) * 2);}
-.mcp-inner-main .mcp-inner-section-content{padding-block:var(--about-section-space);}
+.mcp-inner-main{--about-section-space:var(--vertical-inset);}
+/* Equal outer breathing room; the top also reserves the existing marker row. */
+.mcp-inner-main .section-marker{top:var(--about-section-space);}
+.mcp-inner-main .mcp-inner-section-content{padding-top:calc(var(--about-section-space) + var(--vertical-inset));padding-bottom:var(--about-section-space);}
+.mcp-inner-main .mcp-page-title,
+.mcp-about-stats dd,
+.mcp-about-principles li{text-wrap:balance;}
+.mcp-inner-main p{text-wrap:pretty;}
+.mcp-about-nowrap{white-space:nowrap;}
 .mcp-about-panel,
 .mcp-content-with-clients{
   display:grid;
