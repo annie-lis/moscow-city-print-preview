@@ -1,20 +1,20 @@
 /* Error body only: existing typography, section spacing and neutral rules. */
 /* Keep the left group intrinsic; the illustration may fill the right column. */
 .mcp-not-found-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"left art";align-items:start;gap:calc(var(--vertical-inset) * 2);padding-block:calc(var(--vertical-inset) / 2);}
-.mcp-not-found-left{grid-area:left;display:grid;gap:calc(var(--vertical-inset) / 2);min-width:0;}
+.mcp-not-found-left{grid-area:left;display:grid;gap:var(--vertical-inset);min-width:0;}
 .mcp-not-found-copy{min-width:0;}
 .mcp-not-found-copy p{max-width:44ch;margin-bottom:0;}
-.mcp-not-found-copy p+p{margin-top:calc(var(--vertical-inset) / 2);}
+.mcp-not-found-copy p+p{margin-top:var(--vertical-inset);}
 .mcp-not-found-art{grid-area:art;position:relative;min-width:0;}
-.mcp-not-found-art img{display:block;width:100%;height:auto;object-fit:contain;}
+.mcp-not-found-art img{position:relative;top:calc(var(--vertical-inset) / -2);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;}
 /* Same left rail and reading measure as the description. */
 .mcp-not-found-links{width:min(44ch,100%);margin:0;}
-.mcp-not-found-links h2{font:inherit;font-weight:400;margin:0 0 20px;}
+.mcp-not-found-links h2{font:inherit;font-weight:400;margin:0 0 12px;}
 .mcp-not-found-links ol{list-style:none;padding:0;margin:0;}
 .mcp-not-found-links li+li{border-top:1px solid rgba(21,21,21,.14);}
 .mcp-not-found-links a{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:var(--section-marker-gap);padding-block:12px;}
 .mcp-not-found-index{font-size:13px;}
 @media(max-width:900px){
   .mcp-not-found-intro{grid-template-columns:minmax(0,1fr);grid-template-areas:"left" "art";gap:var(--vertical-inset);padding-block:0;}
-  .mcp-not-found-art img{height:140px;}
+  .mcp-not-found-art img{top:0;width:100%;max-width:100%;height:140px;}
 }

@@ -452,3 +452,14 @@ Header/footer, typography, left reading measure, shared grid and other pages
 unchanged. Seven viewport + seven nested Pages404 checks passed with Geologica.
 Full captures: comparisons/404-compact-left-{1440,768,390}.png. ZIP refreshed.
 No live WordPress or production changes.
+
+## 404 precise vertical rhythm — 23 October 2026
+
+Source work:`e3d57fb22f39273aa3a34fc292e0918f376e8688`.
+Equal gaps around Home19→38px; heading-to-first-list-text32→24px (-25%).
+Desktop image110% width with intrinsic height/contain, top-19px. Mobile image
+size/position, stacking breakpoint, global grid and typography unchanged.
+All HTML unchanged, including404/header/footer and Home/About/Services.
+Seven responsive + seven nested Pages404 checks passed. Theme ZIP refreshed.
+Full captures:comparisons/404-vertical-rhythm-{1440,768,390}.png.
+No live WordPress or production changes.
