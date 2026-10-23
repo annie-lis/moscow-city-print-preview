@@ -1,5 +1,5 @@
 /* About presentation only: retain shared tokens, typography and client markup. */
-.mcp-inner-main{--about-section-space:var(--vertical-inset);}
+.mcp-inner-main{--about-section-space:calc(var(--vertical-inset)/2);}
 /* Equal outer breathing room; the top also reserves the existing marker row. */
 .mcp-inner-main .section-marker{top:var(--about-section-space);}
 .mcp-inner-main .mcp-inner-section-content{padding-top:calc(var(--about-section-space) + var(--vertical-inset));padding-bottom:var(--about-section-space);}
@@ -15,6 +15,7 @@
   align-items:center;
   gap:var(--vertical-inset);
 }
+.mcp-about-panel--approach{grid-template-columns:repeat(2,minmax(0,1fr));}
 .mcp-about-copy,
 .mcp-carousel-copy{min-width:0;max-width:540px;}
 .mcp-about-copy p{margin:0;}
@@ -22,11 +23,13 @@
 .mcp-carousel-copy .mcp-page-title{font-size:clamp(36px,2.8vw,44px);}
 .mcp-about-panel .mcp-about-art{
   display:block;
-  width:calc(100% + clamp(24px,3.3vw,48px));
-  max-width:calc(100% + clamp(24px,3.3vw,48px));
+  width:calc(100% + clamp(32px,4.2vw,60px));
+  max-width:calc(100% + clamp(32px,4.2vw,60px));
   height:auto;
   justify-self:center;
   object-fit:contain;
+  /* Blend transparent ink into the existing paper, retaining all sharp detail. */
+  opacity:.75;
 }
 .mcp-about-stats{display:grid;gap:30px;margin:0;}
 .mcp-about-stats dt{font-size:clamp(31px,2.7vw,44px);line-height:1.04;letter-spacing:-.04em;font-weight:300;}
@@ -49,7 +52,7 @@
   .mcp-content-with-clients{grid-template-columns:minmax(0,1fr);gap:var(--vertical-inset);}
   .mcp-about-panel .mcp-page-title,
   .mcp-carousel-copy .mcp-page-title{font-size:31px;}
-  .mcp-about-panel .mcp-about-art{width:100%;max-width:540px;}
+  .mcp-about-panel .mcp-about-art{width:100%;max-width:560px;}
   .mcp-about-panel--space .mcp-about-art{width:100%;max-width:none;}
   .mcp-about-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
   .mcp-about-principles{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}

@@ -31,10 +31,11 @@ jobs:
           text = Path('about.html').read_text().replace('\u00a0', ' ')
           assert '<h1 class="mcp-page-title">Типография для бизнеса</h1>' in text
           assert 'mcp-inner-hero' in text and 'mcp-content-with-clients' in text
-          assert text.count('class="mcp-about-art"') == 3
+          assert text.count('class="mcp-about-art"') == 2
+          assert 'mcp-illustration-print-production.webp' not in text
           assert '<span class="num">05</span>' in text
           assert Path('site-assets/assets/css/about.css').is_file()
-          for name in ('print-production','team-production','moscow-city'):
+          for name in ('team-production','moscow-city'):
               assert Path('site-assets/assets/images/illustrations/mcp-illustration-' + name + '.webp').is_file()
           assert '10 000+' in text and 'mcp-about-principles' in text
           assert 'clients-next' in text and 'assets/js/home.js' not in text

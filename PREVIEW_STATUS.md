@@ -427,3 +427,16 @@ Existing grid, gaps, typography and 44ch left-aligned suggestions retained.
 Mobile breakpoint, dimensions and stack unchanged. Seven viewport + seven
 nested Pages checks passed. Only page-specific CSS changes rendering.
 Capture: comparisons/404-hero-composition-1440.png.
+
+## About — two quieter illustrations, 23 October 2026
+
+Source work: `946ff8a6e2ed43fbc98ebeeb0659fa058cc0f299`.
+01 now text / stats, with no image or reserved third column. Team slightly larger;
+team and skyline use CSS opacity .75 without blur or original-file changes.
+Numbered sections share visible outer inset19px (top content57 reserves marker).
+Footer transition has no spacer/wrapper bottom padding: About bottom19 + unchanged
+footer top38. Header/footer/hero, Home/Services and logo sizes unchanged.
+Full page1440: 2493px instead of2901px. Seven About responsive checks and14 Home
+pixel comparisons pass. Russian rendered lines reviewed on1440/768/390; all texts
+unchanged. Full screenshots: comparisons/about-two-illustrations-{1440,768,390}.png.
+Theme ZIP refreshed; no live WordPress or production changes in this pass.
