@@ -564,3 +564,15 @@ verified. No live WordPress or production changes.
 Publication check follow-up: updated the public-resource probe to the new final
 asset as well as source assertions; the previous run correctly saw404 for the
 retired filename. Page HTML and image publication were already correct.
+
+## 404 final image-only scale/placement — 23 October 2026
+
+Source work:`c801d8aa61d0b2bbe47571ff5435077c4f60b8ff`.
+Desktop artwork +10%, right edge+30px, top-20px. Upper-right transform origin
+keeps the full image within viewport while preserving all layout/section heights.
+Right air26.75px on tested desktop widths; image does not intersect footer.
+Existing tone/file/contain and all other element geometry unchanged. Tablet/mobile
+transform:none. Seven before/after audits + seven responsive and seven nested
+Pages404 checks pass. All HTML/other pages unchanged. Theme ZIP refreshed.
+Captures:comparisons/404-final-position-{1440,1920}.png.
+No live WordPress or production changes.

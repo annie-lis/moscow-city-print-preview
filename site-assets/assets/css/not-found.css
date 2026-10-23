@@ -7,7 +7,7 @@
 .mcp-not-found-copy p{max-width:44ch;margin-bottom:0;}
 .mcp-not-found-copy p+p{margin-top:var(--vertical-inset);}
 .mcp-not-found-art{grid-area:art;position:relative;min-width:0;display:flex;justify-content:flex-end;}
-.mcp-not-found-art img{flex-shrink:0;position:relative;top:calc(var(--not-found-art-lift) * -1 - 22px);left:calc(var(--vertical-inset) / 2 + 14px);margin-bottom:calc(var(--not-found-art-lift) * -1);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;}
+.mcp-not-found-art img{flex-shrink:0;position:relative;top:calc(var(--not-found-art-lift) * -1 - 22px);left:calc(var(--vertical-inset) / 2 + 14px);margin-bottom:calc(var(--not-found-art-lift) * -1);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;transform-origin:100% 0;transform:translate(30px,-20px) scale(1.1);}
 /* Same left rail and reading measure as the description. */
 .mcp-not-found-links{width:min(44ch,100%);margin:0;}
 .mcp-not-found-links h2{font:inherit;font-weight:400;margin:0 0 12px;}
@@ -18,5 +18,5 @@
 @media(max-width:900px){
   .mcp-inner-main .mcp-inner-section-content{padding-bottom:var(--vertical-inset);}
   .mcp-not-found-intro{--not-found-art-lift:0px;grid-template-columns:minmax(0,1fr);grid-template-areas:"left" "art";gap:var(--vertical-inset);padding-block:0;}
-  .mcp-not-found-art img{top:0;left:0;width:100%;max-width:100%;height:140px;}
+  .mcp-not-found-art img{transform:none;top:0;left:0;width:100%;max-width:100%;height:140px;}
 }
