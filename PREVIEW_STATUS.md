@@ -507,3 +507,20 @@ Seven before/after audits confirm exact deltas and otherwise unchanged geometry;
 all mobile geometry identical. Seven responsive + seven nested Pages404 checks pass.
 Capture:comparisons/404-exact-offset-1440.png. Theme ZIP refreshed.
 No live WordPress or production changes.
+
+## About — measured Home rhythm and sections01–04, 23 October 2026
+
+Source work:`8ae140c7ecaa707ba76d129116029fa7c7119820`.
+Measured Home desktop padding38/38, marker38; mobile72/38, marker34.
+About now shares inset38 and inherited markers, reserving its text marker row
+(content top76 desktop,72 mobile). Hero remains symmetric57px, unchanged.
+01:compact vertical stats with19px gap;02:unchanged-size team illustration
+meets the section bottom and transparent strokes extend19px into03;03:wider
+text52/48, skyline shifted right, heading single-line at1440/1920 without font
+reduction;04:“Компании, которые нам доверяют”, original two-row logos.
+Seven About responsive checks +14 Home pixel comparisons pass. Russian lines
+reviewed on1440/768/390, existing NBSP retained. Other text, fonts, shared shell,
+Main/Services and image files unchanged. Source report:tests/ABOUT_HOME_RHYTHM_REPORT.md.
+Full captures:comparisons/about-home-rhythm-{1440,768,390}.png.
+Close-ups:comparisons/about-home-rhythm-section-{01,02,03}-1440.png.
+Theme ZIP refreshed; no live WordPress or production changes.
