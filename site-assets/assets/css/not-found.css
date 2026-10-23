@@ -1,25 +1,20 @@
 /* Error body only: existing typography, section spacing and neutral rules. */
-.mcp-not-found-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(var(--vertical-inset) * 2);}
-.mcp-not-found-copy{min-width:0;padding-block:calc(var(--vertical-inset) / 2);display:flex;flex-direction:column;}
-.mcp-not-found-copy p{max-width:44ch;}
-.mcp-not-found-copy p:not(:last-child){margin-bottom:0;}
-/* Center the connector from the description to the next heading: include the
-   existing 2-inset section gap and the copy's half-inset bottom padding. */
-.mcp-not-found-copy p:last-child{display:flex;align-items:center;flex:1;margin-bottom:calc(var(--vertical-inset) * -2.5);}
-.mcp-not-found-art{position:relative;min-width:0;}
+/* Keep the left group intrinsic; the illustration may fill the right column. */
+.mcp-not-found-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"left art";align-items:start;gap:calc(var(--vertical-inset) * 2);padding-block:calc(var(--vertical-inset) / 2);}
+.mcp-not-found-left{grid-area:left;display:grid;gap:calc(var(--vertical-inset) / 2);min-width:0;}
+.mcp-not-found-copy{min-width:0;}
+.mcp-not-found-copy p{max-width:44ch;margin-bottom:0;}
+.mcp-not-found-copy p+p{margin-top:calc(var(--vertical-inset) / 2);}
+.mcp-not-found-art{grid-area:art;position:relative;min-width:0;}
 .mcp-not-found-art img{display:block;width:100%;height:auto;object-fit:contain;}
-/* Same left rail and reading measure as the description; grid stays unchanged. */
-.mcp-not-found-links{width:min(44ch,calc((100% - var(--vertical-inset) * 2) / 2));margin:calc(var(--vertical-inset) * 2) 0 0;}
+/* Same left rail and reading measure as the description. */
+.mcp-not-found-links{width:min(44ch,100%);margin:0;}
 .mcp-not-found-links h2{font:inherit;font-weight:400;margin:0 0 20px;}
 .mcp-not-found-links ol{list-style:none;padding:0;margin:0;}
 .mcp-not-found-links li+li{border-top:1px solid rgba(21,21,21,.14);}
 .mcp-not-found-links a{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:var(--section-marker-gap);padding-block:12px;}
 .mcp-not-found-index{font-size:13px;}
 @media(max-width:900px){
-  .mcp-not-found-intro{grid-template-columns:minmax(0,1fr);gap:var(--vertical-inset);}
-  .mcp-not-found-copy{padding-block:0;display:block;}
-  .mcp-not-found-copy p:not(:last-child){margin-bottom:20px;}
-  .mcp-not-found-copy p:last-child{display:block;margin-bottom:0;}
+  .mcp-not-found-intro{grid-template-columns:minmax(0,1fr);grid-template-areas:"left" "art";gap:var(--vertical-inset);padding-block:0;}
   .mcp-not-found-art img{height:140px;}
-  .mcp-not-found-links{width:min(44ch,100%);}
 }

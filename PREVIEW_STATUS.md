@@ -440,3 +440,15 @@ Full page1440: 2493px instead of2901px. Seven About responsive checks and14 Home
 pixel comparisons pass. Russian rendered lines reviewed on1440/768/390; all texts
 unchanged. Full screenshots: comparisons/about-two-illustrations-{1440,768,390}.png.
 Theme ZIP refreshed; no live WordPress or production changes in this pass.
+
+## 404 compact information column — 23 October 2026
+
+Source work: `9750f407f35aab925f4d3a582b0b5340d30a16d3`.
+Left copy and suggestions share one intrinsic group. Equal 19px gaps around
+Home replace flex stretching, negative margin and separate 76px list margin.
+Desktop illustration fills the unchanged right column, auto height / contain.
+Mobile keeps the information group together before the existing illustration.
+Header/footer, typography, left reading measure, shared grid and other pages
+unchanged. Seven viewport + seven nested Pages404 checks passed with Geologica.
+Full captures: comparisons/404-compact-left-{1440,768,390}.png. ZIP refreshed.
+No live WordPress or production changes.
