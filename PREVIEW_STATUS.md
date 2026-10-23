@@ -560,3 +560,7 @@ Seven responsive + seven nested Pages404 checks pass; template HTML unchanged
 except image src/dimensions. Main/About/Services and shared shell unchanged.
 Capture:comparisons/404-new-graphite-1440.png. Theme ZIP refreshed and asset bytes
 verified. No live WordPress or production changes.
+
+Publication check follow-up: updated the public-resource probe to the new final
+asset as well as source assertions; the previous run correctly saw404 for the
+retired filename. Page HTML and image publication were already correct.
