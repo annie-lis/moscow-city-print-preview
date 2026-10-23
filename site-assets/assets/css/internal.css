@@ -1,4 +1,11 @@
 /* Universal inner workspace only: reuse Home tokens, marker and type classes. */
+.mcp-inner-hero{
+  padding:calc(var(--vertical-inset) * 1.5) var(--header-right);
+  text-align:center;
+}
+.mcp-inner-hero-content{max-width:900px;margin-inline:auto;}
+.mcp-inner-hero .mcp-page-title{font-size:clamp(32px,3.5vw,50px);}
+.mcp-inner-hero .mcp-page-copy{max-width:650px;margin-inline:auto;}
 .mcp-inner-main{flex:1;min-width:0;}
 .mcp-inner-fallback{
   min-height:250px;

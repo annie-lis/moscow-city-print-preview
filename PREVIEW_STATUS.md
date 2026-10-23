@@ -360,3 +360,15 @@ components and shared carousel mechanism are unchanged. Tablet/mobile sizes
 retained; seven viewport checks passed. Home/Services HTML unchanged.
 Local visual deliverable: before/after comparison at desktop 1440px only.
 Theme ZIP refreshed from the same source.
+
+## Compact About — 23 October 2026
+
+Source work: `c810fe9`. Centered unnumbered hero “Типография для бизнеса”,
+then four sections 01–04 and shared footer 05. One 76px symmetric section
+inset; no fixed section heights. Text/art of approach/team/space preserved.
+Shared eight-logo markup uses About-only grid 4×2 (mobile 2×4); Home carousel
+unchanged. Generic optional internal hero layout and scoped styles added.
+Seven viewport tests and 14 Home screenshot comparisons passed. Home and
+Services HTML unchanged. New screenshots are public in comparisons/:
+about-compact-1440.png, about-compact-768.png, about-compact-390.png.
+Existing mobile header overflow remains, screenshots use actual viewport width.
