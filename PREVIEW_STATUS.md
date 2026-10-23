@@ -547,3 +547,16 @@ checks + seven before/after geometry audits pass. Source table/report:
 tests/ABOUT_FINAL_POLISH_REPORT.md. Captures:comparisons/about-final-polish-1440.png
 and comparisons/about-final-polish-01-03-1440.png. Theme ZIP refreshed.
 No live WordPress or production changes.
+
+## New graphite404 illustration — 23 October 2026
+
+Source work:`c008b4854824508597121cde61127bf2dac68b6f`, including incoming user
+asset commits d5f672d/4613358. New original file is mcp-404-illustration-final.webp
+(1530×1028 RGBA); old mcp-404-illustration.webp removed from publication and ZIP.
+404 template uses new src and correct intrinsic dimensions. Same contain and
+right-column layout, no deformation/cropping. Legacy opacity.75 removed so
+the new asset uses its own graphite tone without filters. Source file unchanged.
+Seven responsive + seven nested Pages404 checks pass; template HTML unchanged
+except image src/dimensions. Main/About/Services and shared shell unchanged.
+Capture:comparisons/404-new-graphite-1440.png. Theme ZIP refreshed and asset bytes
+verified. No live WordPress or production changes.

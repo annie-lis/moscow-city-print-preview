@@ -7,7 +7,7 @@
 .mcp-not-found-copy p{max-width:44ch;margin-bottom:0;}
 .mcp-not-found-copy p+p{margin-top:var(--vertical-inset);}
 .mcp-not-found-art{grid-area:art;position:relative;min-width:0;display:flex;justify-content:flex-end;}
-.mcp-not-found-art img{flex-shrink:0;position:relative;top:calc(var(--not-found-art-lift) * -1 - 22px);left:calc(var(--vertical-inset) / 2 + 14px);margin-bottom:calc(var(--not-found-art-lift) * -1);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;opacity:.75;}
+.mcp-not-found-art img{flex-shrink:0;position:relative;top:calc(var(--not-found-art-lift) * -1 - 22px);left:calc(var(--vertical-inset) / 2 + 14px);margin-bottom:calc(var(--not-found-art-lift) * -1);display:block;width:110%;max-width:110%;height:auto;object-fit:contain;}
 /* Same left rail and reading measure as the description. */
 .mcp-not-found-links{width:min(44ch,100%);margin:0;}
 .mcp-not-found-links h2{font:inherit;font-weight:400;margin:0 0 12px;}

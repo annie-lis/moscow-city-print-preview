@@ -68,7 +68,10 @@ jobs:
           assert 'К сожалению, такой страницы не существует.' in not_found
           assert 'Она могла быть удалена или её адрес изменился.' in not_found
           assert '>УПС</span>' in not_found
-          assert 'mcp-404-illustration.webp' in not_found
+          assert 'mcp-404-illustration-final.webp' in not_found
+          assert 'mcp-404-illustration.webp' not in not_found
+          assert Path('site-assets/assets/images/illustrations/mcp-404-illustration-final.webp').is_file()
+          assert not Path('site-assets/assets/images/illustrations/mcp-404-illustration.webp').exists()
           assert Path('site-assets/assets/css/not-found.css').is_file()
           assert 'href="/moscow-city-print-preview/index.html"' in not_found
           assert 'href="/moscow-city-print-preview/site-assets/assets/css/internal.css"' in not_found
