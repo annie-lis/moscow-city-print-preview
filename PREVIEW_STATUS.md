@@ -486,3 +486,14 @@ section-height increase;01/04 and hero/header/footer dimensions unchanged.
 Seven About responsive checks passed. HTML, all texts, fonts, global grid and
 Main/Services unchanged. Full capture:comparisons/about-editorial-art-1440.png.
 Theme ZIP refreshed; no live WordPress or production changes.
+
+## 404 raised illustration / compact transition — 23 October 2026
+
+Source work:`6118c683323fe802b0bc5d297e352fe239cda40f`.
+Image moves38px up and19px right ondesktop, unchanged width/height/contain.
+Matching flow compensation removes vacated image space; intro bottom19→0,
+404 section bottom38→19. At1440 contacts starts59px closer. Footer internal
+geometry and left content unchanged. Seven before/after audits confirm the
+requested deltas; all mobile geometry identical. Seven responsive + seven nested
+Pages404 checks passed. Theme ZIP refreshed. Capture:comparisons/404-lift-compact-1440.png.
+No HTML, shared CSS, other page, source-image, live WordPress or production changes.
