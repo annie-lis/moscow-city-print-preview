@@ -463,3 +463,14 @@ All HTML unchanged, including404/header/footer and Home/About/Services.
 Seven responsive + seven nested Pages404 checks passed. Theme ZIP refreshed.
 Full captures:comparisons/404-vertical-rhythm-{1440,768,390}.png.
 No live WordPress or production changes.
+
+## 404 shared right axis — 23 October 2026
+
+Source work:`e86238633caee1b87b39a85d5d358f9ad0fce4b9`.
+Desktop image's right edge matches header/content right guide; flex/end alignment
+in the same art cell, flex-shrink0. Width110%, top-19px and all other layout
+unchanged. At1440 image shifts57.52px left to right edge1350.25.
+Seven before/after geometry comparisons confirm only image x changes ondesktop;
+all mobile geometry unchanged. Seven route + seven nested Pages404 checks passed.
+Capture:comparisons/404-right-axis-1440.png. Theme ZIP refreshed.
+No HTML, original-image, live WordPress or production changes.
