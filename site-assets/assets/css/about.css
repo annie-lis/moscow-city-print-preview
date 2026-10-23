@@ -1,5 +1,5 @@
 /* About presentation only: retain shared tokens, typography and client markup. */
-.mcp-inner-main{--about-section-space:calc(var(--vertical-inset)/2);}
+.mcp-inner-main{--about-section-space:calc(var(--vertical-inset)/2);--about-art-scale:1.45;}
 /* Equal outer breathing room; the top also reserves the existing marker row. */
 .mcp-inner-main .section-marker{top:var(--about-section-space);}
 .mcp-inner-main .mcp-inner-section-content{padding-top:calc(var(--about-section-space) + var(--vertical-inset));padding-bottom:var(--about-section-space);}
@@ -23,8 +23,8 @@
 .mcp-carousel-copy .mcp-page-title{font-size:clamp(36px,2.8vw,44px);}
 .mcp-about-panel .mcp-about-art{
   display:block;
-  width:calc(100% + clamp(32px,4.2vw,60px));
-  max-width:calc(100% + clamp(32px,4.2vw,60px));
+  width:calc((100% + clamp(32px,4.2vw,60px))/var(--about-art-scale));
+  max-width:calc((100% + clamp(32px,4.2vw,60px))/var(--about-art-scale));
   height:auto;
   justify-self:center;
   object-fit:contain;
@@ -36,7 +36,7 @@
 .mcp-about-stats dd{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.45;}
 .mcp-about-principles{display:grid;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;line-height:1.45;}
 .mcp-about-panel--space{grid-template-columns:minmax(0,33fr) minmax(0,67fr);}
-.mcp-about-panel--space .mcp-about-art{width:calc(100% + 64px);max-width:calc(100% + 64px);justify-self:start;}
+.mcp-about-panel--space .mcp-about-art{width:calc((100% + 64px)/var(--about-art-scale));max-width:calc((100% + 64px)/var(--about-art-scale));justify-self:center;}
 .mcp-content-with-clients{grid-template-columns:minmax(0,36fr) minmax(0,64fr);}
 /* Same eight clients, About-only four-column/two-row presentation. */
 .mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px;height:auto;transform:none;}
@@ -52,8 +52,8 @@
   .mcp-content-with-clients{grid-template-columns:minmax(0,1fr);gap:var(--vertical-inset);}
   .mcp-about-panel .mcp-page-title,
   .mcp-carousel-copy .mcp-page-title{font-size:31px;}
-  .mcp-about-panel .mcp-about-art{width:100%;max-width:560px;}
-  .mcp-about-panel--space .mcp-about-art{width:100%;max-width:none;}
+  .mcp-about-panel .mcp-about-art{width:calc(100%/var(--about-art-scale));max-width:calc(560px/var(--about-art-scale));}
+  .mcp-about-panel--space .mcp-about-art{width:calc(100%/var(--about-art-scale));max-width:none;}
   .mcp-about-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
   .mcp-about-principles{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
 }

@@ -474,3 +474,15 @@ Seven before/after geometry comparisons confirm only image x changes ondesktop;
 all mobile geometry unchanged. Seven route + seven nested Pages404 checks passed.
 Capture:comparisons/404-right-axis-1440.png. Theme ZIP refreshed.
 No HTML, original-image, live WordPress or production changes.
+
+## About editorial illustration scale — 23 October 2026
+
+Source work:`0f0aff0dc0433f1824a2e2480e94fa367795e640`.
+Both existing illustrations reduced1.45× through intrinsic CSS sizing; opacity.75
+retained, source files untouched. Team centered, skyline centered in its right
+cell. No reserved image height. At1440 section02:625→455px,03:506→373px;
+page2493→2189px. Seven before/after audits confirm exact scale factor and no
+section-height increase;01/04 and hero/header/footer dimensions unchanged.
+Seven About responsive checks passed. HTML, all texts, fonts, global grid and
+Main/Services unchanged. Full capture:comparisons/about-editorial-art-1440.png.
+Theme ZIP refreshed; no live WordPress or production changes.
