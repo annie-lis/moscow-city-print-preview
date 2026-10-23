@@ -535,3 +535,15 @@ Seven full before/after geometry audits and seven responsive + seven nested
 Pages404 checks pass. Theme ZIP refreshed. Side-by-side:
 comparisons/404-about-tone-comparison-1440.png. Full404:
 comparisons/404-about-tone-1440.png. No live WordPress or production changes.
+
+## About final polish — 23 October 2026
+
+Source work:`0d8b4571a894bfddf0082e01b2bfac61e0813f7a`.
+Home and About paddings re-measured before/after; existing shared38px rhythm
+already correct, so no padding/height changes. Stats19px left (>1100), team9.5px
+lower, skyline9.5px right (>900). All image sizes/opacity, text, layout, hero,
+header/footer, Main/Services and original assets unchanged. Seven responsive
+checks + seven before/after geometry audits pass. Source table/report:
+tests/ABOUT_FINAL_POLISH_REPORT.md. Captures:comparisons/about-final-polish-1440.png
+and comparisons/about-final-polish-01-03-1440.png. Theme ZIP refreshed.
+No live WordPress or production changes.

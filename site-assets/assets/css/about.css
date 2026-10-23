@@ -30,17 +30,17 @@
   /* Blend transparent ink into the existing paper, retaining all sharp detail. */
   opacity:.75;
 }
-.mcp-about-stats{display:grid;gap:calc(var(--vertical-inset)/2);margin:0;}
+.mcp-about-stats{position:relative;left:calc(var(--vertical-inset)/-2);display:grid;gap:calc(var(--vertical-inset)/2);margin:0;}
 .mcp-about-stats dt{font-size:clamp(31px,2.7vw,44px);line-height:1.04;letter-spacing:-.04em;font-weight:300;}
 .mcp-about-stats dd{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.45;}
 .mcp-about-principles{display:grid;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;line-height:1.45;}
 .mcp-about-panel--team{margin-bottom:calc(var(--about-section-space)*-1);}
-/* Let transparent lower strokes cross the boundary by half the shared inset. */
-.mcp-about-panel--team .mcp-about-art{align-self:end;position:relative;top:calc(var(--vertical-inset)/2);z-index:1;}
+/* Let transparent lower strokes dissolve into the next paper zone. */
+.mcp-about-panel--team .mcp-about-art{align-self:end;position:relative;top:calc(var(--vertical-inset)*.75);z-index:1;}
 .mcp-about-panel--space{grid-template-columns:minmax(0,52fr) minmax(0,48fr);}
 .mcp-about-panel--space .mcp-about-copy{max-width:none;}
 .mcp-about-panel--space .mcp-about-copy p{max-width:540px;}
-.mcp-about-panel--space .mcp-about-art{width:calc(100% - var(--vertical-inset));max-width:100%;justify-self:end;margin-right:calc(var(--vertical-inset)/2);}
+.mcp-about-panel--space .mcp-about-art{width:calc(100% - var(--vertical-inset));max-width:100%;justify-self:end;margin-right:calc(var(--vertical-inset)/4);}
 .mcp-content-with-clients{grid-template-columns:minmax(0,36fr) minmax(0,64fr);}
 /* Same eight clients, About-only four-column/two-row presentation. */
 .mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px;height:auto;transform:none;}
@@ -48,6 +48,7 @@
 .mcp-content-with-clients .client-logo{width:260px;height:144px;}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(max-width:1100px){
+  .mcp-about-stats{left:0;}
   .mcp-about-panel,
   .mcp-content-with-clients{gap:24px;}
 }
