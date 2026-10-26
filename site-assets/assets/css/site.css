@@ -377,10 +377,10 @@ a{color:inherit;text-decoration:none}
 }
 .footer-title{
   margin:28px 0 0;
-  font-size:31px;
-  line-height:1.04;
+  font-size:var(--section-title-size,31px);
+  line-height:var(--section-title-leading,1.04);
   letter-spacing:-.04em;
-  font-weight:300;
+  font-weight:var(--section-title-weight,300);
 }
 .footer-main{
   display:contents;
