@@ -2,6 +2,8 @@
 .mcp-inner-main{
   --about-section-space:calc(var(--section-content-inset) * 1.5);
   --about-right-group-width:340px;
+  --about-client-group-width:680px;
+  --about-client-gap:18px;
   --about-inner-inset:calc(var(--vertical-inset) / 2);
 }
 .mcp-inner-main .mcp-inner-section-content{
@@ -73,21 +75,23 @@
 .mcp-content-with-clients .mcp-carousel-copy .mcp-page-title{margin:0;}
 .mcp-content-with-clients .clients-wrap{
   grid-column:2 / 4;
-  width:calc((100% - var(--vertical-inset) * 2) / 2);
-  max-width:var(--about-right-group-width);
+  width:calc(100% - var(--about-inner-inset));
+  max-width:var(--about-client-group-width);
   margin-right:var(--about-inner-inset);
   justify-self:end;
   /* Keep the accepted 2×144px +18px flow footprint while compacting the logos. */
-  height:calc(2 * 144px + 18px);
+  height:calc(2 * 144px + var(--about-client-gap));
   display:grid;
   align-content:center;
 }
 /* Same eight real clients: the common component presented as four slots × two rows. */
-.mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--about-inner-inset);height:auto;transform:none;}
+.mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--about-client-gap);height:auto;transform:none;}
 .mcp-content-with-clients .client{padding:0;}
-.mcp-content-with-clients .client-logo{width:260px;height:calc(var(--vertical-inset) * 2.5);}
+.mcp-content-with-clients .client-logo{width:260px;height:144px;}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(min-width:1101px){
+  /* Reduce both gaps by9.5px and the group by19px: column widths stay unchanged. */
+  .mcp-about-stats{width:calc(100% - var(--about-inner-inset));gap:calc(var(--vertical-inset) / 4);margin-left:auto;}
   .mcp-about-hero-line{display:block;}
   /* Geologica ink centers measured at1440: team +2px, clients +3px below grid center. */
   .mcp-about-panel--team > .mcp-page-title{translate:0 -2px;}
