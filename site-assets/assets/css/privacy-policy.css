@@ -9,3 +9,12 @@
 .mcp-privacy-policy ul,
 .mcp-privacy-policy ol{margin:0 0 20px;padding-left:1.4em;}
 .mcp-privacy-policy li + li{margin-top:8px;}
+/* Desktop artwork stays within its own column and stops before the footer.
+   The shared header scrolls normally; the existing inset becomes the sticky gap. */
+@media(min-width:1101px){
+  .mcp-service-composition--privacy-policy .mcp-service-illustration{
+    position:sticky;
+    top:var(--vertical-inset);
+    align-self:start;
+  }
+}
