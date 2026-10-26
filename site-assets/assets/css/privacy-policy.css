@@ -12,11 +12,14 @@
 /* Desktop artwork stays within its own column and stops before the footer.
    The shared header scrolls normally; the existing inset becomes the sticky gap. */
 @media(min-width:1101px){
+  .mcp-service-composition.mcp-service-composition--privacy-policy{
+    grid-template-columns:minmax(0,3fr) minmax(0,2fr);
+  }
   .mcp-service-composition--privacy-policy .mcp-service-illustration{
     position:sticky;
     top:var(--vertical-inset);
     align-self:start;
-    width:70%;
+    width:88%;
     max-width:none;
     padding:0;
     justify-self:center;
