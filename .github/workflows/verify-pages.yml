@@ -43,7 +43,11 @@ jobs:
           assert Path('site-assets/assets/css/about.css').is_file()
           for name in ('team-production','moscow-city'):
               assert Path('site-assets/assets/images/illustrations/mcp-illustration-' + name + '.webp').is_file()
-          assert '10 000+' in text and 'mcp-about-principles' in text
+          assert '10 000+' in text and 'mcp-about-stat-module' in text
+          assert 'mcp-about-principles' not in text
+          assert 'постоянных корпоративных клиентов' not in text
+          assert 'Работаем с компаниями, малым' not in text
+          assert text.index('НАША КОМАНДА') < text.index('НАШ ПОДХОД') < text.index('НАШЕ ПРОСТРАНСТВО')
           assert 'clients-next' in text and 'assets/js/home.js' not in text
           assert 'брендбука' not in text
           services = Path('services.html').read_text()
@@ -177,7 +181,7 @@ jobs:
             --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/mcp-no-such-page/nested/)
           test "$code" = 404
           cmp 404.html public-nested-404.html
-          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration-final.webp site-assets/assets/images/illustrations/library/01-printing-press-stack.webp site-assets/assets/images/illustrations/library/05-graphite-print-sheet-control.webp comparisons/about-three-1440.png site-assets/assets/css/blog.css site-assets/assets/css/article.css preview-assets/blog.js; do
+          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration-final.webp site-assets/assets/images/illustrations/library/01-printing-press-stack.webp site-assets/assets/images/illustrations/library/05-graphite-print-sheet-control.webp comparisons/about-three-1440.png comparisons/about-thirds-1440.png comparisons/about-thirds-768.png comparisons/about-thirds-390.png comparisons/about-thirds-01-03-1440.png site-assets/assets/css/blog.css site-assets/assets/css/article.css preview-assets/blog.js; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-404-resource
             cmp "$file" public-404-resource
