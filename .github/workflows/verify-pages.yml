@@ -163,7 +163,7 @@ jobs:
             https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.5.0.zip \
             --output public-theme.zip
           cmp downloads/moscow-city-print-child-0.5.0.zip public-theme.zip
-          for route in index about sitemap privacy-policy products payment-delivery artwork-requirements blog article-short article-long; do
+          for route in index about sitemap privacy-policy requisites products payment-delivery artwork-requirements blog article-short article-long; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
               --output "public-$route.html"
@@ -182,6 +182,22 @@ jobs:
             cmp "$file" public-404-resource
           done
           echo 'Verified custom 404 HTML and HTTP 404 at a nested missing URL'
+      - name: Verify five service drafts and their exact published assets
+        run: |
+          for route in privacy-policy requisites payment-delivery sitemap artwork-requirements; do
+            grep -q 'mcp-service-illustration' "$route.html"
+            grep -q "mcp-$route-illustration.webp" "$route.html"
+            for extension in png webp; do
+              file="site-assets/assets/images/illustrations/mcp-$route-illustration.$extension"
+              curl --fail --silent --show-error --location --max-time 30 \
+                "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-service-resource
+              cmp "$file" public-service-resource
+            done
+          done
+          curl --fail --silent --show-error --location --max-time 30 \
+            https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/service-pages.css \
+            --output public-service-pages.css
+          cmp site-assets/assets/css/service-pages.css public-service-pages.css
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4
