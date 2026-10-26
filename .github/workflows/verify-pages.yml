@@ -28,6 +28,7 @@ jobs:
           (cd downloads && sha256sum --check moscow-city-print-child-0.5.0.zip.sha256)
           python3 - <<'PY'
           from pathlib import Path
+          import json, re
           text = Path('about.html').read_text().replace('\u00a0', ' ')
           assert '<h1 class="mcp-page-title">Типография для бизнеса</h1>' in text
           assert 'mcp-inner-hero' in text and 'mcp-content-with-clients' in text
@@ -56,6 +57,22 @@ jobs:
           assert '100% предоплате' in payment
           for route in ('index','about','services','products','blog','privacy-policy','payment-delivery','artwork-requirements','requisites','sitemap','vacancies','404'):
               assert Path(route + '.html').is_file(), route
+          blog = Path('blog.html').read_text()
+          assert '<h1 class="mcp-page-title">БЛОГ</h1>' in blog
+          assert 'mcp-blog-search' in blog and 'mcp-blog-filters' in blog
+          assert 'preview-assets/blog.js' in blog
+          assert Path('preview-assets/blog.js').is_file()
+          for css in ('blog', 'article'):
+              assert Path('site-assets/assets/css/' + css + '.css').is_file()
+          for route in ('article-short', 'article-long'):
+              article = Path(route + '.html').read_text()
+              assert len(re.findall(r'<h1\b', article)) == 1
+              assert article.count('rel="canonical"') == 1
+              assert 'noindex,nofollow' in article
+              assert 'mcp-article-navigation' in article and 'Все статьи' in article
+              schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', article, re.S).group(1))
+              assert schema['@graph'][0]['@type'] == 'BlogPosting'
+              assert schema['@graph'][1]['@type'] == 'BreadcrumbList'
           policy = Path('privacy-policy.html').read_text()
           assert 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ' in policy
           assert 'Дата публикации: 22 сентября 2026 года' in policy
@@ -141,7 +158,7 @@ jobs:
             https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.5.0.zip \
             --output public-theme.zip
           cmp downloads/moscow-city-print-child-0.5.0.zip public-theme.zip
-          for route in index about sitemap privacy-policy products payment-delivery artwork-requirements; do
+          for route in index about sitemap privacy-policy products payment-delivery artwork-requirements blog article-short article-long; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
               --output "public-$route.html"
@@ -154,7 +171,7 @@ jobs:
             --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/mcp-no-such-page/nested/)
           test "$code" = 404
           cmp 404.html public-nested-404.html
-          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration-final.webp; do
+          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration-final.webp site-assets/assets/css/blog.css site-assets/assets/css/article.css preview-assets/blog.js; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-404-resource
             cmp "$file" public-404-resource
