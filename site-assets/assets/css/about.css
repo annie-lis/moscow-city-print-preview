@@ -1,5 +1,5 @@
 /* About presentation only: retain shared tokens, typography and client markup. */
-.mcp-inner-main{--about-section-space:var(--section-content-inset);--about-content-top:calc(var(--section-content-inset)*2);--about-art-scale:1.45;}
+.mcp-inner-main{--about-section-space:var(--section-content-inset);--about-content-top:calc(var(--section-content-inset)*2);--about-art-scale:1.45;--about-right-guide:calc(var(--right) + var(--client-nav-inset));}
 /* Use Home’s 38px rhythm and inherited marker position; reserve its marker row. */
 .mcp-inner-main .mcp-inner-section-content{padding-top:var(--about-content-top);padding-bottom:var(--about-section-space);}
 .mcp-inner-main .mcp-page-title,
@@ -30,19 +30,19 @@
   /* Blend transparent ink into the existing paper, retaining all sharp detail. */
   opacity:.75;
 }
-/* Occupy the unused right-hand space without moving the approved text modules. */
-.mcp-about-panel--approach .mcp-about-art{position:absolute;right:0;top:50%;transform:translateY(-50%);width:min(24%,320px);max-width:none;}
-.mcp-about-stats{position:relative;left:calc(var(--vertical-inset)/-2);display:grid;gap:calc(var(--vertical-inset)/2);margin:0;}
+/* 23ch reserves the longest approved statistics caption; retain the existing copy track. */
+.mcp-about-panel--approach .mcp-about-art{position:absolute;left:calc((min(540px,(100% - var(--vertical-inset))/2) + 100% + var(--header-right) - var(--about-right-guide) - 23ch)/2);top:50%;transform:translate(-50%,-50%);width:min(28.32%,377.6px);max-width:calc(100% + var(--header-right) - var(--about-right-guide) - min(540px,(100% - var(--vertical-inset))/2) - 23ch - var(--vertical-inset)/2);}
+.mcp-about-stats{position:relative;left:calc(var(--header-right) - var(--about-right-guide));display:grid;justify-items:end;justify-self:end;width:max-content;max-width:100%;text-align:right;gap:calc(var(--vertical-inset)/2);margin:0;}
 .mcp-about-stats dt{font-size:clamp(31px,2.7vw,44px);line-height:1.04;letter-spacing:-.04em;font-weight:300;}
 .mcp-about-stats dd{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.45;}
 .mcp-about-principles{display:grid;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;line-height:1.45;}
 .mcp-about-panel--team{margin-bottom:calc(var(--about-section-space)*-1);}
-/* Let transparent lower strokes dissolve into the next paper zone. */
-.mcp-about-panel--team .mcp-about-art{align-self:end;position:relative;top:calc(var(--vertical-inset)*.75);z-index:1;}
+/* Retain the approved portrait-sized field; fit the new landscape drawing against its bottom. */
+.mcp-about-panel--team .mcp-about-art{align-self:end;position:relative;aspect-ratio:879/887;object-position:center bottom;top:calc(var(--vertical-inset)/4);z-index:1;}
 .mcp-about-panel--space{grid-template-columns:minmax(0,52fr) minmax(0,48fr);}
 .mcp-about-panel--space .mcp-about-copy{max-width:none;}
 .mcp-about-panel--space .mcp-about-copy p{max-width:540px;}
-.mcp-about-panel--space .mcp-about-art{width:calc(100% - var(--vertical-inset));max-width:100%;justify-self:end;margin-right:calc(var(--vertical-inset)/4);}
+.mcp-about-panel--space .mcp-about-art{width:calc(100% - var(--vertical-inset));max-width:100%;justify-self:end;margin-right:0;position:relative;left:calc(var(--header-right) - var(--about-right-guide));}
 .mcp-content-with-clients{grid-template-columns:minmax(0,36fr) minmax(0,64fr);}
 /* Same eight clients, About-only four-column/two-row presentation. */
 .mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px;height:auto;transform:none;}
@@ -50,9 +50,8 @@
 .mcp-content-with-clients .client-logo{width:260px;height:144px;}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(max-width:1100px){
-  .mcp-about-panel--approach .mcp-about-art{position:static;transform:none;grid-column:1 / -1;grid-row:2;width:min(calc(100%/var(--about-art-scale)),320px);}
+  .mcp-about-panel--approach .mcp-about-art{position:static;transform:scale(1.18);grid-column:1 / -1;grid-row:2;width:min(calc(100%/var(--about-art-scale)),320px);max-width:100%;}
   .mcp-about-panel--approach .mcp-about-stats{grid-column:2;grid-row:1;}
-  .mcp-about-stats{left:0;}
   .mcp-about-panel,
   .mcp-content-with-clients{gap:24px;}
 }
@@ -64,7 +63,7 @@
   .mcp-about-panel .mcp-page-title,
   .mcp-carousel-copy .mcp-page-title{font-size:31px;}
   .mcp-about-panel .mcp-about-art{width:calc(100%/var(--about-art-scale));max-width:calc(560px/var(--about-art-scale));}
-  .mcp-about-panel--space .mcp-about-art{width:calc(100%/var(--about-art-scale));max-width:none;justify-self:center;margin-right:0;}
+  .mcp-about-panel--space .mcp-about-art{width:calc(100%/var(--about-art-scale));max-width:none;justify-self:end;margin-right:0;}
   .mcp-about-principles{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
 }
 @media(max-width:650px){
