@@ -1,19 +1,48 @@
-/* Requisites content only; shared shell and section spacing remain unchanged. */
+/* Requisites only: common shell, marker/type tokens and one uncropped artwork. */
+.mcp-requisites-layout{
+  --requisites-right-guide:calc(var(--right) + var(--client-nav-inset));
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+  gap:var(--vertical-inset);
+  align-items:center;
+  padding:var(--vertical-inset) var(--requisites-right-guide) var(--vertical-inset) var(--axis-a);
+}
+.mcp-requisites-sections{min-width:0;}
+.mcp-requisites-section + .mcp-requisites-section{margin-top:var(--vertical-inset);}
+.mcp-requisites-section .section-marker{position:static;max-width:100%;}
+.mcp-requisites-section .mcp-inner-section-content{
+  padding:calc(var(--vertical-inset) / 2) 0 0 calc(var(--axis-b) - var(--axis-a));
+}
+.mcp-requisites-section .mcp-page-copy{max-width:66ch;}
 .mcp-requisites-details{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:var(--column-padding);
+  grid-template-columns:minmax(0,1fr);
+  gap:calc(var(--vertical-inset) / 2);
   margin:0;
 }
 .mcp-requisites-details > div{
   min-width:0;
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
-  row-gap:20px;
+  row-gap:calc(var(--vertical-inset) / 4);
 }
 .mcp-requisites-details dt{font-weight:500;}
 .mcp-requisites-details dd{margin:0;}
-@media(max-width:650px){
-  .mcp-requisites-details{grid-template-columns:minmax(0,1fr);}
+.mcp-requisites-layout > .mcp-service-illustration{
+  position:static;
+  width:72%;
+  max-width:calc(420px * .72);
+  justify-self:end;
+  /* Original pedestal corner x1059/1254: align that ink, not the transparent tail,
+     to the same right guide used by desktop footer arrows. Preserve all pixels. */
+  translate:calc((100% - var(--vertical-inset)) * .1555024 + var(--vertical-inset) / 2) 0;
+}
+@media(max-width:1100px){
+  .mcp-requisites-layout{grid-template-columns:minmax(0,1fr);}
+  .mcp-requisites-layout > .mcp-service-illustration{
+    width:100%;
+    max-width:300px;
+    justify-self:center;
+    translate:none;
+  }
 }

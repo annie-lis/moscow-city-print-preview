@@ -133,7 +133,7 @@ jobs:
             echo "Attempt $attempt: $PUBLIC_URL HTTP $code"
             curl --fail --silent --show-error --location --max-time 20 \
               --header 'Cache-Control: no-cache' --output live-404.css "$PUBLIC_CSS_URL" || true
-            for file in about.html site-assets/assets/css/about.css site-assets/assets/css/privacy-policy.css downloads/moscow-city-print-child-0.5.0.zip; do
+            for file in about.html requisites.html site-assets/assets/css/about.css site-assets/assets/css/privacy-policy.css site-assets/assets/css/requisites.css downloads/moscow-city-print-child-0.5.0.zip; do
               mkdir -p "live/$(dirname "$file")"
               curl --fail --silent --show-error --location --max-time 20 \
                 --header 'Cache-Control: no-cache' --output "live/$file" \
@@ -143,6 +143,8 @@ jobs:
               cmp --silent about.html live/about.html && \
               cmp --silent site-assets/assets/css/about.css live/site-assets/assets/css/about.css && \
               cmp --silent site-assets/assets/css/privacy-policy.css live/site-assets/assets/css/privacy-policy.css && \
+              cmp --silent requisites.html live/requisites.html && \
+              cmp --silent site-assets/assets/css/requisites.css live/site-assets/assets/css/requisites.css && \
               cmp --silent downloads/moscow-city-print-child-0.5.0.zip live/downloads/moscow-city-print-child-0.5.0.zip && \
               cmp --silent site-assets/assets/css/internal.css live-404.css; then
               echo "Verified HTTP 200 and exact content match for commit $GITHUB_SHA"
