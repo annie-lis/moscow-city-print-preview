@@ -52,6 +52,11 @@
 .mcp-content-with-clients .client{padding:0;}
 .mcp-content-with-clients .client-logo{width:260px;height:144px;}
 .mcp-content-with-clients .client-nav{display:none;}
+@media(min-width:1101px){
+  /* Geologica ink centers measured at1440: team +2px, clients +3px below grid center. */
+  .mcp-about-panel--team > .mcp-page-title{translate:0 -2px;}
+  .mcp-content-with-clients .mcp-carousel-copy > .mcp-page-title{translate:0 -3px;}
+}
 @media(max-width:1100px){
   .mcp-about-panel,
   .mcp-content-with-clients{grid-template-columns:minmax(0,1fr);}
