@@ -32,7 +32,9 @@ jobs:
           text = Path('about.html').read_text().replace('\u00a0', ' ')
           assert '<h1 class="mcp-page-title">Типография для бизнеса</h1>' in text
           assert 'mcp-inner-hero' in text and 'mcp-content-with-clients' in text
-          assert text.count('class="mcp-about-art"') == 2
+          assert text.count('class="mcp-about-art"') == 3
+          assert 'images/illustrations/library/01-printing-press-stack.webp' in text
+          assert Path('site-assets/assets/images/illustrations/library/01-printing-press-stack.webp').is_file()
           assert 'mcp-illustration-print-production.webp' not in text
           assert '<span class="num">05</span>' in text
           assert Path('site-assets/assets/css/about.css').is_file()
@@ -171,7 +173,7 @@ jobs:
             --write-out '%{http_code}' https://annie-lis.github.io/moscow-city-print-preview/mcp-no-such-page/nested/)
           test "$code" = 404
           cmp 404.html public-nested-404.html
-          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration-final.webp site-assets/assets/css/blog.css site-assets/assets/css/article.css preview-assets/blog.js; do
+          for file in site-assets/assets/css/not-found.css site-assets/assets/images/illustrations/mcp-404-illustration-final.webp site-assets/assets/images/illustrations/library/01-printing-press-stack.webp comparisons/about-approach-1440.png site-assets/assets/css/blog.css site-assets/assets/css/article.css preview-assets/blog.js; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-404-resource
             cmp "$file" public-404-resource

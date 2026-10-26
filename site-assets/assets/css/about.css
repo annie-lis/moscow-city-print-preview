@@ -14,7 +14,7 @@
   align-items:center;
   gap:var(--vertical-inset);
 }
-.mcp-about-panel--approach{grid-template-columns:repeat(2,minmax(0,1fr));}
+.mcp-about-panel--approach{position:relative;grid-template-columns:repeat(2,minmax(0,1fr));}
 .mcp-about-copy,
 .mcp-carousel-copy{min-width:0;max-width:540px;}
 .mcp-about-copy p{margin:0;}
@@ -30,6 +30,8 @@
   /* Blend transparent ink into the existing paper, retaining all sharp detail. */
   opacity:.75;
 }
+/* Occupy the unused right-hand space without moving the approved text modules. */
+.mcp-about-panel--approach .mcp-about-art{position:absolute;right:0;top:50%;transform:translateY(-50%);width:min(24%,320px);max-width:none;}
 .mcp-about-stats{position:relative;left:calc(var(--vertical-inset)/-2);display:grid;gap:calc(var(--vertical-inset)/2);margin:0;}
 .mcp-about-stats dt{font-size:clamp(31px,2.7vw,44px);line-height:1.04;letter-spacing:-.04em;font-weight:300;}
 .mcp-about-stats dd{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.45;}
@@ -48,6 +50,8 @@
 .mcp-content-with-clients .client-logo{width:260px;height:144px;}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(max-width:1100px){
+  .mcp-about-panel--approach .mcp-about-art{position:static;transform:none;grid-column:1 / -1;grid-row:2;width:min(calc(100%/var(--about-art-scale)),320px);}
+  .mcp-about-panel--approach .mcp-about-stats{grid-column:2;grid-row:1;}
   .mcp-about-stats{left:0;}
   .mcp-about-panel,
   .mcp-content-with-clients{gap:24px;}
@@ -67,6 +71,8 @@
   /* Home uses 72px above narrow stacked content and 38px below. */
   .mcp-inner-main{--about-content-top:72px;}
   .mcp-about-panel--approach{grid-template-columns:minmax(0,1fr);}
+  .mcp-about-panel--approach .mcp-about-stats{grid-column:1;grid-row:2;}
+  .mcp-about-panel--approach .mcp-about-art{grid-row:3;}
   .mcp-about-stats,
   .mcp-about-principles{grid-template-columns:minmax(0,1fr);}
   .mcp-content-with-clients .clients-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
