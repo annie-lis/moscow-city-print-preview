@@ -1,13 +1,18 @@
 /* About only: equal thirds, shared paper/type/spacing and unchanged client markup. */
 .mcp-inner-main{
-  --about-section-space:calc(var(--section-content-inset) * 1.5);
   --about-right-group-width:340px;
   --about-client-group-width:680px;
-  --about-client-gap:18px;
+  --about-client-gap:calc(var(--vertical-inset) / 2);
   --about-inner-inset:calc(var(--vertical-inset) / 2);
+  --about-right-inset:calc(var(--right) + var(--client-nav-inset) + var(--about-inner-inset) - var(--header-right));
+}
+.mcp-inner-main .mcp-inner-section{padding-top:var(--section-content-inset);}
+.mcp-inner-main .mcp-inner-section > .section-marker{
+  position:static;
+  margin-left:var(--axis-a);
 }
 .mcp-inner-main .mcp-inner-section-content{
-  padding:var(--about-section-space) var(--header-right);
+  padding:var(--about-inner-inset) var(--header-right) var(--section-content-inset);
 }
 .mcp-inner-main .mcp-page-title,
 .mcp-about-stats dd{text-wrap:balance;}
@@ -31,12 +36,12 @@
 }
 .mcp-about-panel > .mcp-page-title{margin:0;}
 .mcp-about-panel--team > .mcp-page-title{text-align:center;}
-.mcp-about-panel--team .mcp-about-copy{text-align:right;padding-right:var(--about-inner-inset);}
+.mcp-about-panel--team .mcp-about-copy{text-align:right;padding-right:var(--about-right-inset);}
 .mcp-about-panel--approach .mcp-about-copy{max-width:36ch;}
 .mcp-about-stat-module{
   width:100%;
-  max-width:calc(var(--about-right-group-width) + var(--about-inner-inset));
-  padding-right:var(--about-inner-inset);
+  max-width:calc(var(--about-right-group-width) + var(--about-right-inset));
+  padding-right:var(--about-right-inset);
   justify-self:end;
   text-align:right;
 }
@@ -75,28 +80,32 @@
 .mcp-content-with-clients .mcp-carousel-copy .mcp-page-title{margin:0;}
 .mcp-content-with-clients .clients-wrap{
   grid-column:2 / 4;
-  width:calc(100% - var(--about-inner-inset));
+  width:calc(100% - var(--about-right-inset));
   max-width:var(--about-client-group-width);
-  margin-right:var(--about-inner-inset);
+  margin-right:var(--about-right-inset);
   justify-self:end;
-  /* Keep the accepted 2×144px +18px flow footprint while compacting the logos. */
-  height:calc(2 * 144px + var(--about-client-gap));
+  /* Rows determine the height; no extra fixed carousel footprint. */
   display:grid;
   align-content:center;
 }
 /* Same eight real clients: the common component presented as four slots × two rows. */
-.mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--about-client-gap);height:auto;transform:none;}
+.mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--about-client-gap);row-gap:calc(var(--about-client-gap) / 2);height:auto;transform:none;}
 .mcp-content-with-clients .client{padding:0;}
-.mcp-content-with-clients .client-logo{width:260px;height:144px;}
+.mcp-content-with-clients .client-logo{width:260px;height:120px;}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(min-width:1101px){
-  /* Reduce both gaps by9.5px and the group by19px: column widths stay unchanged. */
-  .mcp-about-stats{width:calc(100% - var(--about-inner-inset));gap:calc(var(--vertical-inset) / 4);margin-left:auto;}
+  .mcp-about-stats{
+    width:max-content;
+    max-width:100%;
+    grid-template-columns:repeat(3,minmax(0,max-content));
+    gap:calc(var(--vertical-inset) / 4);
+    margin-left:auto;
+    container-type:normal;
+  }
+  .mcp-about-stats > div{container-type:normal;}
+  .mcp-about-stats dt{font-size:24.16px;}
+  .mcp-about-stats dd{max-width:10ch;}
   .mcp-about-hero-line{display:block;}
-  /* Geologica ink centers measured at1440: team +2px, clients +3px below grid center. */
-  .mcp-about-panel--team > .mcp-page-title{translate:0 -2px;}
-  .mcp-content-with-clients .mcp-carousel-copy > .mcp-page-title{translate:0 -3px;}
-  .mcp-about-panel--space > .mcp-page-title{translate:0 1.5px;}
   /* Center visible ink, not the asymmetric transparent fields in the original files.
      Offsets derive from the source alpha32 bounds; intrinsic size stays unchanged. */
   /* Retain the original flow footprint; the frame contains the enlargement.
