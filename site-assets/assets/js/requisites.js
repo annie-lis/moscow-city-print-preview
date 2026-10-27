@@ -8,10 +8,17 @@
   const align = () => {
     if (!desktop.matches) {
       layout.style.removeProperty('--requisites-action-offset');
+      layout.style.removeProperty('--requisites-label-end');
       return;
     }
     const offset = arrow.getBoundingClientRect().right - action.getBoundingClientRect().left;
     layout.style.setProperty('--requisites-action-offset', `${offset}px`);
+    // The first label's text ink/advance edge, not its stretched grid-item box.
+    const label = action.querySelector('span:not(.footer-action-arrow)');
+    const range = document.createRange();
+    range.selectNodeContents(label);
+    const labelEnd = range.getBoundingClientRect().right - action.getBoundingClientRect().left;
+    layout.style.setProperty('--requisites-label-end', `${labelEnd}px`);
   };
   align();
   document.fonts.ready.then(align);

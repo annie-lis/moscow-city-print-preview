@@ -62,7 +62,7 @@
   }
 }
 @media(min-width:1200px) and (max-width:1500px){
-  .mcp-requisites-layout{--requisites-desktop-shift:40px;}
+  .mcp-requisites-layout{--requisites-desktop-shift:var(--requisites-label-end,40px);}
 }
 @media(max-width:1100px){
   .mcp-requisites-layout{grid-template-columns:minmax(0,1fr);}
