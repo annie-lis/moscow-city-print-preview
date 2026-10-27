@@ -170,7 +170,7 @@ jobs:
             https://annie-lis.github.io/moscow-city-print-preview/downloads/moscow-city-print-child-0.5.0.zip \
             --output public-theme.zip
           cmp downloads/moscow-city-print-child-0.5.0.zip public-theme.zip
-          for route in index about sitemap privacy-policy requisites products payment-delivery artwork-requirements blog article-short article-long; do
+          for route in index about services sitemap privacy-policy requisites products payment-delivery artwork-requirements blog article-short article-long; do
             curl --fail --silent --show-error --location --max-time 30 \
               "https://annie-lis.github.io/moscow-city-print-preview/$route.html" \
               --output "public-$route.html"
