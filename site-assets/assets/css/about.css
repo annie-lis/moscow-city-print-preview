@@ -12,7 +12,7 @@
   margin-left:var(--axis-a);
 }
 .mcp-inner-main .mcp-inner-section-content{
-  padding:var(--about-inner-inset) var(--header-right) var(--section-content-inset);
+  padding:var(--about-inner-inset) var(--header-right);
 }
 .mcp-inner-main .mcp-page-title,
 .mcp-about-stats dd{text-wrap:balance;}
