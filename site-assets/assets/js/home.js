@@ -20,13 +20,15 @@
       }
       track.replaceChildren(...columns);
       // Extra columns are preview-only repetitions of the original agreed brands.
-      const repeats = Math.max(1, Math.min(3, Number(wrap.dataset.previewRepeat) || 1));
-      for (let cycle = 1; cycle < repeats; cycle++) columns.forEach(column => {
-        const clone = column.cloneNode(true);
+      const targetPairs = Math.max(columns.length, Math.min(32, Math.ceil((Number(wrap.dataset.previewCount) || logos.length) / 2)));
+      for (let pair = columns.length; pair < targetPairs; pair++) {
+        const clone = columns[pair % columns.length].cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
         clone.querySelectorAll('img').forEach(img => { img.alt = ''; });
         track.append(clone);
-      });
+      }
+      prev.textContent = '‹';
+      next.textContent = '›';
       viewport = document.createElement('div');
       viewport.className = 'clients-viewport';
       track.before(viewport);
