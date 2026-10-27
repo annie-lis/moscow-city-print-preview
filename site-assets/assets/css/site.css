@@ -353,10 +353,11 @@ a{color:inherit;text-decoration:none}
   min-height:calc(248px - var(--vertical-inset) / 3);
   padding:var(--section-content-inset) 0 calc(var(--section-content-inset) * 2 / 3);
   display:grid;
+  /* Equal side tracks keep the contact axis independent of content widths.
+     Work area: title axis B to the unchanged right edge of the action arrows. */
   grid-template-columns:var(--axis-b)
-    calc(var(--footer-split-1) - var(--axis-b))
-    calc(var(--section-data-width) / 2)
-    minmax(0,1fr) var(--footer-actions-gutter);
+    minmax(0,1fr) fit-content(36%) minmax(0,1fr)
+    calc(var(--right) + var(--client-nav-inset));
   align-items:center;
 }
 .footer-intro,
@@ -416,7 +417,7 @@ a{color:inherit;text-decoration:none}
 .footer-actions{
   min-width:0;
   grid-column:4;
-  padding:0 var(--column-padding);
+  padding:0;
   width:max-content;
   max-width:100%;
   justify-self:end;
@@ -561,6 +562,7 @@ a{color:inherit;text-decoration:none}
     row-gap:24px;
   }
   .footer-intro, .footer-contact, .footer-actions{grid-column:2;}
+  .footer-actions{padding:0 var(--column-padding);}
 }
 
 
