@@ -1,4 +1,33 @@
-/* Delivery options only. Shared shell, typography scale and section spacing stay intact. */
+/* Payment draft only. Delivery columns and the shared shell remain unchanged. */
+@media(min-width:1101px){
+  .mcp-inner-section:has(.mcp-service-composition--payment-delivery){
+    padding-top:58px;
+  }
+  .mcp-inner-section:has(.mcp-service-composition--payment-delivery) > .section-marker{
+    position:static;
+    margin-left:var(--axis-a);
+  }
+  .mcp-inner-section:has(.mcp-service-composition--payment-delivery) > .mcp-inner-section-content{
+    padding-top:calc(var(--vertical-inset) / 2);
+  }
+  .mcp-service-composition.mcp-service-composition--payment-delivery{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    align-items:start;
+  }
+  .mcp-service-composition--payment-delivery > .mcp-service-copy{grid-column:1;}
+  .mcp-service-composition--payment-delivery > .mcp-service-illustration{
+    grid-column:2 / 4;
+    position:relative;
+    z-index:2;
+    width:340px;
+    max-width:100%;
+    padding:0;
+    margin-top:var(--vertical-inset);
+    margin-bottom:calc(-2 * var(--vertical-inset));
+    justify-self:end;
+    align-self:end;
+  }
+}
 .mcp-delivery-options{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
