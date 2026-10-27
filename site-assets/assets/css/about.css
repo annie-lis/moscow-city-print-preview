@@ -1,4 +1,4 @@
-/* About only: equal thirds, shared paper/type/spacing and unchanged client markup. */
+/* About only: shared content areas, equal thirds and the paired client mode. */
 .mcp-inner-main{
   --about-right-group-width:340px;
   --about-art-width:395px;
@@ -8,13 +8,19 @@
   --about-inner-inset:calc(var(--vertical-inset) / 2);
   --about-right-inset:calc(var(--right) + var(--client-nav-inset) + var(--about-inner-inset) - var(--header-right));
 }
-.mcp-inner-main .mcp-inner-section{padding-top:var(--section-content-inset);}
+.mcp-inner-main .mcp-inner-section{
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  padding:var(--section-content-inset) 0 var(--about-inner-inset);
+}
 .mcp-inner-main .mcp-inner-section > .section-marker{
   position:static;
   margin-left:var(--axis-a);
 }
 .mcp-inner-main .mcp-inner-section-content{
-  padding:var(--about-inner-inset) var(--header-right);
+  display:grid;
+  align-items:center;
+  padding:0 var(--header-right);
 }
 .mcp-inner-main .mcp-page-title,
 .mcp-about-stats dd{text-wrap:balance;}
@@ -60,7 +66,24 @@
   object-fit:contain;
   opacity:.75;
 }
-.mcp-about-art-frame{display:block;width:100%;max-width:100%;overflow:hidden;}
+/* The grid's trailing tracks normalize source transparency, not viewport position. */
+.mcp-about-art-frame{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) var(--art-tail-inline,0%);
+  grid-template-rows:minmax(0,1fr) var(--art-tail-block,0%);
+  place-items:center;
+  width:100%;
+  max-width:100%;
+  aspect-ratio:4 / 3;
+  container-type:inline-size;
+  overflow:hidden;
+}
+.mcp-about-art-frame > .mcp-about-art{
+  grid-area:1 / 1;
+  width:calc(100cqw * var(--art-scale,1));
+  max-width:none;
+}
+.mcp-about-art-frame--skyline{aspect-ratio:2 / 1;}
 .mcp-about-ending{display:block;}
 .mcp-about-stats{
   display:grid;
@@ -88,15 +111,34 @@
   margin-left:max(var(--about-inner-inset),calc(((100cqw - 2 * var(--vertical-inset)) / 3 - 36ch) / 2));
   margin-right:var(--about-right-inset);
   justify-self:stretch;
-  /* Center the two rows inside their unchanged desktop footprint. */
-  display:grid;
-  align-content:center;
+  padding-block:calc(var(--vertical-inset) / 3);
 }
-/* Same eight real clients: the common component presented as four slots × two rows. */
+/* Static two-row fallback; JS groups the same source logos into vertical pairs. */
 .mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--about-client-gap);row-gap:var(--about-client-row-gap);height:auto;transform:none;}
 .mcp-content-with-clients .client{padding:0;}
 .mcp-content-with-clients .client-logo{width:260px;height:var(--about-client-logo-height);}
 .mcp-content-with-clients .client-nav{display:none;}
+.mcp-content-with-clients .clients-wrap[data-client-rows="2"]{--clients-visible:4;}
+.mcp-content-with-clients .clients-viewport{overflow:hidden;}
+.mcp-content-with-clients .is-ready .clients-track{
+  display:flex;
+  column-gap:var(--about-client-gap);
+  transition:transform .35s ease;
+}
+.mcp-content-with-clients .client-column{
+  flex:0 0 calc((100% - (var(--clients-count,var(--clients-visible)) - 1) * var(--about-client-gap)) / var(--clients-count,var(--clients-visible)));
+  min-width:0;
+  display:grid;
+  grid-template-rows:repeat(2,var(--about-client-logo-height));
+  row-gap:var(--about-client-row-gap);
+  /* Preserve the original logo multiply treatment inside the moving layer. */
+  background:var(--paper);
+}
+.mcp-content-with-clients .is-ready .client-nav{display:block;}
+.mcp-content-with-clients .client-nav:disabled{opacity:.3;cursor:default;}
+@media(prefers-reduced-motion:reduce){
+  .mcp-content-with-clients .is-ready .clients-track{transition:none;}
+}
 @media(min-width:1101px){
   .mcp-content-with-clients{
     --about-client-row-gap:calc(var(--about-client-gap) / 3);
@@ -113,14 +155,10 @@
     max-width:var(--about-art-width);
     justify-self:end;
   }
-  .mcp-about-art-frame{
+  .mcp-about-art-frame:not(.mcp-about-art-frame--skyline){
     max-width:var(--about-art-width);
     justify-self:center;
   }
-  .mcp-inner-section-content:has(.mcp-about-panel--approach){
-    padding-block:calc(var(--about-inner-inset) / 2);
-  }
-  .mcp-content-with-clients .clients-wrap{min-height:calc(2 * var(--about-client-logo-height) + var(--about-client-gap) / 2);}
   .mcp-about-stats{
     width:max-content;
     max-width:100%;
@@ -133,15 +171,20 @@
   .mcp-about-stats dt{font-size:24.16px;}
   .mcp-about-stats dd{max-width:10ch;}
   .mcp-about-hero-line{display:block;}
-  /* Center visible ink, not the asymmetric transparent fields in the original files.
-     Offsets derive from the source alpha32 bounds; intrinsic size stays unchanged. */
-  /* Retain the original flow footprint; the frame contains the enlargement.
-     Every source pixel with alpha>=8 remains visible; only near-invisible outer
-     strokes may meet the frame. Original files and proportions are unchanged. */
-  .mcp-about-art-frame > .mcp-about-art{transform-origin:0 0;}
-  .mcp-about-panel--team .mcp-about-art-frame > .mcp-about-art{transform:translate(-6.012431%, -8.426335%) scale(1.07);}
-  .mcp-about-panel--approach .mcp-about-art-frame > .mcp-about-art{transform:translate(-3.621202%, -6.435773%) scale(1.045);}
-  .mcp-about-panel--space > .mcp-about-art{translate:0 -1.184%;}
+  .mcp-about-panel--team .mcp-about-art-frame{
+    --art-scale:1.07;
+    --art-tail-inline:5.024862%;
+    --art-tail-block:9.85267%;
+  }
+  .mcp-about-panel--approach .mcp-about-art-frame{
+    --art-scale:1.045;
+    --art-tail-inline:2.742404%;
+    --art-tail-block:8.371546%;
+  }
+  .mcp-about-art-frame--skyline{--art-tail-inline:.3945885%;--art-tail-block:2.367531%;}
+}
+@media(min-width:1800px){
+  .mcp-content-with-clients .clients-wrap[data-client-rows="2"]{--clients-visible:5;}
 }
 @media(max-width:1100px){
   .mcp-about-panel,
@@ -159,6 +202,8 @@
   .mcp-about-art,
   .mcp-about-art-frame{max-width:320px;}
   .mcp-content-with-clients .clients-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+  .mcp-content-with-clients .clients-wrap[data-client-rows="2"]{--clients-visible:2;--about-client-gap:16px;}
+  .mcp-content-with-clients .client-column{grid-template-rows:repeat(2,100px);}
   .mcp-content-with-clients .clients-wrap{height:auto;width:100%;margin-right:0;}
   .mcp-content-with-clients .client-logo{height:100px;}
 }
