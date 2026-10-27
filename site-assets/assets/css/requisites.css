@@ -1,6 +1,8 @@
 /* Requisites only: sharp paper bands and one shared, uncropped artwork. */
 .mcp-requisites-layout{
   --requisites-right-guide:calc(var(--right) + var(--client-nav-inset));
+  --requisites-art-scale:.91;
+  --requisites-arrow-zone:20px;
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   align-items:center;
@@ -41,11 +43,22 @@
   grid-row:1 / 3;
   width:calc(100% - var(--requisites-right-guide));
   max-width:560px;
-  margin-right:var(--requisites-right-guide);
+  margin-right:calc(var(--requisites-right-guide) + var(--requisites-arrow-zone));
   justify-self:end;
-  /* Original pedestal corner x1059/1254, aligned to the footer arrow guide.
-     Compensate transparent tail and the shared 19px picture inset. */
-  translate:calc((100% - var(--vertical-inset)) * .1555024 + var(--vertical-inset) / 2) 0;
+  /* Original pedestal corner x1059/1254, aligned to the START of the
+     shared footer20px arrow column. Compensate transparent tail, padding
+     and the centered visual reduction, while preserving the flow footprint. */
+  translate:calc((100% - var(--vertical-inset)) * (.1555024 + (1 - var(--requisites-art-scale)) * .3444976) + var(--vertical-inset) / 2) 0;
+}
+@media(min-width:1101px){
+  .mcp-requisites-section:first-child{
+    padding-top:58px;
+    padding-bottom:calc(2 * var(--vertical-inset) - 58px);
+  }
+  .mcp-requisites-layout > .mcp-service-illustration img{
+    transform:scale(var(--requisites-art-scale));
+    transform-origin:center;
+  }
 }
 @media(max-width:1100px){
   .mcp-requisites-layout{grid-template-columns:minmax(0,1fr);}
