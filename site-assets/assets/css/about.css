@@ -3,6 +3,8 @@
   --about-right-group-width:340px;
   --about-client-group-width:680px;
   --about-client-gap:calc(var(--vertical-inset) / 2);
+  --about-client-row-gap:calc(var(--about-client-gap) / 2);
+  --about-client-logo-height:120px;
   --about-inner-inset:calc(var(--vertical-inset) / 2);
   --about-right-inset:calc(var(--right) + var(--client-nav-inset) + var(--about-inner-inset) - var(--header-right));
 }
@@ -84,16 +86,18 @@
   max-width:var(--about-client-group-width);
   margin-right:var(--about-right-inset);
   justify-self:end;
-  /* Rows determine the height; no extra fixed carousel footprint. */
+  /* Center the two rows inside their unchanged desktop footprint. */
   display:grid;
   align-content:center;
 }
 /* Same eight real clients: the common component presented as four slots × two rows. */
-.mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--about-client-gap);row-gap:calc(var(--about-client-gap) / 2);height:auto;transform:none;}
+.mcp-content-with-clients .clients-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--about-client-gap);row-gap:var(--about-client-row-gap);height:auto;transform:none;}
 .mcp-content-with-clients .client{padding:0;}
-.mcp-content-with-clients .client-logo{width:260px;height:120px;}
+.mcp-content-with-clients .client-logo{width:260px;height:var(--about-client-logo-height);}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(min-width:1101px){
+  .mcp-content-with-clients{--about-client-row-gap:calc(var(--about-client-gap) / 3);}
+  .mcp-content-with-clients .clients-wrap{min-height:calc(2 * var(--about-client-logo-height) + var(--about-client-gap) / 2);}
   .mcp-about-stats{
     width:max-content;
     max-width:100%;
