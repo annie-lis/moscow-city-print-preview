@@ -1,7 +1,7 @@
 /* About only: equal thirds, shared paper/type/spacing and unchanged client markup. */
 .mcp-inner-main{
   --about-right-group-width:340px;
-  --about-client-group-width:680px;
+  --about-art-width:395px;
   --about-client-gap:calc(var(--vertical-inset) / 2);
   --about-client-row-gap:calc(var(--about-client-gap) / 2);
   --about-client-logo-height:120px;
@@ -82,10 +82,12 @@
 .mcp-content-with-clients .mcp-carousel-copy .mcp-page-title{margin:0;}
 .mcp-content-with-clients .clients-wrap{
   grid-column:2 / 4;
-  width:calc(100% - var(--about-right-inset));
-  max-width:var(--about-client-group-width);
+  width:auto;
+  /* Match the text-column ch measure used by section03. Logos remain images. */
+  font-size:15.5px;
+  margin-left:max(var(--about-inner-inset),calc(((100cqw - 2 * var(--vertical-inset)) / 3 - 36ch) / 2));
   margin-right:var(--about-right-inset);
-  justify-self:end;
+  justify-self:stretch;
   /* Center the two rows inside their unchanged desktop footprint. */
   display:grid;
   align-content:center;
@@ -96,7 +98,28 @@
 .mcp-content-with-clients .client-logo{width:260px;height:var(--about-client-logo-height);}
 .mcp-content-with-clients .client-nav{display:none;}
 @media(min-width:1101px){
-  .mcp-content-with-clients{--about-client-row-gap:calc(var(--about-client-gap) / 3);}
+  .mcp-content-with-clients{
+    --about-client-row-gap:calc(var(--about-client-gap) / 3);
+    container-type:inline-size;
+  }
+  .mcp-about-panel--team > .mcp-page-title{
+    width:100%;
+    max-width:var(--about-right-group-width);
+    justify-self:center;
+  }
+  .mcp-about-panel--space > .mcp-page-title,
+  .mcp-carousel-copy .mcp-page-title{max-width:var(--about-right-group-width);}
+  .mcp-about-panel--team .mcp-about-copy{
+    max-width:var(--about-art-width);
+    justify-self:end;
+  }
+  .mcp-about-art-frame{
+    max-width:var(--about-art-width);
+    justify-self:center;
+  }
+  .mcp-inner-section-content:has(.mcp-about-panel--approach){
+    padding-block:calc(var(--about-inner-inset) / 2);
+  }
   .mcp-content-with-clients .clients-wrap{min-height:calc(2 * var(--about-client-logo-height) + var(--about-client-gap) / 2);}
   .mcp-about-stats{
     width:max-content;
@@ -127,7 +150,7 @@
   .mcp-about-art-frame{max-width:380px;justify-self:center;}
   .mcp-about-panel--approach .mcp-about-copy{max-width:650px;}
   .mcp-about-panel--space .mcp-about-copy{width:100%;max-width:650px;}
-  .mcp-content-with-clients .clients-wrap{grid-column:auto;width:calc(100% - var(--about-inner-inset));}
+  .mcp-content-with-clients .clients-wrap{grid-column:auto;width:calc(100% - var(--about-inner-inset));margin-left:0;max-width:680px;justify-self:end;}
   .mcp-about-ending{display:inline;}
 }
 @media(max-width:650px){
