@@ -12,24 +12,31 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
 .mcp-home-mark svg{display:block;width:46px;height:46px}
 .mcp-home-mark.tl{top:0;left:0}.mcp-home-mark.tr{top:0;right:0;transform:scaleX(-1)}
 .mcp-home-mark.bl{bottom:0;left:0;transform:scaleY(-1)}.mcp-home-mark.br{bottom:0;right:0;transform:scale(-1)}
-.mcp-home-top{position:absolute;left:var(--edge-x);right:var(--edge-x);top:calc(var(--edge-top) + 10px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);align-items:start}
+.mcp-home-top,.mcp-home-nav,.mcp-home-actions-desktop{left:var(--edge-x);right:var(--edge-x);grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap)}
+.mcp-home-top{position:absolute;top:calc(var(--edge-top) + 10px);display:grid;align-items:start}
 .mcp-home-logo{display:block;grid-column:1;line-height:0;width:100.1712%}
 .mcp-home-logo img{display:block;width:100%;height:auto}
 .mcp-home-status{grid-column:4;display:inline-grid;grid-template-columns:auto 10px auto;align-items:center;justify-self:start;column-gap:8px;font-size:14px;line-height:1;font-weight:500;white-space:nowrap}
 .mcp-home-status-dot{width:4px;height:4px;border-radius:50%;background:var(--mcp-home-red);justify-self:center;animation:mcp-home-pulse 2.4s ease-in-out infinite}
 @keyframes mcp-home-pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.mcp-home-copy{position:absolute;left:var(--edge-x);bottom:58px;width:calc((100% - 2*var(--edge-x))*.75 - var(--gap)*.25);container-type:inline-size}
+.mcp-home-copy{position:absolute;left:var(--edge-x);bottom:96px;width:calc((100% - 2*var(--edge-x))*.75 - var(--gap)*.25);container-type:inline-size}
 .mcp-home-title{position:relative;display:block;width:max-content;margin:0;font-family:inherit;font-size:calc(100cqw / 11.59299);line-height:.94;letter-spacing:-.05em;font-weight:500;white-space:nowrap}
 .mcp-home-title-first,.mcp-home-title-last{display:inline}
-.mcp-home-title-last{padding-right:.215em}
-.mcp-home-square{position:absolute;right:0;bottom:.055em;display:inline-block;width:.115em;height:.115em;background:var(--mcp-home-red)}
-.mcp-home-nav{position:absolute;left:var(--edge-x);right:var(--edge-x);top:var(--edge-top);bottom:48px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);align-content:center;pointer-events:none}
+/* Geologica500 outline descents at1000px: full title218.75px, phone line156.25px.
+   Zero-height baseline anchor keeps the line box/width unchanged. */
+.mcp-home-accent{--ink-descent:.21875em;position:relative;display:inline-block;width:.215em;height:0;vertical-align:baseline}
+.mcp-home-square{position:absolute;right:0;bottom:calc(-1 * var(--ink-descent));display:block;width:.115em;height:.115em;background:var(--mcp-home-red)}
+.mcp-home-nav{position:absolute;top:var(--edge-top);bottom:48px;display:grid;align-content:center;pointer-events:none}
 .mcp-home-nav a{grid-column:4;display:flex;align-items:baseline;gap:6px;justify-self:start;pointer-events:auto;font-size:17px;line-height:1.15;font-weight:500;white-space:nowrap}
 .mcp-home-nav{row-gap:10px}
 .mcp-home-num{min-width:20px}.mcp-home-slash{color:var(--mcp-home-red);margin-right:2px}
 .mcp-home-nav a:hover{color:var(--mcp-home-red)}
-.mcp-home-actions{position:absolute;left:var(--edge-x);right:var(--edge-x);bottom:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);align-items:end}
-.mcp-home-actions a,.mcp-home-unconfigured{display:inline-flex;align-items:center;gap:8px;justify-self:start;color:var(--mcp-home-muted);font-size:14px;line-height:1;font-weight:400;white-space:nowrap}
+.mcp-home-actions{position:absolute;bottom:12px;display:grid;align-items:end}
+.mcp-home-actions-desktop a:nth-child(1){grid-column:1}
+.mcp-home-actions-desktop a:nth-child(2){grid-column:2}
+.mcp-home-actions-desktop a:nth-child(3){grid-column:3}
+@media (min-width:1600px){.mcp-home-logo{width:66.7808%}}
+.mcp-home-actions a{display:inline-flex;align-items:center;gap:8px;justify-self:start;color:var(--mcp-home-muted);font-size:14px;line-height:1;font-weight:400;white-space:nowrap}
 .mcp-home-actions span[aria-hidden]{font-size:18px;color:var(--mcp-home-muted);transition:color .15s ease}
 .mcp-home-actions a:hover,.mcp-home-actions a:focus-visible{color:var(--mcp-home-ink)}
 .mcp-home-actions a:hover span,.mcp-home-actions a:focus-visible span{color:var(--mcp-home-red)}
@@ -39,7 +46,7 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
  .mcp-home-screen{--edge-x:36px;--edge-top:36px;--gap:18px;min-height:600px}
  .mcp-home-copy{bottom:94px}.mcp-home-actions{bottom:48px}
  .mcp-home-status{font-size:12px;column-gap:4px;grid-template-columns:auto 6px auto}
- .mcp-home-nav a{font-size:16px}.mcp-home-actions a,.mcp-home-unconfigured{font-size:11px;gap:5px}.mcp-home-actions span[aria-hidden]{font-size:15px}
+ .mcp-home-nav a{font-size:16px}.mcp-home-actions a{font-size:11px;gap:5px}.mcp-home-actions span[aria-hidden]{font-size:15px}
 }
 @media (max-width:767px){
  .mcp-home-screen{--pad:clamp(28px,7.4vw,42px);display:flex;flex-direction:column;height:auto;min-height:100svh;padding:clamp(55px,10vh,82px) max(var(--pad),env(safe-area-inset-right)) clamp(58px,9vh,76px) max(var(--pad),env(safe-area-inset-left));padding-top:max(clamp(55px,10vh,82px),env(safe-area-inset-top));padding-bottom:max(clamp(58px,9vh,76px),env(safe-area-inset-bottom))}
@@ -51,8 +58,7 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
  .mcp-home-copy{position:static;margin-top:auto;padding-top:clamp(80px,18vh,170px);width:100%;container-type:normal}
  .mcp-home-title{width:auto;white-space:normal;font-size:clamp(2.4375rem,10.1vw,4rem);line-height:1.04;letter-spacing:-.055em}
  .mcp-home-title-first,.mcp-home-title-last{display:block;white-space:normal;overflow-wrap:anywhere}
- .mcp-home-title-last{padding-right:0}
- .mcp-home-square{position:static;vertical-align:-.11em;width:.115em;height:.115em;margin-left:.12em;margin-bottom:0}
+ .mcp-home-accent{--ink-descent:.15625em;width:.235em}
  .mcp-home-nav{position:static;display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(12px,2.5vh,20px);padding-top:clamp(42px,8vh,74px);margin-bottom:clamp(38px,8vh,72px)}
  .mcp-home-nav a{grid-column:auto;gap:7px;font-size:clamp(17px,4.4vw,21px);line-height:1.28;min-height:27px;padding-block:4px;margin-block:-4px}
  .mcp-home-num{min-width:25px}.mcp-home-slash{margin-right:0}
