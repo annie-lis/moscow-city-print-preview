@@ -42,11 +42,11 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
 .mcp-home-actions-mobile{display:none}
 /* Tablet uses three real tracks; desktop remains four tracks. */
 @media (768px <= width <= 1100px){
- .mcp-home-screen{--edge-x:clamp(48px,6.25vw,64px);--edge-top:48px;--gap:24px;min-height:600px;--fourth-axis-offset:0%}
+ .mcp-home-screen{--edge-x:clamp(56px,6.25vw,64px);--edge-top:48px;--gap:24px;min-height:600px;--fourth-axis-offset:0%}
  .mcp-home-top,.mcp-home-nav,.mcp-home-actions-desktop{grid-template-columns:repeat(3,minmax(0,1fr))}
  .mcp-home-status,.mcp-home-nav .mcp-home-menu-item{grid-column:3}
  .mcp-home-logo{width:74%}
- .mcp-home-copy{bottom:94px}.mcp-home-actions{bottom:48px}
+ .mcp-home-copy{bottom:94px}
  .mcp-home-status{font-size:12px;column-gap:4px;grid-template-columns:auto 6px auto}
  .mcp-home-nav .mcp-home-menu-item{font-size:16px}.mcp-home-actions a{font-size:11px;gap:5px}.mcp-home-actions span[aria-hidden]{font-size:15px}
 }
@@ -68,6 +68,12 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
  .mcp-home-actions-mobile{position:static;display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:0;flex-wrap:wrap}
  .mcp-home-actions-mobile a{font-size:14px;line-height:1.25;align-items:baseline;min-height:32px}
  .mcp-home-actions-mobile span[aria-hidden]{font-size:19px;line-height:.8}
+}
+/* Roomier phones: independent lower contact clearance and central-group rhythm.
+   The accepted <=374px and short-height compositions remain unchanged. */
+@media (375px <= width <= 767px) and (min-height:741px){
+ .mcp-home-screen{padding-bottom:max(clamp(36px,5.9vh,50px),env(safe-area-inset-bottom))}
+ .mcp-home-nav{margin-bottom:calc(clamp(30px,calc(8vh - 8px),64px) + 8px)}
 }
 @media (max-width:350px){
  .mcp-home-screen{--pad:44px;--logo-reference-inset:32px;padding-top:58px;padding-bottom:53px}

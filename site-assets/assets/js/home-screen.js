@@ -34,7 +34,7 @@
   let clockTimer;
   const refresh = () => {
     const now = new Date(), parts = dateParts(now);
-    container.querySelector('[data-status-date]').textContent = `${parts.day}.${parts.month}`;
+    container.querySelector('[data-status-time]').textContent = `${parts.hour}:${parts.minute}`;
     container.querySelector('[data-status-state]').textContent = statusAt(now, config) || 'График недоступен';
     clearTimeout(clockTimer);
     clockTimer = setTimeout(refresh, 60000 - now.getTime() % 60000 + 5);
