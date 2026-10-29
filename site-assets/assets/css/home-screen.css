@@ -3,7 +3,7 @@
 html:has(.mcp-home-screen){background:var(--mcp-home-paper)}
 body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--mcp-home-paper);font-family:'Geologica',Arial,Helvetica,sans-serif}
 .mcp-home-screen,.mcp-home-screen *{box-sizing:border-box}
-.mcp-home-screen{--edge-x:64px;--edge-top:48px;--gap:28px;--fourth-axis-offset:0%;position:relative;min-height:680px;height:100svh;height:100dvh;background:var(--mcp-home-paper);isolation:isolate}
+.mcp-home-screen{--edge-x:clamp(64px,calc(4.166667vw + 4px),84px);--edge-top:48px;--gap:28px;--fourth-axis-offset:clamp(0px,calc((100vw - 1440px)*.434375),50%);position:relative;min-height:680px;height:calc(100svh - var(--mcp-preview-toolbar-height,0px));height:calc(100dvh - var(--mcp-preview-toolbar-height,0px));background:var(--mcp-home-paper);isolation:isolate}
 .mcp-home-screen a{color:inherit;text-decoration:none}
 .mcp-home-screen a:focus-visible{outline:1.25px solid var(--mcp-home-red);outline-offset:6px}
 .mcp-home-skip{position:absolute;left:64px;top:0;padding:8px;background:var(--mcp-home-paper);z-index:50;clip-path:inset(100%)}
@@ -26,7 +26,7 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
    Zero-height baseline anchor keeps the line box/width unchanged. */
 .mcp-home-accent{--ink-descent:.21875em;position:relative;display:inline-block;width:.215em;height:0;vertical-align:baseline}
 .mcp-home-square{position:absolute;right:0;bottom:calc(-1 * var(--ink-descent));display:block;width:.115em;height:.115em;background:var(--mcp-home-red)}
-.mcp-home-nav{position:absolute;top:var(--edge-top);bottom:48px;display:grid;align-content:center;pointer-events:none}
+.mcp-home-nav{position:absolute;top:var(--nav-ink-start,var(--edge-top));bottom:var(--nav-ink-end,48px);display:grid;align-content:center;pointer-events:none}
 .mcp-home-nav .mcp-home-menu-item{grid-column:4;margin-inline-start:var(--fourth-axis-offset);display:flex;align-items:baseline;gap:6px;justify-self:start;pointer-events:auto;font-size:17px;line-height:1.15;font-weight:500;white-space:nowrap}
 .mcp-home-nav{row-gap:10px}
 .mcp-home-num{min-width:20px}.mcp-home-slash{color:var(--mcp-home-red);margin-right:2px}
@@ -35,7 +35,7 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
 .mcp-home-actions-desktop a:nth-child(1){grid-column:1}
 .mcp-home-actions-desktop a:nth-child(2){grid-column:2}
 .mcp-home-actions-desktop a:nth-child(3){grid-column:3}
-@media (min-width:1600px){.mcp-home-screen{--fourth-axis-offset:50%}.mcp-home-logo{width:66.7808%}}
+@media (min-width:1600px){.mcp-home-logo{width:66.7808%}}
 .mcp-home-actions a{display:inline-flex;align-items:center;gap:8px;justify-self:start;color:var(--mcp-home-muted);font-size:14px;line-height:1;font-weight:400;white-space:nowrap}
 .mcp-home-actions span[aria-hidden]{font-size:18px;color:var(--mcp-home-muted);transition:color .15s ease}
 .mcp-home-actions a:hover,.mcp-home-actions a:focus-visible{color:var(--mcp-home-ink)}
@@ -43,13 +43,16 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
 .mcp-home-actions-mobile{display:none}
 /* Portrait tablet keeps the same four-column anchors with readable, compact labels. */
 @media (768px <= width <= 1100px){
- .mcp-home-screen{--edge-x:36px;--edge-top:36px;--gap:18px;min-height:600px}
+ .mcp-home-screen{--edge-x:clamp(48px,6.25vw,64px);--edge-top:48px;--gap:24px;min-height:600px;--fourth-axis-offset:0%}
+ .mcp-home-top,.mcp-home-nav,.mcp-home-actions-desktop{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .mcp-home-status,.mcp-home-nav .mcp-home-menu-item{grid-column:3}
+ .mcp-home-logo{width:74%}
  .mcp-home-copy{bottom:94px}.mcp-home-actions{bottom:48px}
  .mcp-home-status{font-size:12px;column-gap:4px;grid-template-columns:auto 6px auto}
  .mcp-home-nav .mcp-home-menu-item{font-size:16px}.mcp-home-actions a{font-size:11px;gap:5px}.mcp-home-actions span[aria-hidden]{font-size:15px}
 }
 @media (max-width:767px){
- .mcp-home-screen{--pad:clamp(28px,7.4vw,42px);display:flex;flex-direction:column;height:auto;min-height:100svh;padding:clamp(55px,10vh,82px) max(var(--pad),env(safe-area-inset-right)) clamp(58px,9vh,76px) max(var(--pad),env(safe-area-inset-left));padding-top:max(clamp(55px,10vh,82px),env(safe-area-inset-top));padding-bottom:max(clamp(58px,9vh,76px),env(safe-area-inset-bottom))}
+ .mcp-home-screen{--pad:clamp(36px,9.25vw,48px);display:flex;flex-direction:column;height:auto;min-height:calc(100svh - var(--mcp-preview-toolbar-height,0px));padding:clamp(55px,10vh,82px) max(var(--pad),env(safe-area-inset-right)) clamp(58px,9vh,76px) max(var(--pad),env(safe-area-inset-left));padding-top:max(clamp(55px,10vh,82px),env(safe-area-inset-top));padding-bottom:max(clamp(58px,9vh,76px),env(safe-area-inset-bottom))}
  .mcp-home-top{position:static;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
  .mcp-home-logo{flex:none;min-width:0;max-width:185px;width:51%}
  .mcp-home-status{display:inline-flex;gap:7px;font-size:clamp(10px,2.55vw,12px);line-height:1.1;padding-top:1px}
@@ -68,10 +71,14 @@ body:has(.mcp-home-screen){margin:0;color:var(--mcp-home-ink);background:var(--m
  .mcp-home-actions-mobile span[aria-hidden]{font-size:19px;line-height:.8}
 }
 @media (max-width:350px){
- .mcp-home-screen{--pad:26px;padding-top:58px;padding-bottom:53px}
+ .mcp-home-screen{--pad:32px;padding-top:58px;padding-bottom:53px}
  .mcp-home-title{font-size:2.375rem}.mcp-home-nav{padding-top:35px;margin-bottom:30px}.mcp-home-nav .mcp-home-menu-item{font-size:17px}.mcp-home-actions-mobile a{font-size:12px}
 }
 @media (max-width:767px) and (max-height:740px){
  .mcp-home-copy{padding-top:65px}.mcp-home-nav{padding-top:32px;margin-bottom:28px;gap:9px}.mcp-home-screen{padding-top:55px;padding-bottom:54px}
 }
 @media (prefers-reduced-motion:reduce){.mcp-home-status-dot{animation:none}.mcp-home-actions span[aria-hidden]{transition:none}}
+
+/* Keep native draft controls visible outside the Home canvas; never hide them. */
+body.wpvibe-preview-active:has(.mcp-home-screen){padding-bottom:var(--mcp-preview-toolbar-height,50px)!important}
+body:has(.mcp-home-screen) #wpvibe-preview-banner{box-sizing:border-box;max-width:100%;flex-wrap:wrap}
