@@ -9,16 +9,19 @@
   const dates = input => String(input || '').split(/[\s,;]+/).filter(Boolean);
   const statusAt = (date, config) => {
     const p = dateParts(date), iso = `${p.year}-${p.month}-${p.day}`;
-    if (!config.schedule_confirmed || Number(config.calendar_year) !== Number(p.year)) return null;
+    const calendar = config.calendars?.[p.year];
+    if (!config.schedule_confirmed || !calendar) return null;
+    const extra = Number(config.calendar_year) === Number(p.year);
+    const holidays = [...calendar.holidays, ...(extra ? dates(config.holidays) : [])];
+    const workdays = [...calendar.workdays, ...(extra ? dates(config.workdays) : [])];
+    if (holidays.includes(iso) || (['Sat', 'Sun'].includes(p.weekday) && !workdays.includes(iso))) return 'Выходной';
     const opens = minutes(config.opens), closes = minutes(config.closes);
     const lunchStart = minutes(config.lunch_start), lunchEnd = minutes(config.lunch_end);
     if (opens === null || closes === null || opens >= closes) return null;
-    if ((config.lunch_start || config.lunch_end) && (lunchStart === null || lunchEnd === null || lunchStart >= lunchEnd || lunchStart < opens || lunchEnd > closes)) return null;
-    if (dates(config.holidays).includes(iso) || (['Sat', 'Sun'].includes(p.weekday) && !dates(config.workdays).includes(iso))) return 'Выходной';
+    if (lunchStart === null || lunchEnd === null || lunchStart >= lunchEnd || lunchStart < opens || lunchEnd > closes) return null;
     const time = Number(p.hour) * 60 + Number(p.minute);
-    if (time < opens || time >= closes) return 'Отдыхаем';
-    if (lunchStart !== null && lunchEnd !== null && time >= lunchStart && time < lunchEnd) return 'Обед';
-    return 'Работаем';
+    if (time >= lunchStart && time < lunchEnd) return 'Обед';
+    return time >= opens && time < closes ? 'Работаем' : 'Отдыхаем';
   };
   // CommonJS export enables deterministic boundary tests without a browser clock mock.
   if (typeof module !== 'undefined' && module.exports) module.exports = { statusAt, dateParts };
@@ -28,10 +31,13 @@
   if (!container || !configNode) return;
   let config;
   try { config = JSON.parse(configNode.textContent); } catch { return; }
+  let clockTimer;
   const refresh = () => {
     const now = new Date(), parts = dateParts(now);
     container.querySelector('[data-status-date]').textContent = `${parts.day}.${parts.month}`;
-    container.querySelector('[data-status-state]').textContent = statusAt(now, config) || 'Уточните график';
+    container.querySelector('[data-status-state]').textContent = statusAt(now, config) || 'График недоступен';
+    clearTimeout(clockTimer);
+    clockTimer = setTimeout(refresh, 60000 - now.getTime() % 60000 + 5);
   };
   // The menu's grid frame spans visible logo ink bottom to visible title ink top.
   // Logo PNG has tightly cropped alpha bounds; title bounds use loaded font metrics.
@@ -43,14 +49,16 @@
   const context = document.createElement('canvas').getContext('2d');
   let layoutFrame = 0;
   const alignMenu = () => {
+    const style = getComputedStyle(title);
+    context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const finalWord = title.textContent.trim().split(/\s+/).at(-1);
+    anchor.style.setProperty('--ink-descent', `${context.measureText(finalWord).actualBoundingBoxDescent}px`);
     if (window.matchMedia('(max-width:767px)').matches) {
       nav.style.removeProperty('--nav-ink-start');
       nav.style.removeProperty('--nav-ink-end');
       return;
     }
     const rect = screen.getBoundingClientRect();
-    const style = getComputedStyle(title);
-    context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
     const metrics = context.measureText(title.textContent.replace(/\s+/g, ' ').trim());
     const titleTop = anchor.getBoundingClientRect().bottom - metrics.actualBoundingBoxAscent;
     const start = logo.getBoundingClientRect().bottom - rect.top;
@@ -103,6 +111,6 @@
   else observePreviewToolbar();
   ready();
   refresh();
-  setInterval(refresh, 30000);
+  window.addEventListener('pageshow', refresh);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
 })();
