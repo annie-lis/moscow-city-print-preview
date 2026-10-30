@@ -251,6 +251,13 @@ jobs:
             curl --fail --silent --show-error --location --max-time 30 "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-internal-resource
             cmp "$file" public-internal-resource
           done
+      - name: Verify final heading screenshot links
+        run: |
+          for file in review/internal-heading-8c2fbdb/*.png review/internal-heading-8c2fbdb/index.html; do
+            curl --fail --silent --show-error --location --retry 8 --retry-all-errors --retry-delay 5 --max-time 20 \
+              "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-heading-resource
+            cmp "$file" public-heading-resource
+          done
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4
