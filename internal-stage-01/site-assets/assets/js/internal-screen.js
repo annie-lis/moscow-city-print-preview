@@ -8,17 +8,15 @@
   if(!final.firstChild)return;
   const glyph=document.createRange();glyph.selectNodeContents(final);
   const last=glyph.getBoundingClientRect();
-  const probe=document.createElement('span');probe.style.cssText='display:inline-block;width:0;height:0;padding:0;margin:0;vertical-align:baseline';
-  final.append(probe);const baseline=probe.getBoundingClientRect().bottom;probe.remove();
   // Only the final word's visible fragment defines the accent ink edge.
   let line='';const walker=document.createTreeWalker(title.querySelector('[data-title-last-word]'),NodeFilter.SHOW_TEXT);let node;
   while((node=walker.nextNode())){
    for(let i=0;i<node.length;){const text=String.fromCodePoint(node.textContent.codePointAt(i));const range=document.createRange();range.setStart(node,i);range.setEnd(node,i+text.length);const rect=range.getBoundingClientRect();if(Math.abs(rect.top-last.top)<1)line+=text;i+=text.length;}
   }
   const style=getComputedStyle(title);canvas.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-  const inkBottom=baseline+canvas.measureText(line).actualBoundingBoxDescent;
-  // em keeps the attachment proportional even before the next resize frame.
-  anchor.style.setProperty('--title-ink-trim',`${(last.bottom-inkBottom)/parseFloat(style.fontSize)}em`);
+  // Approved Home rule: measure final-word ink descent from its inline baseline.
+  const finalWord=line.replace(/\u2060/g,'').trim();
+  anchor.style.setProperty('--ink-descent',`${canvas.measureText(finalWord).actualBoundingBoxDescent}px`);
  };
  const schedule=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(align);};
  new ResizeObserver(schedule).observe(title);window.addEventListener('resize',schedule);
