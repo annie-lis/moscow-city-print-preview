@@ -10,7 +10,8 @@
   const last=glyph.getBoundingClientRect();
   const probe=document.createElement('span');probe.style.cssText='display:inline-block;width:0;height:0;padding:0;margin:0;vertical-align:baseline';
   final.append(probe);const baseline=probe.getBoundingClientRect().bottom;probe.remove();
-  let line='';const walker=document.createTreeWalker(title,NodeFilter.SHOW_TEXT);let node;
+  // Only the final word's visible fragment defines the accent ink edge.
+  let line='';const walker=document.createTreeWalker(title.querySelector('[data-title-last-word]'),NodeFilter.SHOW_TEXT);let node;
   while((node=walker.nextNode())){
    for(let i=0;i<node.length;){const text=String.fromCodePoint(node.textContent.codePointAt(i));const range=document.createRange();range.setStart(node,i);range.setEnd(node,i+text.length);const rect=range.getBoundingClientRect();if(Math.abs(rect.top-last.top)<1)line+=text;i+=text.length;}
   }

@@ -21,12 +21,19 @@ body:has(.mcp-internal-screen){margin:0;background:#F2EEE7;color:#171716;font-fa
 .mcp-internal-dropdown{display:none}
 .mcp-internal-title-area{display:flex;align-items:flex-end;min-width:0;padding-block:80px 64px;container-type:inline-size}
 .mcp-internal-title{margin:0;font:500 clamp(39px,calc(75cqw / 11.59299),128px)/1.04 'Geologica',Arial,Helvetica,sans-serif;letter-spacing:-.05em;overflow-wrap:anywhere;max-width:100%}
+/* Keep the last word atomic; only words wider than the full title measure wrap inside. */
+[data-title-last-word]{display:inline-block;max-inline-size:100%;vertical-align:baseline}
 .mcp-internal-title-tail{position:relative;padding-inline-end:.215em;white-space:nowrap}
 /* One measured ink trim, expressed in em; no breakpoint-specific offsets. */
 .mcp-internal-accent{--title-ink-trim:0em;position:absolute;inset-inline-end:0;bottom:var(--title-ink-trim);display:block;width:.115em;height:.115em}
 .mcp-internal-square{display:block;flex:none;width:.115em;height:.115em;background:#B8221A}
 .mcp-internal-service{align-items:end;font-size:14px;line-height:1.25;font-weight:400;color:#77766F}
 .mcp-internal-service>*{min-width:0;overflow-wrap:anywhere}
+.mcp-internal-service-mobile{display:none}
+@media(1101px <= width < 1600px){
+ .mcp-internal-desktop-nav{column-gap:28px}
+ .mcp-internal-desktop-nav .mcp-internal-menu-item{font-size:15px;font-weight:400}
+}
 @media(min-width:1600px){.mcp-internal-logo{width:66.7808%}}
 @media(768px <= width <= 1100px){
  .mcp-internal-screen{--page-edge:clamp(56px,6.25vw,64px);--page-columns:3;--page-gap:24px}
@@ -50,7 +57,13 @@ body:has(.mcp-internal-screen){margin:0;background:#F2EEE7;color:#171716;font-fa
  .mcp-internal-dropdown{grid-column:2}
  .mcp-internal-dropdown summary{font-size:14px;gap:7px}
  .mcp-internal-title{font-size:clamp(39px,10.1vw,64px);letter-spacing:-.055em}
- .mcp-internal-service{row-gap:10px;font-size:12px}
+ .mcp-internal-service{font-size:12px;min-block-size:calc(3.75em + 20px)}
+ .mcp-internal-service-detail{display:none}
+ .mcp-internal-service-mobile{display:flex;align-self:end;align-items:baseline;justify-content:space-between;gap:8px;min-width:0;font-size:clamp(11.5px,3.077vw,12px)}
+ .mcp-internal-service-mobile a{display:inline-flex;align-items:baseline;gap:4px;white-space:nowrap}
+ .mcp-internal-service-mobile a span{font-size:1.15em;line-height:1}
+ .mcp-internal-service-mobile a:hover{color:#171716}
+ .mcp-internal-service-mobile a:hover span{color:#B8221A}
  .mcp-internal-title-area{padding-bottom:48px}
 }
 @media(max-width:374px){.mcp-internal-screen{--page-edge:48px;padding-top:78px}}
