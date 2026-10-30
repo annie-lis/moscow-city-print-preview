@@ -234,6 +234,23 @@ jobs:
             https://annie-lis.github.io/moscow-city-print-preview/site-assets/assets/css/service-pages.css \
             --output public-service-pages.css
           cmp site-assets/assets/css/service-pages.css public-service-pages.css
+      - name: Verify isolated internal Page shell preview
+        run: |
+          ready=false
+          for attempt in $(seq 1 24); do
+            if curl --fail --silent --show-error --location --max-time 20 https://annie-lis.github.io/moscow-city-print-preview/internal-stage-01/services.html --output public-internal.html && cmp --silent internal-stage-01/services.html public-internal.html; then
+              ready=true
+              break
+            fi
+            sleep 5
+          done
+          test "$ready" = true
+          grep -q 'id="mcp-internal-title"' public-internal.html
+          grep -q 'mcp-internal-service' public-internal.html
+          for file in $(find internal-stage-01 -type f); do
+            curl --fail --silent --show-error --location --max-time 30 "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-internal-resource
+            cmp "$file" public-internal-resource
+          done
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4

@@ -1,0 +1,33 @@
+/* Accepted Home variables. No values changed. */
+:root {
+  --paper:#f5f5f2;
+  --paper-alt:#efefec;
+  --ink:#151515;
+  --muted:#74746f;
+  --section-title-size:31px;
+  --section-title-weight:300;
+  --section-title-leading:1.04;
+  --mark:#151515;
+  --rail-x:64px;
+  --header-left:78px;
+  /* PNG visible ink begins 32/721 of its displayed width from the left. */
+  --header-logo-ink-inset:11.7614px;
+  --header-right:calc(var(--header-left) + var(--header-logo-ink-inset));
+  --content-x:160px;
+  --right:58px;
+  --section-divider-inset:64px;
+  --vertical-inset:38px;
+  --section-content-inset:var(--vertical-inset);
+  --section-height:288px;
+  --client-nav-inset:24px;
+  --column-padding:calc(var(--section-marker-num-width) + var(--section-marker-gap));
+  --card-cap-space:32px;
+  --card-number-gap:16px;
+  --section-intro-width:210px;
+  --section-column-gap:48px;
+  --section-grid-start:calc(var(--content-x) + var(--section-intro-width) + var(--section-column-gap));
+  --section-data-width:calc(100% - var(--section-grid-start) - var(--right));
+  --footer-split-1:calc(var(--section-grid-start) + var(--section-data-width) / 8);
+  --footer-split-2:calc(var(--section-grid-start) + var(--section-data-width) * 5 / 8);
+  --footer-actions-gutter:calc(var(--right) + var(--client-nav-inset) - var(--column-padding));
+}

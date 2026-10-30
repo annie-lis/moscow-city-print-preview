@@ -1,0 +1,81 @@
+/* Universal inner workspace only: reuse Home tokens, marker and type classes. */
+.mcp-inner-hero{
+  padding:calc(var(--vertical-inset) * 1.5) var(--header-right);
+  text-align:center;
+}
+.mcp-inner-hero-content{max-width:900px;margin-inline:auto;}
+.mcp-inner-hero .mcp-page-title{font-size:clamp(32px,3.5vw,50px);}
+.mcp-inner-hero .mcp-page-copy{max-width:650px;margin-inline:auto;}
+.mcp-inner-main{flex:1;min-width:0;}
+.mcp-inner-fallback{
+  min-height:250px;
+  padding:var(--vertical-inset) var(--header-right) var(--vertical-inset) var(--axis-b);
+}
+.mcp-inner-section{position:relative;width:100%;min-width:0;}
+.mcp-inner-section--paper{background:var(--paper);}
+.mcp-inner-section--paper-alt{background:var(--paper-alt);}
+.mcp-inner-section-content{
+  min-width:0;
+  padding:calc(var(--vertical-inset) * 2 + 15px) var(--header-right) var(--vertical-inset) var(--axis-b);
+}
+.mcp-inner-main .mcp-page-title,
+.mcp-inner-main .mcp-page-copy{overflow-wrap:anywhere;}
+.mcp-inner-main .section-marker{
+  max-width:calc(100% - var(--axis-a) - var(--header-right));
+  height:auto;
+  white-space:normal;
+}
+.mcp-inner-main .section-marker .rule{flex-shrink:0;}
+.mcp-inner-main .section-marker .label{min-width:0;overflow-wrap:anywhere;}
+.mcp-inner-split{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  margin-left:var(--axis-b);
+  margin-right:var(--header-right);
+}
+.mcp-inner-column{
+  position:relative;
+  min-width:0;
+  padding-top:calc(var(--vertical-inset) * 2 + 15px);
+  padding-bottom:var(--vertical-inset);
+}
+.mcp-inner-column:first-child{padding-right:var(--column-padding);}
+.mcp-inner-column:last-child{padding-left:var(--column-padding);}
+.mcp-inner-column:first-child .section-marker{left:calc(var(--axis-a) - var(--axis-b));}
+.mcp-inner-column:last-child .section-marker{left:calc(var(--column-padding) - var(--section-marker-num-width) - var(--section-marker-gap));}
+.mcp-inner-column .section-marker{max-width:calc(100% - var(--column-padding));}
+/* The divider follows the title-to-longest-content region, not section center. */
+.mcp-inner-split::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:calc(var(--vertical-inset) * 2 + 15px);
+  bottom:var(--vertical-inset);
+  width:1px;
+  background:rgba(21,21,21,.14);
+}
+.mcp-inner-sequence{align-items:start;}
+.mcp-inner-sequence .step{padding-left:0;padding-right:var(--column-padding);}
+.mcp-inner-main .mcp-page-copy + .mcp-inner-sequence{margin-top:var(--vertical-inset);}
+@media(max-width:900px){
+  .mcp-inner-split{grid-template-columns:minmax(0,1fr);}
+  .mcp-inner-split::before{display:none;}
+  .mcp-inner-column:first-child,
+  .mcp-inner-column:last-child{padding-left:0;padding-right:0;}
+  .mcp-inner-column:last-child .section-marker{left:calc(var(--axis-a) - var(--axis-b));}
+  .mcp-inner-column .section-marker{max-width:100%;}
+  .mcp-inner-sequence{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--vertical-inset);}
+}
+@media(max-width:650px){
+  .mcp-inner-sequence{grid-template-columns:minmax(0,1fr);}
+  .mcp-inner-sequence .step{padding-right:0;}
+}
+
+/* Internal shell only: allow the existing header to fit narrow viewports. */
+@media(max-width:650px){
+  .canvas > .band-1 > .header{height:auto;min-height:106px;grid-template-columns:minmax(0,1fr);row-gap:18px;}
+  .canvas > .band-1 > .header .brand{max-width:100%;}
+  .canvas > .band-1 > .header .header-right{justify-self:stretch;min-width:0;}
+  .canvas > .band-1 > .header .nav{flex-wrap:wrap;justify-content:flex-start;}
+}
