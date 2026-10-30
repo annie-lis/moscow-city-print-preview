@@ -22,8 +22,8 @@ body:has(.mcp-internal-screen){margin:0;background:#F2EEE7;color:#171716;font-fa
 .mcp-internal-title-area{display:flex;align-items:flex-end;min-width:0;padding-block:80px 64px;container-type:inline-size}
 .mcp-internal-title{margin:0;font:500 clamp(39px,calc(75cqw / 11.59299),128px)/1.04 'Geologica',Arial,Helvetica,sans-serif;letter-spacing:-.05em;overflow-wrap:anywhere;max-width:100%}
 .mcp-internal-title-tail{position:relative;padding-inline-end:.215em;white-space:nowrap}
-/* Pin the square to the final text fragment; no independent font/viewport offsets. */
-.mcp-internal-accent{position:absolute;inset-inline-end:0;bottom:0;display:block;width:.115em;height:.115em}
+/* One measured ink trim, expressed in em; no breakpoint-specific offsets. */
+.mcp-internal-accent{--title-ink-trim:0em;position:absolute;inset-inline-end:0;bottom:var(--title-ink-trim);display:block;width:.115em;height:.115em}
 .mcp-internal-square{display:block;flex:none;width:.115em;height:.115em;background:#B8221A}
 .mcp-internal-service{align-items:end;font-size:14px;line-height:1.25;font-weight:400;color:#77766F}
 .mcp-internal-service>*{min-width:0;overflow-wrap:anywhere}
