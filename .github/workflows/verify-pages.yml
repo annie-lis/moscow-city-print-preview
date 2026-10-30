@@ -258,6 +258,13 @@ jobs:
               "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-heading-resource
             cmp "$file" public-heading-resource
           done
+      - name: Verify glyph and mark review screenshot links
+        run: |
+          for file in review/internal-final-8dbdb49/*.png review/internal-final-8dbdb49/index.html; do
+            curl --fail --silent --show-error --location --retry 8 --retry-all-errors --retry-delay 5 --max-time 20 \
+              "https://annie-lis.github.io/moscow-city-print-preview/$file" --output public-mark-review
+            cmp "$file" public-mark-review
+          done
       - name: Save publication verification
         if: always()
         uses: actions/upload-artifact@v4
